@@ -6,272 +6,95 @@
   <title>自動運転・関連技術 おすすめ記事100選</title>
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --surface2: #222535;
-      --border: #2e3250;
-      --accent: #4f8ef7;
-      --accent2: #7c6af7;
-      --text: #e8eaf6;
-      --text-muted: #8891b0;
-      --green: #4caf82;
-      --yellow: #f7c948;
-      --red: #f74f6e;
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #222535;
+      --border: #2e3250; --accent: #4f8ef7; --accent2: #7c6af7;
+      --text: #e8eaf6; --muted: #8891b0;
+      --green: #4caf82; --yellow: #f7c948; --red: #f74f6e;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
     /* HEADER */
-    header {
-      background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
-      border-bottom: 1px solid var(--border);
-      padding: 24px 20px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: clamp(1.2rem, 4vw, 1.8rem);
-      font-weight: 700;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 6px;
-    }
-    header p { color: var(--text-muted); font-size: 0.85rem; }
-    .stat-bar {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 14px;
-    }
-    .stat-chip {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 4px 14px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
+    header { background: linear-gradient(135deg,#1a1d27,#0f1117); border-bottom: 1px solid var(--border); padding: 24px 20px 20px; text-align: center; }
+    header h1 { font-size: clamp(1.2rem,4vw,1.9rem); font-weight: 700; background: linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+    header p { color: var(--muted); font-size: .85rem; }
+    .stat-bar { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .stat-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 4px 14px; font-size: .78rem; color: var(--muted); }
     .stat-chip span { color: var(--accent); font-weight: 600; }
 
     /* CONTROLS */
-    .controls {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(15, 17, 23, 0.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 12px 16px;
-    }
-    .controls-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-    #search {
-      flex: 1;
-      min-width: 200px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px 14px;
-      color: var(--text);
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .controls { position: sticky; top: 0; z-index: 100; background: rgba(15,17,23,.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 12px 16px; }
+    .controls-inner { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    #search { flex: 1; min-width: 200px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; color: var(--text); font-size: .9rem; outline: none; transition: border-color .2s; }
     #search:focus { border-color: var(--accent); }
-    #search::placeholder { color: var(--text-muted); }
-
-    .filter-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .filter-btn {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-    }
-    .filter-btn:hover, .filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-    .star-filter {
-      display: flex;
-      gap: 4px;
-    }
-    .star-btn {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 5px 10px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .star-btn:hover, .star-btn.active {
-      background: var(--yellow);
-      border-color: var(--yellow);
-      color: #111;
-    }
-
-    #result-count {
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      margin-left: auto;
-    }
+    #search::placeholder { color: var(--muted); }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 6px; }
+    .filter-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: .78rem; color: var(--muted); cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .star-filter { display: flex; gap: 4px; }
+    .star-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: .78rem; color: var(--muted); cursor: pointer; transition: all .2s; }
+    .star-btn:hover, .star-btn.active { background: var(--yellow); border-color: var(--yellow); color: #111; }
+    #result-count { color: var(--muted); font-size: .8rem; margin-left: auto; }
 
     /* MAIN */
-    main {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 20px 16px;
-    }
+    main { max-width: 1400px; margin: 0 auto; padding: 20px 16px; }
 
     /* SECTION */
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 28px 0 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
-    }
-    .section-header h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .section-count {
-      background: var(--surface2);
-      border-radius: 12px;
-      padding: 2px 8px;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      margin-left: auto;
-    }
+    .section-header { display: flex; align-items: center; gap: 10px; margin: 28px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .section-header h2 { font-size: 1rem; font-weight: 600; }
+    .section-count { background: var(--surface2); border-radius: 12px; padding: 2px 8px; font-size: .72rem; color: var(--muted); margin-left: auto; }
 
-    /* CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 12px;
-    }
+    /* CARDS GRID */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 16px;
-      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: var(--accent);
-      box-shadow: 0 4px 20px rgba(79, 142, 247, 0.12);
-    }
+    /* CARD */
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; transition: transform .15s, border-color .15s, box-shadow .15s; }
+    .card:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 4px 24px rgba(79,142,247,.12); }
     .card.hidden { display: none; }
 
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 8px;
-    }
-    .card-num {
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      background: var(--surface2);
-      border-radius: 4px;
-      padding: 2px 6px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .card-stars {
-      font-size: 0.8rem;
-      flex-shrink: 0;
-    }
+    /* CARD IMAGE */
+    .card-img { height: 140px; position: relative; overflow: hidden; background: var(--grad, linear-gradient(135deg,#1a1d27,#2e3250)); flex-shrink: 0; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .card-img .img-fallback { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 2.2rem; opacity: .7; gap: 6px; }
+    .card-img .img-fallback span { font-size: .72rem; color: rgba(255,255,255,.5); font-weight: 500; letter-spacing: .05em; }
+    .card-img .num-badge { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); border-radius: 6px; padding: 2px 8px; font-size: .7rem; color: rgba(255,255,255,.8); }
 
-    .card-title {
-      font-size: 0.88rem;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-    .card-title a {
-      color: var(--text);
-      text-decoration: none;
-      transition: color 0.15s;
-    }
+    /* CARD BODY */
+    .card-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .card-title a { font-size: .87rem; font-weight: 600; line-height: 1.4; color: var(--text); text-decoration: none; transition: color .15s; }
     .card-title a:hover { color: var(--accent); }
+    .card-meta { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tag { border-radius: 4px; padding: 2px 7px; font-size: .68rem; }
+    .tag.cat { background: rgba(124,106,247,.12); border: 1px solid rgba(124,106,247,.25); color: var(--accent2); }
+    .tag.year { background: rgba(76,175,130,.12); border: 1px solid rgba(76,175,130,.25); color: var(--green); }
+    .card-desc { font-size: .76rem; color: var(--muted); line-height: 1.55; flex: 1; }
 
-    .card-meta {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .tag {
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2px 8px;
-      font-size: 0.7rem;
-      color: var(--text-muted);
-    }
-    .tag.cat { border-color: var(--accent2); color: var(--accent2); }
-    .tag.year { border-color: var(--green); color: var(--green); }
+    /* RATINGS */
+    .card-ratings { display: flex; flex-direction: column; gap: 5px; padding-top: 8px; border-top: 1px solid var(--border); margin-top: auto; }
+    .rating-row { display: flex; align-items: center; gap: 6px; }
+    .rating-label { font-size: .68rem; color: var(--muted); width: 52px; flex-shrink: 0; }
+    .editor-stars { font-size: .78rem; letter-spacing: .05em; }
+    .user-stars { display: flex; gap: 2px; }
+    .user-stars .s { font-size: 1rem; cursor: pointer; color: #444; transition: color .1s, transform .1s; line-height: 1; }
+    .user-stars .s:hover { transform: scale(1.2); }
+    .user-stars .s.lit { color: var(--yellow); }
+    .user-stars .s.hover-lit { color: #c8a200; }
+    .user-note { font-size: .65rem; color: var(--muted); opacity: .6; }
 
-    .card-desc {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
+    /* TABS */
+    .tabs { background: var(--surface); border-bottom: 1px solid var(--border); display: flex; justify-content: center; }
+    .tab-btn { padding: 13px 40px; font-size: .92rem; font-weight: 600; color: var(--muted); cursor: pointer; border: none; background: none; border-bottom: 3px solid transparent; transition: all .2s; }
+    .tab-btn:hover { color: var(--text); }
+    .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-    /* EMPTY STATE */
-    #empty {
-      display: none;
-      text-align: center;
-      padding: 60px 20px;
-      color: var(--text-muted);
-    }
+    /* EMPTY */
+    #empty { display: none; text-align: center; padding: 60px 20px; color: var(--muted); }
     #empty .emoji { font-size: 3rem; margin-bottom: 12px; }
 
     /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 24px;
-      color: var(--text-muted);
-      font-size: 0.78rem;
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
-    }
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    footer { text-align: center; padding: 24px; color: var(--muted); font-size: .78rem; border-top: 1px solid var(--border); margin-top: 40px; }
+    footer a { color: var(--accent); text-decoration: none; }
 
-    /* MOBILE */
     @media (max-width: 600px) {
       .cards { grid-template-columns: 1fr; }
       .controls-inner { flex-direction: column; align-items: stretch; }
@@ -291,6 +114,11 @@
     <div class="stat-chip">収集日 <span>2026-05-07</span></div>
   </div>
 </header>
+
+<div class="tabs">
+  <button class="tab-btn active" data-tab="article">📰 記事</button>
+  <button class="tab-btn" data-tab="paper">📄 論文</button>
+</div>
 
 <div class="controls">
   <div class="controls-inner">
@@ -317,984 +145,12 @@
   </div>
 </div>
 
-<main id="main">
-
-  <!-- WAYMO -->
-  <div class="section-header" data-section="waymo">
-    <h2>🚗 Waymo</h2>
-    <span class="section-count">9件</span>
-  </div>
-  <div class="cards" id="section-waymo">
-
-    <div class="card" data-cat="waymo" data-stars="5" data-year="2025">
-      <div class="card-top">
-        <span class="card-num">#1</span>
-        <span class="card-stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://waymo.com/blog/2025/12/demonstrably-safe-ai-for-autonomous-driving/" target="_blank" rel="noopener">Demonstrably Safe AI For Autonomous Driving</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🚗 Waymo</span>
-        <span class="tag year">2025</span>
-      </div>
-      <div class="card-desc">Waymo Foundation Modelを中心に、Driver・Simulator・Criticが同一AIで動く安全エコシステムを解説。自動運転AIの設計思想として必読の公式ブログ。</div>
-    </div>
-
-    <div class="card" data-cat="waymo ai" data-stars="5" data-year="2024">
-      <div class="card-top">
-        <span class="card-num">#2</span>
-        <span class="card-stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2410.23262" target="_blank" rel="noopener">EMMA: End-to-End Multimodal Model for Autonomous Driving (arXiv)</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🤖 AI/ML</span>
-        <span class="tag year">2024</span>
-      </div>
-      <div class="card-desc">GeminiベースのE2E自動運転モデル。センサーデータから直接軌跡を生成し、Chain-of-Thoughtで計画精度6.7%向上。業界パラダイムシフトを示す最重要論文の一つ。</div>
-    </div>
-
-    <div class="card" data-cat="waymo ai" data-stars="5" data-year="2024">
-      <div class="card-top">
-        <span class="card-num">#3</span>
-        <span class="card-stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://waymo.com/blog/2024/10/introducing-emma/" target="_blank" rel="noopener">Introducing EMMA (Waymo公式ブログ)</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🚗 Waymo</span>
-        <span class="tag year">2024</span>
-      </div>
-      <div class="card-desc">EMMAの概要と背景を分かりやすく解説した公式ブログ版。マルチモーダルLLMで自動運転を統一するアプローチの意義を説明。</div>
-    </div>
-
-    <div class="card" data-cat="waymo ai" data-stars="4" data-year="2024">
-      <div class="card-top">
-        <span class="card-num">#4</span>
-        <span class="card-stars">⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://waymo.com/blog/2024/10/ai-and-ml-at-waymo/" target="_blank" rel="noopener">Behind the Innovation: AI & ML at Waymo</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🚗 Waymo</span>
-        <span class="tag year">2024</span>
-      </div>
-      <div class="card-desc">WaymoのAI/ML技術全体像。複雑な交通パターンや他ドライバーの意図解釈まで含むWaymo Driverの開発アプローチを解説。</div>
-    </div>
-
-    <div class="card" data-cat="waymo chip" data-stars="5" data-year="2024">
-      <div class="card-top">
-        <span class="card-num">#5</span>
-        <span class="card-stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://waymo.com/blog/2024/08/meet-the-6th-generation-waymo-driver/" target="_blank" rel="noopener">Meet the 6th-Generation Waymo Driver</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🚗 Waymo</span>
-        <span class="tag year">2024</span>
-      </div>
-      <div class="card-desc">第6世代Waymo Driverの詳細。センサー数42%削減、17MPカメラ、コスト$20,000以下を達成。ハードウェアスケーリング戦略の好事例。</div>
-    </div>
-
-    <div class="card" data-cat="waymo" data-stars="5" data-year="2026">
-      <div class="card-top">
-        <span class="card-num">#6</span>
-        <span class="card-stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://waymo.com/blog/2026/02/ro-on-6th-gen-waymo-driver/" target="_blank" rel="noopener">Beginning Fully Autonomous Operations with the 6th-Gen Waymo Driver</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🚗 Waymo</span>
-        <span class="tag year">2026</span>
-      </div>
-      <div class="card-desc">6世代ドライバーで完全自律運転開始。週100万ライド目標。新センサー設計（13カメラ/4LiDAR/6レーダー）の技術的詳細。</div>
-    </div>
-
-    <div class="card" data-cat="waymo regulation" data-stars="4" data-year="2025">
-      <div class="card-top">
-        <span class="card-num">#7</span>
-        <span class="card-stars">⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://waymo.com/blog/2025/11/safe-routine-ready-autonomous-driving-in-new-cities/" target="_blank" rel="noopener">Safe, Routine, Ready: Autonomous Driving in Five New Cities</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🚗 Waymo</span>
-        <span class="tag year">2025</span>
-      </div>
-      <div class="card-desc">Miami, Dallas等5都市への展開発表。地理的スケーリングの技術的課題と対処法を解説。</div>
-    </div>
-
-    <div class="card" data-cat="waymo regulation" data-stars="5" data-year="2025">
-      <div class="card-top">
-        <span class="card-num">#8</span>
-        <span class="card-stars">⭐⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://www.tandfonline.com/doi/full/10.1080/15389588.2025.2499887" target="_blank" rel="noopener">Comparison of Waymo Rider-Only Crash Rates at 56.7M Miles</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🌐 規制/動向</span>
-        <span class="tag year">2025</span>
-      </div>
-      <div class="card-desc">5670万マイルのデータで人間ドライバーと比較。重傷事故91%減・歩行者事故92%減を査読論文として発表。安全性の科学的実証として業界最重要データ。</div>
-    </div>
-
-    <div class="card" data-cat="waymo ai" data-stars="4" data-year="2024">
-      <div class="card-top">
-        <span class="card-num">#9</span>
-        <span class="card-stars">⭐⭐⭐⭐</span>
-      </div>
-      <div class="card-title"><a href="https://waymo.com/research/womd-lidar/" target="_blank" rel="noopener">WOMD-LiDAR: Raw Sensor Dataset for Motion Forecasting</a></div>
-      <div class="card-meta">
-        <span class="tag cat">🚗 Waymo</span>
-        <span class="tag year">2024</span>
-      </div>
-      <div class="card-desc">10万シーン以上の高品質LiDARデータを含むモーション予測データセット。研究コミュニティへの貢献として価値大。</div>
-    </div>
-
-  </div><!-- /section-waymo -->
-
-  <!-- TESLA -->
-  <div class="section-header">
-    <h2>🚗 Tesla</h2>
-    <span class="section-count">3件</span>
-  </div>
-  <div class="cards" id="section-tesla">
-
-    <div class="card" data-cat="tesla ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#10</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.fredpope.com/blog/machine-learning/tesla-fsd-12" target="_blank" rel="noopener">Tesla's Neural Network Revolution: How FSD Replaced 300K Lines of Code with AI</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Tesla</span><span class="tag year">2024</span></div>
-      <div class="card-desc">FSD v12でC++コード30万行をE2Eニューラルネットに完全置換した革命的アーキテクチャ変更を解説。業界の方向性を示す最重要事例。</div>
-    </div>
-
-    <div class="card" data-cat="tesla ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#11</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.autopilotreview.com/full-self-driving-update/" target="_blank" rel="noopener">Tesla FSD v13.2 Rolling Out – Full Self-Driving Update</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Tesla</span><span class="tag year">2024</span></div>
-      <div class="card-desc">HW4向けFSD v13の詳細。重要介入間マイル数の大幅改善。実走行データに基づくE2Eモデルの性能指標追跡に有用。</div>
-    </div>
-
-    <div class="card" data-cat="tesla ai" data-stars="3" data-year="2025">
-      <div class="card-top"><span class="card-num">#12</span><span class="card-stars">⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://interestingengineering.com/culture/can-optimus-make-america-win" target="_blank" rel="noopener">What Tesla's Optimus Robot Can Do in 2025 and Where It Still Lags</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Tesla</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Tesla Optimusの現状と限界。自動運転AIの物理世界への展開として自動運転技術との関連性あり。現実的な評価視点が有用。</div>
-    </div>
-
-  </div>
-
-  <!-- WAYVE -->
-  <div class="section-header">
-    <h2>🚗 Wayve</h2>
-    <span class="section-count">5件</span>
-  </div>
-  <div class="cards" id="section-wayve">
-
-    <div class="card" data-cat="wayve ai" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#13</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://wayve.ai/thinking/multi-country-generalization/" target="_blank" rel="noopener">Crossing the Pond and Beyond: Generalizable AI Driving for Global Deployment</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Wayve</span><span class="tag year">2025</span></div>
-      <div class="card-desc">欧州・北米・日本500都市以上でゼロショット走行を実現した汎化技術。Embodied AIの地理的汎化性能として業界最先端の事例。</div>
-    </div>
-
-    <div class="card" data-cat="wayve ai sim" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#14</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2503.20523" target="_blank" rel="noopener">GAIA-2: A Controllable Multi-View Generative World Model for AD (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">マルチカメラ対応の制御可能なビデオ生成ワールドモデル。エッジケース生成・テスト・合成データ生成を統合。ワールドモデル研究の最前線。</div>
-    </div>
-
-    <div class="card" data-cat="wayve ai sim" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#15</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://wayve.ai/thinking/gaia-2/" target="_blank" rel="noopener">GAIA-2: Pushing the Boundaries of Video Generative Models (Wayve公式)</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Wayve</span><span class="tag year">2025</span></div>
-      <div class="card-desc">GAIA-2の開発背景と実用的な意義を解説。天候・照明・道路構成の制御、レアシナリオ生成のユースケース詳述。</div>
-    </div>
-
-    <div class="card" data-cat="wayve ai sim" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#16</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://wayve.ai/press/wayve-launches-gaia3/" target="_blank" rel="noopener">Wayve Launches GAIA-3: Advancing World Models from Simulation to Evaluation</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Wayve</span><span class="tag year">2025</span></div>
-      <div class="card-desc">GAIA-3発表。シミュレーションから評価まで一貫したフレームワーク。自動運転ワールドモデル研究の最前線。</div>
-    </div>
-
-    <div class="card" data-cat="wayve ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#17</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://wayve.ai/science/" target="_blank" rel="noopener">Wayve Science: Advancing AI Research in Autonomous Driving</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Wayve</span><span class="tag year">2025</span></div>
-      <div class="card-desc">SimLingo（2025年3月）等Wayveの研究成果ページ。VLAモデル統合の先進研究事例。</div>
-    </div>
-
-  </div>
-
-  <!-- AURORA -->
-  <div class="section-header">
-    <h2>🚗 Aurora</h2>
-    <span class="section-count">3件</span>
-  </div>
-  <div class="cards" id="section-aurora">
-
-    <div class="card" data-cat="aurora regulation" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#18</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://electrek.co/2025/05/01/aurora-first-company-deploy-class-8-self-driving-trucks-us-public-roads-video/" target="_blank" rel="noopener">Aurora Becomes First Company to Deploy Class 8 Self-Driving Trucks on US Roads</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Aurora</span><span class="tag year">2025</span></div>
-      <div class="card-desc">米国初のClass 8自動運転トラック公道走行開始。商用Level 4の歴史的マイルストーン。Fort Worth〜El Paso間600マイル。</div>
-    </div>
-
-    <div class="card" data-cat="aurora" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#19</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://aurora.tech/newsroom/progress-in-2024-readying-for-commercial-launch" target="_blank" rel="noopener">Progress in 2024: Readying for Commercial Launch</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Aurora</span><span class="tag year">2024</span></div>
-      <div class="card-desc">商用ローンチに向けた技術進歩を総括。Verifiable AI、360度センサーアレイ、安全ケース構築プロセスを解説。</div>
-    </div>
-
-    <div class="card" data-cat="aurora nvidia chip" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#20</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://ir.aurora.tech/news-events/press-releases/detail/112/aurora-continental-and-nvidia-partner-to-deploy-driverless-trucks-at-scale" target="_blank" rel="noopener">Aurora, Continental, and NVIDIA Partner to Deploy Driverless Trucks at Scale</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Aurora</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Aurora・Continental・NVIDIAのDRIVE Thor採用パートナーシップ。2027年Continental量産を目指す3社協業の詳細。</div>
-    </div>
-
-  </div>
-
-  <!-- ZOOX -->
-  <div class="section-header">
-    <h2>🚗 Zoox</h2>
-    <span class="section-count">2件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="nvidia chip" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#21</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://blogs.nvidia.com/blog/zoox-autonomous-robotaxi-powered-by-nvidia/" target="_blank" rel="noopener">Zoox Unveils Robotaxi Powered by NVIDIA</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Zoox</span><span class="tag year">2024</span></div>
-      <div class="card-desc">ステアリングホイール・ペダルなし専用設計EV「Zoox」の技術詳細。4輪ステアリングによる超小回りと乗客安全設計を解説。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#22</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://electrek.co/2025/09/10/zoox-free-driverless-robotaxi-rides-general-public-vegas/" target="_blank" rel="noopener">Zoox Has Officially Begun Offering Free Robotaxi Rides to the General Public</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Zoox</span><span class="tag year">2025</span></div>
-      <div class="card-desc">ラスベガスで一般公開の無人ロボタクシー開始。専用設計EVの初商用運行事例。2Mマイル・35万乗客達成。</div>
-    </div>
-
-  </div>
-
-  <!-- BAIDU -->
-  <div class="section-header">
-    <h2>🚗 Baidu Apollo</h2>
-    <span class="section-count">3件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="regulation" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#23</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://cnevpost.com/2024/05/15/baidu-apollo-launches-6th-gen-robotaxi/" target="_blank" rel="noopener">Baidu Apollo Launches 6th-Gen Robotaxi with 60% Lower Cost</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Baidu</span><span class="tag year">2024</span></div>
-      <div class="card-desc">第6世代ロボタクシーRT6発表。製造コスト60%削減（$27,670）。中国自動運転のコスト革新と量産スケーリングの好事例。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#24</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://technologymagazine.com/articles/how-baidus-apollo-go-targets-global-robotaxi-expansion/" target="_blank" rel="noopener">How Baidu's Apollo Go Targets Global Robotaxi Expansion</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Baidu</span><span class="tag year">2025</span></div>
-      <div class="card-desc">中国4大一線都市で完全無人商用運行承認。ドバイ・アブダビへの国際展開も解説。Q2 2025で148%成長。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="3" data-year="2024">
-      <div class="card-top"><span class="card-num">#25</span><span class="card-stars">⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.oreateai.com/blog/technical-analysis-of-baidu-apollo-autonomous-driving-data-open-platform/" target="_blank" rel="noopener">Technical Analysis of Baidu Apollo Autonomous Driving Data Open Platform</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Baidu</span><span class="tag year">2024</span></div>
-      <div class="card-desc">Apolloオープンデータプラットフォームの技術解析。データパイプライン設計とオープンソース戦略。</div>
-    </div>
-
-  </div>
-
-  <!-- PONY / WERIDE -->
-  <div class="section-header">
-    <h2>🚗 Pony.ai / WeRide</h2>
-    <span class="section-count">2件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="chip regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#26</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://carnewschina.com/2025/11/06/chinas-l4-autonomous-driving-company-pony-ai-and-weride-go-public-in-hong-kong-shares-dip-over-10/" target="_blank" rel="noopener">China's L4 Companies Pony.ai and WeRide Go Public in Hong Kong</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Pony.ai/WeRide</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Pony.aiとWeRideのHKEX・Nasdaq上場。WeRide HPC 3.0（NVIDIA Thor採用、TCO84%削減）等の最新技術情報も含む。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#27</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://avmarketstrategist.substack.com/p/av-market-update-cw-12" target="_blank" rel="noopener">Japan's AV Revolution & WeRide's, Pony.ai's Expansion Strategy</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Pony.ai/WeRide</span><span class="tag year">2025</span></div>
-      <div class="card-desc">日本の自動運転市場革命とWeRide・Pony.aiの拡張戦略。欧州（Bolt提携）・日本・中東展開の詳細分析。</div>
-    </div>
-
-  </div>
-
-  <!-- NURO -->
-  <div class="section-header">
-    <h2>🚗 Nuro</h2>
-    <span class="section-count">2件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#28</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.nuro.ai/blog/autonomy-for-all-nuro-expands-business-model-to-all-roads-all-rides" target="_blank" rel="noopener">Autonomy for All: Nuro Expands Business Model to All Roads, All Rides</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Nuro</span><span class="tag year">2024</span></div>
-      <div class="card-desc">デリバリーロボットからADシステムライセンス事業へのピボット。Foundation ModelベースのNuro Driverの技術詳細（1.7M自動運転マイル無過失）。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#29</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://techcrunch.com/2025/04/09/nuros-106m-raise-backs-its-shift-from-delivery-robots-to-licensing-autonomy-tech/" target="_blank" rel="noopener">Nuro's $106M Raise Backs Its Shift from Delivery Robots to Licensing Autonomy Tech</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Nuro</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Uber・Lucid MotorsとのL4ロボタクシーフリート構築。ADシステムライセンスビジネスモデルの具体的展開事例。</div>
-    </div>
-
-  </div>
-
-  <!-- GATIK -->
-  <div class="section-header">
-    <h2>🚗 Gatik</h2>
-    <span class="section-count">2件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="regulation" data-stars="5" data-year="2026">
-      <div class="card-top"><span class="card-num">#30</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.businesswire.com/news/home/20260127742958/en/Gatik-Becomes-First-U.S.-Company-to-Operate-Fully-Driverless-Trucks-at-Scale-for-Commercial-Deliveries" target="_blank" rel="noopener">Gatik Becomes First U.S. Company to Operate Fully Driverless Trucks at Scale</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Gatik</span><span class="tag year">2026</span></div>
-      <div class="card-desc">米国初の商用完全無人トラック大規模運行。60,000件の無人配送オーダーを無事故で完遂。中距離自動運転トラックの商用化事例。</div>
-    </div>
-
-    <div class="card" data-cat="nvidia chip" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#31</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://gatik.ai/news/blog/gatik-isuzu-mass-production-powered-by-nvidia/" target="_blank" rel="noopener">Gatik and Isuzu Team Up to Mass-Produce L4 Autonomous Trucks Powered by NVIDIA</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Gatik</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Isuzu・NVIDIAとのL4量産トラック協業。DRIVE AGX Thor採用。TIMEベスト発明2025選出のGatik Driver詳細。</div>
-    </div>
-
-  </div>
-
-  <!-- MOBILEYE -->
-  <div class="section-header">
-    <h2>🚗 Mobileye</h2>
-    <span class="section-count">2件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="ai sensor" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#32</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.mobileye.com/blog/mobileye-supervision-bridge-to-consumer-autonomous-vehicles/" target="_blank" rel="noopener">Bridging to the Autonomous Future with Mobileye SuperVision</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Mobileye</span><span class="tag year">2024</span></div>
-      <div class="card-desc">SuperVisionの全路種ハンズオフ走行技術の解説。11カメラ・EyeQ SoC・REM地図統合の設計思想。消費者向けAVへの橋渡し戦略。</div>
-    </div>
-
-    <div class="card" data-cat="ai sensor" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#33</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.mobileye.com/blog/how-surround-adas-delivers-the-new-standard-of-safety-and-tech/" target="_blank" rel="noopener">Unveiling Surround ADAS: A New Standard of Safety and Tech</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Mobileye</span><span class="tag year">2025</span></div>
-      <div class="card-desc">次世代Surround ADASの詳細。VW Group向け1900万台確定受注。SuperVisionとの違いと都市走行への拡張を解説。</div>
-    </div>
-
-  </div>
-
-  <!-- CHINA EV -->
-  <div class="section-header">
-    <h2>🚗 中国EV各社 (Li Auto / Xpeng / NIO)</h2>
-    <span class="section-count">3件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#34</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://cnevpost.com/2025/03/18/li-auto-unveils-mindvla-autonomous-driving-architecture/" target="_blank" rel="noopener">Li Auto Unveils MindVLA Architecture to Move Toward Truly Autonomous Driving</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Li Auto</span><span class="tag year">2025</span></div>
-      <div class="card-desc">空間・言語・行動知能を統合したMindVLAアーキテクチャ発表。L4自動運転への最重要ステップとして位置付け。E2E+VLM+VLAの実装例。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#35</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://eletric-vehicles.com/xpeng/xpeng-to-roll-out-vla-2-0-across-its-models-in-march-launches-three-suv-facelifts/" target="_blank" rel="noopener">Xpeng to Roll Out VLA 2.0 Across Its Models</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Xpeng</span><span class="tag year">2025</span></div>
-      <div class="card-desc">VLA 2.0のL4自動運転開発とVolkswagen採用。70億パラメータ規模のモデルが量産車に搭載される中国最前線事例。</div>
-    </div>
-
-    <div class="card" data-cat="ai regulation" data-stars="4" data-year="2026">
-      <div class="card-top"><span class="card-num">#36</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://cnevpost.com/2026/01/19/how-do-nio-xpeng-li-auto-differ-in-ai-approaches/" target="_blank" rel="noopener">How Do NIO, Xpeng, and Li Auto Differ in Their AI Approaches?</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 中国EV</span><span class="tag year">2026</span></div>
-      <div class="card-desc">3社のAI戦略の違いを比較分析。ワールドモデルシフトと組織再編の詳細。競合他社分析として有用。</div>
-    </div>
-
-  </div>
-
-  <!-- NVIDIA -->
-  <div class="section-header">
-    <h2>🔧 NVIDIA</h2>
-    <span class="section-count">5件</span>
-  </div>
-  <div class="cards" id="section-nvidia">
-
-    <div class="card" data-cat="nvidia ai sim" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#37</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://blogs.nvidia.com/blog/cosmos-world-foundation-models/" target="_blank" rel="noopener">NVIDIA Makes Cosmos World Foundation Models Openly Available</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 NVIDIA</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Cosmosワールドファウンデーションモデルをオープンリリース。数千マイル実走行を数十億マイル仮想走行に変換する「データフライホイール」技術。</div>
-    </div>
-
-    <div class="card" data-cat="nvidia ai sim" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#38</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://developer.nvidia.com/blog/simplify-end-to-end-autonomous-vehicle-development-with-new-nvidia-cosmos-world-foundation-models/" target="_blank" rel="noopener">Simplify End-to-End AV Development with New NVIDIA Cosmos WFMs</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 NVIDIA</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Cosmos Predict 2.5/Transfer 2.5/Reason 2の技術詳細。E2E AV開発フローへの統合方法を実践的に解説。開発者向け必読。</div>
-    </div>
-
-    <div class="card" data-cat="nvidia chip" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#39</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://blogs.nvidia.com/blog/drive-partners-showcase-ces/" target="_blank" rel="noopener">NVIDIA DRIVE Partners Showcase Latest Mobility Innovations at CES</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 NVIDIA</span><span class="tag year">2025</span></div>
-      <div class="card-desc">CES 2025でのNVIDIA DRIVEパートナー最新動向。Toyota・Aurora・Continental等のDRIVE Thor採用事例を網羅。</div>
-    </div>
-
-    <div class="card" data-cat="nvidia ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#40</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://blogs.nvidia.com/blog/autonomous-driving-challenge-cvpr/" target="_blank" rel="noopener">NVIDIA Research Wins Autonomous Driving Challenge at CVPR 2024</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 NVIDIA</span><span class="tag year">2024</span></div>
-      <div class="card-desc">CVPR 2024自動運転チャレンジ優勝。3D Occupancy Predictionの精度向上技術の詳細。</div>
-    </div>
-
-    <div class="card" data-cat="nvidia ai sim" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#41</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://developer.nvidia.com/blog/scale-synthetic-data-and-physical-ai-reasoning-with-nvidia-cosmos-world-foundation-models/" target="_blank" rel="noopener">Scale Synthetic Data and Physical AI Reasoning with NVIDIA Cosmos WFMs</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 NVIDIA</span><span class="tag year">2025</span></div>
-      <div class="card-desc">合成データ生成とPhysical AI推論のスケールアップ手法。Cosmos Predict/Reason/Transferの実装ガイド。</div>
-    </div>
-
-  </div>
-
-  <!-- ARM -->
-  <div class="section-header">
-    <h2>🔧 ARM</h2>
-    <span class="section-count">2件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="chip" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#42</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://newsroom.arm.com/blog/accelerating-adas-adoption" target="_blank" rel="noopener">Arm Announces New Automotive Technologies for AI-Enabled Vehicles</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 ARM</span><span class="tag year">2024</span></div>
-      <div class="card-desc">Arm Automotive Enhanced発表。Neoverse V3AEでサーバークラスAI性能を車載向けに実現。NVIDIA DRIVE Thor採用。BYD・XPENG・Volvoも採用表明。</div>
-    </div>
-
-    <div class="card" data-cat="chip" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#43</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://newsroom.arm.com/blog/arm-imec-automotive-chiplets" target="_blank" rel="noopener">Why Chiplets Are Key to Next-Gen Software-Defined Vehicles</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 ARM</span><span class="tag year">2025</span></div>
-      <div class="card-desc">チップレット技術がソフトウェア定義車両のコスト・性能最適化に不可欠な理由。次世代車載コンピュータアーキテクチャの方向性。</div>
-    </div>
-
-  </div>
-
-  <!-- QUALCOMM & RENESAS -->
-  <div class="section-header">
-    <h2>🔧 Qualcomm / Renesas / ドメインコントローラ</h2>
-    <span class="section-count">3件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="chip" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#44</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://next-curve.com/2025/09/12/qualcomms-automotive-ecosystem-drive-with-snapdragon-ride-pilot/" target="_blank" rel="noopener">Qualcomm and BMW Unveil Snapdragon Ride Pilot</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 Qualcomm</span><span class="tag year">2025</span></div>
-      <div class="card-desc">BMW iX3でSnapdragon Ride Pilot実装。高速85mph対応のハンズフリー走行。コックピット+ADAS統合SoCのコスト優位性（25-50%削減）。</div>
-    </div>
-
-    <div class="card" data-cat="chip" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#45</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.renesas.com/en/about/newsroom/renesas-unveils-industry-s-first-automotive-multi-domain-soc-built-3-nm-process-technology" target="_blank" rel="noopener">Renesas Unveils Industry's First Automotive Multi-Domain SoC Built with 3nm Process</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 Renesas</span><span class="tag year">2024</span></div>
-      <div class="card-desc">R-Car X5H発表。3nmプロセスのADAS/IVI/ゲートウェイ統合SoC。400 TOPS AI加速。ソフトウェア定義車両向け車載コンピュータの最前線。</div>
-    </div>
-
-    <div class="card" data-cat="chip" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#46</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://autotech.news/autonomous-driving-domain-controller-and-central-control-unit-industry-review-2024-2025/" target="_blank" rel="noopener">Autonomous Driving Domain Controller and CCU Industry Review 2024-2025</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 チップ</span><span class="tag year">2024</span></div>
-      <div class="card-desc">自動運転ドメインコントローラの市場・技術動向。普及率17.4%（2024年9月）。One Chip統合ソリューションへの進化を解説。</div>
-    </div>
-
-  </div>
-
-  <!-- AI ARCHITECTURE -->
-  <div class="section-header">
-    <h2>🤖 E2E・VLA・LLM アーキテクチャ</h2>
-    <span class="section-count">8件</span>
-  </div>
-  <div class="cards" id="section-ai">
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#47</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving" target="_blank" rel="noopener">All You Need for End-to-End Autonomous Driving (IEEE T-PAMI 2024)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">E2E自動運転の270本以上の論文を体系的に調査したIEEE T-PAMIサーベイ。手法・課題・トレンドを網羅。研究者必読の総合リファレンス。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#48</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2410.15281" target="_blank" rel="noopener">LLM4AD: Large Language Models for Autonomous Driving (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">自動運転へのLLM適用を体系化。コンセプト・レビュー・ベンチマーク・実験・将来動向を包括的に解説。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#49</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2512.16760" target="_blank" rel="noopener">Vision-Language-Action Models for AD: Past, Present, and Future (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">VLAモデルの自動運転応用を体系的に整理。End-to-End VLAとDual-System VLAの2大パラダイムを比較。2025年最注目技術の先取りサーベイ。</div>
-    </div>
-
-    <div class="card" data-cat="ai sim" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#50</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2505.08854" target="_blank" rel="noopener">Generative AI for Autonomous Driving: Frontiers and Opportunities (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転への生成AI適用の包括的レビュー。データ生成・世界モデル・E2Eシステムへの応用をカバー。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#51</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.sciencedirect.com/science/article/pii/S2095809925004709" target="_blank" rel="noopener">A Survey on Large Language Model-Powered Autonomous Driving</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">LLM活用自動運転の最新サーベイ。意思決定・説明可能性・人車インタラクションへのLLM応用を整理。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#52</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://github.com/ZhengYinan-AIR/Diffusion-Planner" target="_blank" rel="noopener">Diffusion-Based Planning for Autonomous Driving with Flexible Guidance (ICLR 2025 Oral)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">拡散モデルによるマルチモーダル運転行動のクローズドループプランニング。nuPlanベンチマークSOTA。ICLR 2025 Oral採択。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#53</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Liao_DiffusionDrive_Truncated_Diffusion_Model_for_End-to-End_Autonomous_Driving_CVPR_2025_paper.pdf" target="_blank" rel="noopener">DiffusionDrive: Truncated Diffusion Model for End-to-End AD (CVPR 2025)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">E2E自動運転のための短縮拡散デコーダ。シーンコンテキストとのインタラクションで軌跡を段階的に洗練。CVPR 2025掲載。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#54</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2503.03262" target="_blank" rel="noopener">Trajectory Prediction for AD: Progress, Limitations, and Future Directions (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転軌跡予測の進展・限界・将来方向性を整理したサーベイ。物理ベース・DL・RL手法の比較。</div>
-    </div>
-
-  </div>
-
-  <!-- PERCEPTION -->
-  <div class="section-header">
-    <h2>🤖 知覚技術 (Perception)</h2>
-    <span class="section-count">5件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#55</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2405.05173" target="_blank" rel="noopener">A Survey on Occupancy Perception for Autonomous Driving (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">3D Occupancy知覚の包括的サーベイ。入力モダリティ別の手法分類と情報融合アプローチを体系化。Information Fusion掲載。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#56</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://link.springer.com/article/10.1007/s11704-024-40443-5" target="_blank" rel="noopener">Vision-Based 3D Occupancy Prediction in AD: A Review and Outlook</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">カメラベース3D Occupancy予測サーベイ。BEV知覚からの発展とコスト効果の高い知覚システム設計を解説。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#57</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2509.08302" target="_blank" rel="noopener">Foundation Models for Autonomous Driving Perception: A Survey (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転知覚のファウンデーションモデルを体系的にサーベイ。コア能力別の分類と将来展望。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#58</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417424019705" target="_blank" rel="noopener">BEV Perception for Autonomous Driving: State of the Art and Future Perspectives</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">BEV知覚の現状と将来展望。BEVFormerからの進化と最新手法を包括的に整理。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#59</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2509.10570" target="_blank" rel="noopener">Large Foundation Models for Trajectory Prediction in Autonomous Driving (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">軌跡予測のための大規模ファウンデーションモデルの包括的サーベイ。LLM・MLLMによる文脈推論の活用法。</div>
-    </div>
-
-  </div>
-
-  <!-- SIMULATION -->
-  <div class="section-header">
-    <h2>💡 シミュレーション・合成データ</h2>
-    <span class="section-count">7件</span>
-  </div>
-  <div class="cards" id="section-sim">
-
-    <div class="card" data-cat="sim" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#60</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.appliedintuition.com/blog/2024-year-in-review" target="_blank" rel="noopener">Applied Intuition 2024 Year in Review: Milestones in Autonomy</a></div>
-      <div class="card-meta"><span class="tag cat">💡 シミュレーション</span><span class="tag year">2024</span></div>
-      <div class="card-desc">シミュレーションプラットフォームの2024年総括。5000万回シミュレーション実行、ラベリングコスト95%削減の実績。</div>
-    </div>
-
-    <div class="card" data-cat="sim" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#61</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.appliedintuition.com/blog/2025-year-in-review" target="_blank" rel="noopener">Applied Intuition 2025 in Review: Autonomy at Scale</a></div>
-      <div class="card-meta"><span class="tag cat">💡 シミュレーション</span><span class="tag year">2025</span></div>
-      <div class="card-desc">AV開発ツールチェーンの進化。EpiSci買収によるLand/Air/Sea/Spaceへの拡張、OpenAI提携。</div>
-    </div>
-
-    <div class="card" data-cat="sim ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#62</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2410.18238" target="_blank" rel="noopener">CARLA2Real: A Tool for Reducing the Sim2Real Appearance Gap (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">💡 シミュレーション</span><span class="tag year">2024</span></div>
-      <div class="card-desc">CARLAシミュレータのリアリティ向上ツール。13 FPSでリアルタイム変換。Cityscapes/KITTIレベルのリアリズムを実現。Sim2Real解消の実践的手法。</div>
-    </div>
-
-    <div class="card" data-cat="sim" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#63</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2412.14207" target="_blank" rel="noopener">A Comprehensive Review on Traffic Datasets and Simulators for AVs (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">💡 シミュレーション</span><span class="tag year">2024</span></div>
-      <div class="card-desc">自動運転向けシミュレータとデータセットの包括的レビュー。CARLA/SUMO/BeamNG等の特性・適用場面を比較。</div>
-    </div>
-
-    <div class="card" data-cat="sim ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#64</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.basic.ai/blog-post/15-new-autonomous-driving-datasets-in-2024-2025" target="_blank" rel="noopener">15 Notable AI Datasets for Autonomous Driving in 2024-2025</a></div>
-      <div class="card-meta"><span class="tag cat">💡 シミュレーション</span><span class="tag year">2024</span></div>
-      <div class="card-desc">2024-2025年に公開された15の主要自動運転データセットのカタログ。各データセットの特徴・用途・規模を比較。</div>
-    </div>
-
-    <div class="card" data-cat="sim ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#65</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2508.19882" target="_blank" rel="noopener">Generative AI for Testing of Autonomous Driving Systems: A Survey (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">💡 シミュレーション</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転システムテストへの生成AI活用サーベイ。エッジケース生成・シナリオ多様化・評価自動化のアプローチ。</div>
-    </div>
-
-    <div class="card" data-cat="sim ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#66</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2601.01528" target="_blank" rel="noopener">DrivingGen: A Comprehensive Benchmark for Video World Models in AD (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">💡 シミュレーション</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転向けビデオ世界モデルの包括的ベンチマーク。生成品質・制御可能性・安全性評価の新フレームワーク。</div>
-    </div>
-
-  </div>
-
-  <!-- SENSORS -->
-  <div class="section-header">
-    <h2>📡 センサー技術</h2>
-    <span class="section-count">6件</span>
-  </div>
-  <div class="cards" id="section-sensor">
-
-    <div class="card" data-cat="sensor" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#67</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://spectrum.ieee.org/lidar-on-a-chip" target="_blank" rel="noopener">Lidar on a Chip Puts Self-Driving Cars in the Fast Lane (IEEE Spectrum)</a></div>
-      <div class="card-meta"><span class="tag cat">📡 センサー</span><span class="tag year">2024</span></div>
-      <div class="card-desc">チップ統合LiDAR技術の詳細。固体LiDARの量産・低コスト化への道筋をIEEE Spectrumが解説。</div>
-    </div>
-
-    <div class="card" data-cat="sensor" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#68</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.ainvest.com/news/hesai-infinity-eye-lidar-game-changer-autonomous-driving-risks-linger-2504/" target="_blank" rel="noopener">Hesai's Infinity Eye Lidar: A Game-Changer in Autonomous Driving</a></div>
-      <div class="card-meta"><span class="tag cat">📡 センサー</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Hesaiの最先端LiDAR技術分析。世界市場シェア33%の技術的根拠と競合比較。2024年50万ユニット出荷の背景。</div>
-    </div>
-
-    <div class="card" data-cat="sensor" data-stars="3" data-year="2025">
-      <div class="card-top"><span class="card-num">#69</span><span class="card-stars">⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://ir.innoviz.tech/news-events/press-releases/detail/148/innoviz-technologies-accelerates-delivery-of-newly-designed" target="_blank" rel="noopener">Innoviz Technologies Accelerates Delivery of LiDAR Platform to Volkswagen</a></div>
-      <div class="card-meta"><span class="tag cat">📡 センサー</span><span class="tag year">2025</span></div>
-      <div class="card-desc">VW ID. Buzz向け新設計LiDARプラットフォームの出荷加速発表。Innoviz固体LiDARの量産OEM採用事例。</div>
-    </div>
-
-    <div class="card" data-cat="sensor" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#70</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.globenewswire.com/news-release/2025/08/13/3132326/28124/en/4D-Imaging-Radar-in-Autonomous-Vehicles-Research-and-Competition-Analysis-Report-2025-Rising-Adoption-of-4D-Radar-in-ADAS-Outpaces-3D-Enhances-Safety-and-Precision.html" target="_blank" rel="noopener">4D Imaging Radar: Rising Adoption Outpaces 3D in ADAS 2025</a></div>
-      <div class="card-meta"><span class="tag cat">📡 センサー</span><span class="tag year">2025</span></div>
-      <div class="card-desc">4DイメージングレーダーのADAS普及動向。3Dレーダー超えの性能優位性と悪天候・夜間性能の解説。Waymo採用例も。</div>
-    </div>
-
-    <div class="card" data-cat="sensor waymo tesla" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#71</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://research.contrary.com/report/tesla-waymo-and-the-great-sensor-debate" target="_blank" rel="noopener">Deep Dive: Tesla, Waymo, and the Great Sensor Debate</a></div>
-      <div class="card-meta"><span class="tag cat">📡 センサー</span><span class="tag year">2024</span></div>
-      <div class="card-desc">TeslaのカメラオンリーとWaymoのマルチセンサー（LiDAR+カメラ+レーダー）アプローチの深い比較分析。センサー戦略の設計思想の違いを解説。</div>
-    </div>
-
-    <div class="card" data-cat="sensor" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#72</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.yolegroup.com/player-interviews/driving-vision-unside-chinas-lidar-revolution-an-interview-with-hesai/" target="_blank" rel="noopener">Driving Vision: Inside China's LiDAR Revolution – An Interview with Hesai</a></div>
-      <div class="card-meta"><span class="tag cat">📡 センサー</span><span class="tag year">2024</span></div>
-      <div class="card-desc">Hesai CEOインタビュー。中国LiDAR産業が世界市場を席巻した背景と技術戦略を詳述。</div>
-    </div>
-
-  </div>
-
-  <!-- MAP -->
-  <div class="section-header">
-    <h2>🌐 地図・ローカライゼーション</h2>
-    <span class="section-count">3件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="ai regulation" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#73</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2509.12632" target="_blank" rel="noopener">Maps for Autonomous Driving: Full-Process Survey and Frontiers (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 地図</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転マップのフルプロセスサーベイ。HDマップ→LDマップ→マップレスへの進化を体系化。3D Gaussianスプラッティング等の最新手法も解説。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#74</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.counterpointresearch.com/insight/navigating-the-future-mapless-vs-map-based-autonomous-driving/" target="_blank" rel="noopener">Navigating the Future: Mapless vs Map-Based Autonomous Driving</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 地図</span><span class="tag year">2024</span></div>
-      <div class="card-desc">マップレスvsマップベースの自動運転を比較。コスト・拡張性・精度のトレードオフ分析。業界のマップレス移行トレンドを解説。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#75</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2406.10125" target="_blank" rel="noopener">MapVision: CVPR 2024 Autonomous Grand Challenge Mapless Driving Tech Report (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 地図</span><span class="tag year">2024</span></div>
-      <div class="card-desc">CVPR 2024 Autonomous Grand Challengeのマップレス走行技術レポート。オンラインマップ生成の最先端手法。</div>
-    </div>
-
-  </div>
-
-  <!-- SAFETY -->
-  <div class="section-header">
-    <h2>🌐 安全規格・機能安全</h2>
-    <span class="section-count">3件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="regulation" data-stars="5" data-year="2025">
-      <div class="card-top"><span class="card-num">#76</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.sciencedirect.com/science/article/pii/S259019822500510X" target="_blank" rel="noopener">A Unified Safety Framework: Integrating ISO 26262, SOTIF, and UL 4600</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 安全規格</span><span class="tag year">2025</span></div>
-      <div class="card-desc">ISO 26262・ISO 21448 (SOTIF)・UL 4600を統合したAV開発向け安全フレームワーク。自動運転開発者必読。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#77</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.automotive-iq.com/autonomous-drive/articles/rethinking-autonomous-vehicle-functional-safety-standards-an-analysis-of-sotif-and-iso-26262" target="_blank" rel="noopener">Rethinking AV Functional Safety Standards: ISO 26262 and SOTIF Analysis</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 安全規格</span><span class="tag year">2024</span></div>
-      <div class="card-desc">SOTIFとISO 26262の補完関係を詳細分析。AI/センサー誤認識への対処としてのSOTIFの役割を解説。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#78</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://dl.acm.org/doi/full/10.1145/3744352" target="_blank" rel="noopener">Cybersecurity for Next-Generation Road Transportation (ACM)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 安全規格</span><span class="tag year">2025</span></div>
-      <div class="card-desc">次世代道路交通のサイバーセキュリティ包括レビュー。V2X通信セキュリティとUN R155対応の技術的要件。</div>
-    </div>
-
-  </div>
-
-  <!-- REGULATION / INDUSTRY -->
-  <div class="section-header">
-    <h2>🌐 規制・業界動向</h2>
-    <span class="section-count">5件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#79</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://patentpc.com/blog/regulations-for-autonomous-vehicles-where-do-countries-stand-in-2024-2030-global-policy-trends" target="_blank" rel="noopener">Regulations for Autonomous Vehicles: Global Policy Trends 2024-2030</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 規制</span><span class="tag year">2024</span></div>
-      <div class="card-desc">米・EU・中国の自動運転規制比較。中国の2025年L3以上義務化、EU統一フレームワーク2026、UNECE R155への対応。</div>
-    </div>
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#80</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://autocrypt.io/state-of-autonomous-driving-2025/" target="_blank" rel="noopener">The State of Autonomous Driving in 2025</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 業界動向</span><span class="tag year">2025</span></div>
-      <div class="card-desc">2025年の自動運転産業総括。技術・規制・市場・セキュリティを網羅した業界年次レポート。</div>
-    </div>
-
-    <div class="card" data-cat="waymo regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#81</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.thedriverlessdigest.com/p/waymos-2025-year-in-review-the-year" target="_blank" rel="noopener">Waymo's 2025 Year in Review: The Year Robotaxis Scaled</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 業界動向</span><span class="tag year">2025</span></div>
-      <div class="card-desc">ロボタクシー産業が本格スケールした2025年の総括。週17万5千ライド→45万ライドへの成長軌跡。</div>
-    </div>
-
-    <div class="card" data-cat="aurora regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#82</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://nacfe.org/autonomous-trucking/the-state-of-autonomous-trucking-in-2025-a-recap-of-2024/" target="_blank" rel="noopener">NACFE: The State of Autonomous Trucking in 2025 (2024 Recap)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 業界動向</span><span class="tag year">2025</span></div>
-      <div class="card-desc">2024年の自動運転トラッキング産業の総括。Aurora・Gatik・Torc・Kodiak等の各社動向を比較分析。</div>
-    </div>
-
-    <div class="card" data-cat="aurora" data-stars="3" data-year="2025">
-      <div class="card-top"><span class="card-num">#83</span><span class="card-stars">⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.truckinginfo.com/10249848/aurora-heads-into-2026-with-big-plans-on-tap" target="_blank" rel="noopener">Aurora Heads into 2026 with Big Plans on Tap</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Aurora</span><span class="tag year">2025</span></div>
-      <div class="card-desc">Auroraの2026年計画。第2世代ハードウェアキット（コスト50%以上削減・LiDAR航続距離2倍）の詳細。</div>
-    </div>
-
-  </div>
-
-  <!-- DATASETS -->
-  <div class="section-header">
-    <h2>🌐 データセット・ベンチマーク</h2>
-    <span class="section-count">4件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="ai sim" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#84</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2512.02448" target="_blank" rel="noopener">nuScenes Revisited: Progress and Challenges in Autonomous Driving (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 データセット</span><span class="tag year">2024</span></div>
-      <div class="card-desc">nuSceneデータセットの進化と課題の包括的レビュー。マルチモーダル知覚のデファクトベンチマークの現状と限界。</div>
-    </div>
-
-    <div class="card" data-cat="ai sim" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#85</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2408.10845" target="_blank" rel="noopener">CoVLA: Comprehensive Vision-Language-Action Dataset for AD (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 データセット</span><span class="tag year">2024</span></div>
-      <div class="card-desc">Turing Inc.が公開した自動運転向け最初の大規模VLAデータセット（WACV 2025採択）。東京1万シーン・80時間超の走行データに詳細な言語記述と軌跡アノテーション。</div>
-    </div>
-
-    <div class="card" data-cat="ai sim" data-stars="3" data-year="2024">
-      <div class="card-top"><span class="card-num">#86</span><span class="card-stars">⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2510.18552" target="_blank" rel="noopener">Occluded nuScenes: Multi-Sensor Dataset for Perception Robustness (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 データセット</span><span class="tag year">2024</span></div>
-      <div class="card-desc">遮蔽シナリオでの知覚ロバスト性評価向けデータセット。実世界の悪条件に対する知覚システムの信頼性評価に有用。</div>
-    </div>
-
-    <div class="card" data-cat="ai sim" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#87</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://arxiv.org/abs/2512.06376" target="_blank" rel="noopener">Are AI-Generated Driving Videos Ready for Autonomous Driving? (arXiv)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 データセット</span><span class="tag year">2024</span></div>
-      <div class="card-desc">AI生成走行ビデオの自動運転活用可能性を診断的に評価するフレームワーク。生成データの品質基準を提示。</div>
-    </div>
-
-  </div>
-
-  <!-- PLANNING -->
-  <div class="section-header">
-    <h2>🤖 プランニング・意思決定</h2>
-    <span class="section-count">4件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#88</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://medium.com/the-thinking-car/a-crash-course-of-planning-for-perception-engineers-in-autonomous-driving-ede324d78717" target="_blank" rel="noopener">A Crash Course of Planning for Perception Engineers in Autonomous Driving</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">知覚エンジニア向けプランニング入門。行動決定・モーションプランニングの基礎からトランスフォーマーベース最新手法まで実践的に解説。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#89</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2025.1451923/full" target="_blank" rel="noopener">A Survey of Decision-Making and Planning Methods for Self-Driving Vehicles</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転の意思決定・プランニング手法の包括的サーベイ。ルールベース・学習ベース・ハイブリッドアプローチを比較。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#90</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://link.springer.com/article/10.1007/s42154-025-00382-8" target="_blank" rel="noopener">Vehicle Trajectory Prediction for AD: State-of-the-Art Review</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転の車両軌跡予測の最新レビュー。物理モデル・深層学習・インタラクションモデリングの比較。</div>
-    </div>
-
-    <div class="card" data-cat="nvidia ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#91</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://www.nvidia.com/en-us/on-demand/session/gtc24-s62446/" target="_blank" rel="noopener">Achieving Better Accuracy in 3D Occupancy Prediction for AD (NVIDIA GTC 2024)</a></div>
-      <div class="card-meta"><span class="tag cat">🔧 NVIDIA</span><span class="tag year">2024</span></div>
-      <div class="card-desc">GTC 2024でのNVIDIA発表。3D Occupancy予測の精度向上技術の詳細と実装アプローチ。</div>
-    </div>
-
-  </div>
-
-  <!-- OTHER -->
-  <div class="section-header">
-    <h2>🌐 その他・注目記事</h2>
-    <span class="section-count">9件</span>
-  </div>
-  <div class="cards">
-
-    <div class="card" data-cat="regulation" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#92</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://autotech.news/autonomous-driving-map-industry-review-2025/" target="_blank" rel="noopener">Autonomous Driving Map Industry Review 2025</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 業界動向</span><span class="tag year">2025</span></div>
-      <div class="card-desc">2025年自動運転マップ産業総括。HD/LD/SDマップの市場シェアと各社のマップ戦略変化を分析。</div>
-    </div>
-
-    <div class="card" data-cat="ai sim" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#93</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://github.com/taco-group/GenAI4AD" target="_blank" rel="noopener">GenAI4AD: GenAI Across the Full Autonomous Driving Stack (GitHub)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">自動運転スタック全体への生成AI適用の批判的・包括的総合分析。知覚・予測・プランニング・シミュレーション全領域を網羅。</div>
-    </div>
-
-    <div class="card" data-cat="ai sim" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#94</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://github.com/LMD0311/Awesome-World-Model" target="_blank" rel="noopener">Awesome World Models for Autonomous Driving (GitHub)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">自動運転（・ロボット等）向けワールドモデル論文の厳選コレクション。継続更新される研究トラッキングリソース。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2025">
-      <div class="card-top"><span class="card-num">#95</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://github.com/worldbench/awesome-vla-for-ad" target="_blank" rel="noopener">Awesome VLA for Autonomous Driving (GitHub)</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2025</span></div>
-      <div class="card-desc">自動運転向けVLA（Vision-Language-Action）モデルの論文・プロジェクト厳選コレクション。最新研究トラッキングに有用。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#96</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://medium.com/nuro/exploring-hd-mapping-that-scales-939c3b69e232" target="_blank" rel="noopener">Exploring HD Mapping That Scales (Nuro Medium Blog)</a></div>
-      <div class="card-meta"><span class="tag cat">🚗 Nuro</span><span class="tag year">2024</span></div>
-      <div class="card-desc">NuroによるスケーラブルなHDマップ構築の技術詳細。自動マッピングパイプラインとクラウドソーシング活用の解説。</div>
-    </div>
-
-    <div class="card" data-cat="ai sim" data-stars="4" data-year="2024">
-      <div class="card-top"><span class="card-num">#97</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://tur.ing/en/news/20240910/" target="_blank" rel="noopener">Turing Unveils CoVLA Dataset — Japan's First AD VLA Dataset</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 データセット</span><span class="tag year">2024</span></div>
-      <div class="card-desc">Turing Inc.の公式プレスリリース。CoVLAデータセット発表の背景と日本初の自動運転VLAモデル開発の意義を解説。</div>
-    </div>
-
-    <div class="card" data-cat="waymo regulation" data-stars="4" data-year="2026">
-      <div class="card-top"><span class="card-num">#98</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://awisee.com/blog/waymo-statistics/" target="_blank" rel="noopener">Waymo Statistics 2026: Funding, Revenue & Rides Per Cities</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 業界動向</span><span class="tag year">2026</span></div>
-      <div class="card-desc">Waymoの最新統計まとめ。資金調達・収益・都市別乗車数・安全指標を網羅。競合分析の参考データとして有用。</div>
-    </div>
-
-    <div class="card" data-cat="ai" data-stars="5" data-year="2024">
-      <div class="card-top"><span class="card-num">#99</span><span class="card-stars">⭐⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://opendrivelab.com/publications" target="_blank" rel="noopener">OpenDriveLab Publications: E2E Autonomous Driving Research Hub</a></div>
-      <div class="card-meta"><span class="tag cat">🤖 AI/ML</span><span class="tag year">2024</span></div>
-      <div class="card-desc">上海AIラボ/Hong Kong Univ.のOpenDriveLabの論文リスト。UniAD・VAD・SparseDrive等、E2E自動運転の最先端研究を継続的に発表する研究ラボ。</div>
-    </div>
-
-    <div class="card" data-cat="waymo regulation" data-stars="4" data-year="2026">
-      <div class="card-top"><span class="card-num">#100</span><span class="card-stars">⭐⭐⭐⭐</span></div>
-      <div class="card-title"><a href="https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/" target="_blank" rel="noopener">Waymo Skyrocketing Ridership in One Chart (TechCrunch)</a></div>
-      <div class="card-meta"><span class="tag cat">🌐 業界動向</span><span class="tag year">2026</span></div>
-      <div class="card-desc">Waymoの急成長ライドシェア事業を1枚のグラフで示す分析記事。スケーリングの速度と市場インパクトを可視化。</div>
-    </div>
-
-  </div>
-
-  <div id="empty">
-    <div class="emoji">🔍</div>
-    <p>該当する記事が見つかりませんでした。</p>
-  </div>
-
-</main>
+<main id="main"></main>
+
+<div id="empty" style="display:none">
+  <div class="emoji">🔍</div>
+  <p>該当する記事が見つかりませんでした。</p>
+</div>
 
 <footer>
   <p>自動運転・関連技術 おすすめ記事100選 | 収集日: 2026-05-07 |
@@ -1303,72 +159,388 @@
 </footer>
 
 <script>
-  const cards = document.querySelectorAll('.card');
-  const searchInput = document.getElementById('search');
-  const catButtons = document.querySelectorAll('.filter-btn');
-  const starButtons = document.querySelectorAll('.star-btn');
-  const resultCount = document.getElementById('result-count');
-  const emptyState = document.getElementById('empty');
+// ─── ARTICLE DATA ────────────────────────────────────────────────────────────
+const ARTICLES = [
+  // WAYMO
+  { num:1,  title:"Demonstrably Safe AI For Autonomous Driving",                                      url:"https://waymo.com/blog/2025/12/demonstrably-safe-ai-for-autonomous-driving/",                                                                               cat:"waymo",           stars:5, year:2025, img:"https://lh3.googleusercontent.com/-Ql7LOK_7bgOD6yHcPAnljopnE9vikldD3QxQrSHaXCdkWZ-fZIoYdEIMZQvvZgpAtzJdaln9JSceR6zwtP0M4LhdZZsXXhIzBw",              desc:"Waymo Foundation Modelを中心に、Driver・Simulator・Criticが同一AIで動く安全エコシステムを解説。自動運転AIの設計思想として必読の公式ブログ。" },
+  { num:2,  title:"EMMA: End-to-End Multimodal Model for Autonomous Driving (arXiv)",                 url:"https://arxiv.org/abs/2410.23262",                                                                                                                         cat:"waymo ai",        stars:5, year:2024, img:"",                                                                                                                       desc:"GeminiベースのE2E自動運転モデル。センサーデータから直接軌跡を生成し、Chain-of-Thoughtで計画精度6.7%向上。業界パラダイムシフトを示す最重要論文の一つ。" },
+  { num:3,  title:"Introducing EMMA (Waymo公式ブログ)",                                               url:"https://waymo.com/blog/2024/10/introducing-emma/",                                                                                                          cat:"waymo ai",        stars:5, year:2024, img:"https://lh3.googleusercontent.com/9hO6a6ziF4SGI2QWnaxOvwW_mqE_a2pttPD8eTXwIzM-RZxH3nUDPcuKYbJLRbG9QIbi6GrY7TApaPBXOJEQRmlR2m-x3fQQo-0",              desc:"EMMAの概要と背景を分かりやすく解説した公式ブログ版。マルチモーダルLLMで自動運転を統一するアプローチの意義を説明。" },
+  { num:4,  title:"Behind the Innovation: AI & ML at Waymo",                                         url:"https://waymo.com/blog/2024/10/ai-and-ml-at-waymo/",                                                                                                       cat:"waymo ai",        stars:4, year:2024, img:"https://lh3.googleusercontent.com/9a9TWkk5dd4qZiVJuu1aCpO-8GQBcYZXJEPXuNU010y6TdY_vZmfhG6pIAhE_FLSR3wwsRNwRhUrTuKYZZg-J5mPrPLSZIydWg",              desc:"WaymoのAI/ML技術全体像。複雑な交通パターンや他ドライバーの意図解釈まで含むWaymo Driverの開発アプローチを解説。" },
+  { num:5,  title:"Meet the 6th-Generation Waymo Driver",                                             url:"https://waymo.com/blog/2024/08/meet-the-6th-generation-waymo-driver/",                                                                                     cat:"waymo chip",      stars:5, year:2024, img:"https://lh3.googleusercontent.com/Uj7J6Za-wbUs2eNXLvYbl8sx3CvodAUztVvfYAAtkUeihmNQw4zm546fjH2Eoqn6yJmuzaH2I76QmMmQXJ35NwchSNAGlqFVkYU",              desc:"第6世代Waymo Driverの詳細。センサー数42%削減、17MPカメラ、コスト$20,000以下を達成。ハードウェアスケーリング戦略の好事例。" },
+  { num:6,  title:"Beginning Fully Autonomous Operations with the 6th-Gen Waymo Driver",              url:"https://waymo.com/blog/2026/02/ro-on-6th-gen-waymo-driver/",                                                                                               cat:"waymo",           stars:5, year:2026, img:"https://lh3.googleusercontent.com/ZGX4QSQCSXHhnO7MuiT96ipUuVp98VoNu6-YvkvG7jHp2GKyM5RHJg4t2Bp68ltZoUIshDv9e621DTmGmBqAS1Dpu3eLG6CXDg",              desc:"6世代ドライバーで完全自律運転開始。週100万ライド目標。新センサー設計（13カメラ/4LiDAR/6レーダー）の技術的詳細。" },
+  { num:7,  title:"Safe, Routine, Ready: Autonomous Driving in Five New Cities",                      url:"https://waymo.com/blog/2025/11/safe-routine-ready-autonomous-driving-in-new-cities/",                                                                      cat:"waymo regulation",stars:4, year:2025, img:"",                                                                                                                       desc:"Miami, Dallas等5都市への展開発表。地理的スケーリングの技術的課題と対処法を解説。" },
+  { num:8,  title:"Comparison of Waymo Rider-Only Crash Rates at 56.7M Miles",                       url:"https://www.tandfonline.com/doi/full/10.1080/15389588.2025.2499887",                                                                                        cat:"waymo regulation",stars:5, year:2025, img:"",                                                                                                                       desc:"5670万マイルのデータで人間ドライバーと比較。重傷事故91%減・歩行者事故92%減を査読論文として発表。安全性の科学的実証として業界最重要データ。" },
+  { num:9,  title:"WOMD-LiDAR: Raw Sensor Dataset for Motion Forecasting",                            url:"https://waymo.com/research/womd-lidar/",                                                                                                                    cat:"waymo ai",        stars:4, year:2024, img:"",                                                                                                                       desc:"10万シーン以上の高品質LiDARデータを含むモーション予測データセット。研究コミュニティへの貢献として価値大。" },
+  // TESLA
+  { num:10, title:"Tesla's Neural Network Revolution: How FSD Replaced 300K Lines of Code with AI",  url:"https://www.fredpope.com/blog/machine-learning/tesla-fsd-12",                                                                                              cat:"tesla ai",        stars:5, year:2024, img:"",                                                                                                                       desc:"FSD v12でC++コード30万行をE2Eニューラルネットに完全置換した革命的アーキテクチャ変更を解説。業界の方向性を示す最重要事例。" },
+  { num:11, title:"Tesla FSD v13.2 Rolling Out – Full Self-Driving Update",                           url:"https://www.autopilotreview.com/full-self-driving-update/",                                                                                                cat:"tesla ai",        stars:4, year:2024, img:"",                                                                                                                       desc:"HW4向けFSD v13の詳細。重要介入間マイル数の大幅改善。実走行データに基づくE2Eモデルの性能指標追跡に有用。" },
+  { num:12, title:"What Tesla's Optimus Robot Can Do in 2025 and Where It Still Lags",                url:"https://interestingengineering.com/culture/can-optimus-make-america-win",                                                                                  cat:"tesla ai",        stars:3, year:2025, img:"",                                                                                                                       desc:"Tesla Optimusの現状と限界。自動運転AIの物理世界への展開として自動運転技術との関連性あり。現実的な評価視点が有用。" },
+  // WAYVE
+  { num:13, title:"Crossing the Pond and Beyond: Generalizable AI Driving for Global Deployment",    url:"https://wayve.ai/thinking/multi-country-generalization/",                                                                                                   cat:"wayve ai",        stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/03/WAYVE_STU-01.jpg",                                                              desc:"欧州・北米・日本500都市以上でゼロショット走行を実現した汎化技術。Embodied AIの地理的汎化性能として業界最先端の事例。" },
+  { num:14, title:"GAIA-2: A Controllable Multi-View Generative World Model for AD (arXiv)",          url:"https://arxiv.org/abs/2503.20523",                                                                                                                         cat:"wayve ai sim",    stars:5, year:2025, img:"",                                                                                                                       desc:"マルチカメラ対応の制御可能なビデオ生成ワールドモデル。エッジケース生成・テスト・合成データ生成を統合。ワールドモデル研究の最前線。" },
+  { num:15, title:"GAIA-2: Pushing the Boundaries of Video Generative Models (Wayve公式)",            url:"https://wayve.ai/thinking/gaia-2/",                                                                                                                         cat:"wayve ai sim",    stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/03/Wayve-GAIA-2-Hero-Blog-Image.jpg",                                              desc:"GAIA-2の開発背景と実用的な意義を解説。天候・照明・道路構成の制御、レアシナリオ生成のユースケース詳述。" },
+  { num:16, title:"Wayve Launches GAIA-3: Advancing World Models from Simulation to Evaluation",     url:"https://wayve.ai/press/wayve-launches-gaia3/",                                                                                                              cat:"wayve ai sim",    stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/12/GAIA3-PR-notice.jpg",                                                             desc:"GAIA-3発表。シミュレーションから評価まで一貫したフレームワーク。自動運転ワールドモデル研究の最前線。" },
+  { num:17, title:"Wayve Science: Advancing AI Research in Autonomous Driving",                      url:"https://wayve.ai/science/",                                                                                                                                 cat:"wayve ai",        stars:4, year:2025, img:"",                                                                                                                       desc:"SimLingo（2025年3月）等Wayveの研究成果ページ。VLAモデル統合の先進研究事例。" },
+  // AURORA
+  { num:18, title:"Aurora Becomes First Company to Deploy Class 8 Self-Driving Trucks on US Roads",  url:"https://electrek.co/2025/05/01/aurora-first-company-deploy-class-8-self-driving-trucks-us-public-roads-video/",                                           cat:"aurora regulation",stars:5, year:2025, img:"https://electrek.co/wp-content/uploads/sites/3/2025/05/Aurora-self-driving-trucks-logo.jpg?quality=82&strip=all",      desc:"米国初のClass 8自動運転トラック公道走行開始。商用Level 4の歴史的マイルストーン。Fort Worth〜El Paso間600マイル。" },
+  { num:19, title:"Progress in 2024: Readying for Commercial Launch",                                url:"https://aurora.tech/newsroom/progress-in-2024-readying-for-commercial-launch",                                                                             cat:"aurora",          stars:4, year:2024, img:"https://images.ctfassets.net/9i0s3p5vkth9/7vXQrEJVG4EGFCdJsUGSzt/f690e360dd0b26ffa8c9d9a7cdd5bd53/Aurora-2024-progress.jpg",         desc:"商用ローンチに向けた技術進歩を総括。Verifiable AI、360度センサーアレイ、安全ケース構築プロセスを解説。" },
+  { num:20, title:"Aurora, Continental, and NVIDIA Partner to Deploy Driverless Trucks at Scale",    url:"https://ir.aurora.tech/news-events/press-releases/detail/112/aurora-continental-and-nvidia-partner-to-deploy-driverless-trucks-at-scale",                 cat:"aurora nvidia chip",stars:4, year:2025, img:"https://ir.aurora.tech/_assets/_d96982a6cb3e2be2be272120a6bd8bb4/aurora/db/949/8341/social_image_resized.jpg",       desc:"Aurora・Continental・NVIDIAのDRIVE Thor採用パートナーシップ。2027年Continental量産を目指す3社協業の詳細。" },
+  // ZOOX
+  { num:21, title:"Zoox Unveils Robotaxi Powered by NVIDIA",                                         url:"https://blogs.nvidia.com/blog/zoox-autonomous-robotaxi-powered-by-nvidia/",                                                                                cat:"nvidia chip",     stars:5, year:2024, img:"",                                                                                                                       desc:"ステアリングホイール・ペダルなし専用設計EV「Zoox」の技術詳細。4輪ステアリングによる超小回りと乗客安全設計を解説。" },
+  { num:22, title:"Zoox Has Officially Begun Offering Free Robotaxi Rides to the General Public",    url:"https://electrek.co/2025/09/10/zoox-free-driverless-robotaxi-rides-general-public-vegas/",                                                                 cat:"regulation",      stars:4, year:2025, img:"https://electrek.co/wp-content/uploads/sites/3/2025/09/Robotaxi-Vegas-Zoox-hero.jpg?quality=82&strip=all",                   desc:"ラスベガスで一般公開の無人ロボタクシー開始。専用設計EVの初商用運行事例。2Mマイル・35万乗客達成。" },
+  // BAIDU
+  { num:23, title:"Baidu Apollo Launches 6th-Gen Robotaxi with 60% Lower Cost",                      url:"https://cnevpost.com/2024/05/15/baidu-apollo-launches-6th-gen-robotaxi/",                                                                                   cat:"regulation",      stars:5, year:2024, img:"https://cnevpost.com/wp-content/uploads/2024/05/2024051506445431.jpg",                                                             desc:"第6世代ロボタクシーRT6発表。製造コスト60%削減（$27,670）。中国自動運転のコスト革新と量産スケーリングの好事例。" },
+  { num:24, title:"How Baidu's Apollo Go Targets Global Robotaxi Expansion",                         url:"https://technologymagazine.com/articles/how-baidus-apollo-go-targets-global-robotaxi-expansion/",                                                           cat:"regulation",      stars:4, year:2025, img:"",                                                                                                                       desc:"中国4大一線都市で完全無人商用運行承認。ドバイ・アブダビへの国際展開も解説。Q2 2025で148%成長。" },
+  { num:25, title:"Technical Analysis of Baidu Apollo Autonomous Driving Data Open Platform",        url:"https://www.oreateai.com/blog/technical-analysis-of-baidu-apollo-autonomous-driving-data-open-platform/",                                                  cat:"ai",              stars:3, year:2024, img:"",                                                                                                                       desc:"Apolloオープンデータプラットフォームの技術解析。データパイプライン設計とオープンソース戦略。" },
+  // PONY/WERIDE
+  { num:26, title:"China's L4 Companies Pony.ai and WeRide Go Public in Hong Kong",                  url:"https://carnewschina.com/2025/11/06/chinas-l4-autonomous-driving-company-pony-ai-and-weride-go-public-in-hong-kong-shares-dip-over-10/",                   cat:"chip regulation", stars:4, year:2025, img:"",                                                                                                                       desc:"Pony.aiとWeRideのHKEX・Nasdaq上場。WeRide HPC 3.0（NVIDIA Thor採用、TCO84%削減）等の最新技術情報も含む。" },
+  { num:27, title:"Japan's AV Revolution & WeRide's, Pony.ai's Expansion Strategy",                  url:"https://avmarketstrategist.substack.com/p/av-market-update-cw-12",                                                                                         cat:"regulation",      stars:4, year:2025, img:"",                                                                                                                       desc:"日本の自動運転市場革命とWeRide・Pony.aiの拡張戦略。欧州（Bolt提携）・日本・中東展開の詳細分析。" },
+  // NURO
+  { num:28, title:"Autonomy for All: Nuro Expands Business Model to All Roads, All Rides",           url:"https://www.nuro.ai/blog/autonomy-for-all-nuro-expands-business-model-to-all-roads-all-rides",                                                              cat:"ai",              stars:4, year:2024, img:"https://nuro.imgix.net/Allthree_Zoomedout_Lightv1_2025-04-25-021038_xjiw.jpg",                                                    desc:"デリバリーロボットからADシステムライセンス事業へのピボット。Foundation ModelベースのNuro Driverの技術詳細（1.7M自動運転マイル無過失）。" },
+  { num:29, title:"Nuro's $106M Raise Backs Its Shift from Delivery Robots to Licensing Autonomy Tech",url:"https://techcrunch.com/2025/04/09/nuros-106m-raise-backs-its-shift-from-delivery-robots-to-licensing-autonomy-tech/",                                   cat:"regulation",      stars:4, year:2025, img:"https://techcrunch.com/wp-content/uploads/2025/04/Nuro_Series-E_3.jpg",                                                       desc:"Uber・Lucid MotorsとのL4ロボタクシーフリート構築。ADシステムライセンスビジネスモデルの具体的展開事例。" },
+  // GATIK
+  { num:30, title:"Gatik Becomes First U.S. Company to Operate Fully Driverless Trucks at Scale",   url:"https://www.businesswire.com/news/home/20260127742958/en/Gatik-Becomes-First-U.S.-Company-to-Operate-Fully-Driverless-Trucks-at-Scale-for-Commercial-Deliveries",cat:"regulation",stars:5, year:2026, img:"",                                                                                                                       desc:"米国初の商用完全無人トラック大規模運行。60,000件の無人配送オーダーを無事故で完遂。中距離自動運転トラックの商用化事例。" },
+  { num:31, title:"Gatik and Isuzu Team Up to Mass-Produce L4 Autonomous Trucks Powered by NVIDIA", url:"https://gatik.ai/news/blog/gatik-isuzu-mass-production-powered-by-nvidia/",                                                                                  cat:"nvidia chip",     stars:4, year:2025, img:"https://gatik.ai/wp-content/uploads/Gatik_NVIDIA_Isuzu-highres_FINAL.png",                                                      desc:"Isuzu・NVIDIAとのL4量産トラック協業。DRIVE AGX Thor採用。TIMEベスト発明2025選出のGatik Driver詳細。" },
+  // MOBILEYE
+  { num:32, title:"Bridging to the Autonomous Future with Mobileye SuperVision",                     url:"https://www.mobileye.com/blog/mobileye-supervision-bridge-to-consumer-autonomous-vehicles/",                                                               cat:"ai sensor",       stars:4, year:2024, img:"https://static.mobileye.com/website/us/corporate/images/21a6e12d0e849bbf17263e0f0770df82_1676885917761.png",               desc:"SuperVisionの全路種ハンズオフ走行技術の解説。11カメラ・EyeQ SoC・REM地図統合の設計思想。消費者向けAVへの橋渡し戦略。" },
+  { num:33, title:"Unveiling Surround ADAS: A New Standard of Safety and Tech",                      url:"https://www.mobileye.com/blog/how-surround-adas-delivers-the-new-standard-of-safety-and-tech/",                                                             cat:"ai sensor",       stars:4, year:2025, img:"https://static.mobileye.com/website/us/corporate/images/568d780921661f2b09c78783f39caeda_1741266123244.jpg",               desc:"次世代Surround ADASの詳細。VW Group向け1900万台確定受注。SuperVisionとの違いと都市走行への拡張を解説。" },
+  // CHINA EV
+  { num:34, title:"Li Auto Unveils MindVLA Architecture to Move Toward Truly Autonomous Driving",    url:"https://cnevpost.com/2025/03/18/li-auto-unveils-mindvla-autonomous-driving-architecture/",                                                                   cat:"ai",              stars:5, year:2025, img:"https://cnevpost.com/wp-content/uploads/2025/03/2025031808021517.jpg",                                                             desc:"空間・言語・行動知能を統合したMindVLAアーキテクチャ発表。L4自動運転への最重要ステップとして位置付け。E2E+VLM+VLAの実装例。" },
+  { num:35, title:"Xpeng to Roll Out VLA 2.0 Across Its Models",                                     url:"https://eletric-vehicles.com/xpeng/xpeng-to-roll-out-vla-2-0-across-its-models-in-march-launches-three-suv-facelifts/",                                    cat:"ai",              stars:5, year:2025, img:"",                                                                                                                       desc:"VLA 2.0のL4自動運転開発とVolkswagen採用。70億パラメータ規模のモデルが量産車に搭載される中国最前線事例。" },
+  { num:36, title:"How Do NIO, Xpeng, and Li Auto Differ in Their AI Approaches?",                   url:"https://cnevpost.com/2026/01/19/how-do-nio-xpeng-li-auto-differ-in-ai-approaches/",                                                                         cat:"ai regulation",   stars:4, year:2026, img:"",                                                                                                                       desc:"3社のAI戦略の違いを比較分析。ワールドモデルシフトと組織再編の詳細。競合他社分析として有用。" },
+  // NVIDIA
+  { num:37, title:"NVIDIA Makes Cosmos World Foundation Models Openly Available",                    url:"https://blogs.nvidia.com/blog/cosmos-world-foundation-models/",                                                                                             cat:"nvidia ai sim",   stars:5, year:2025, img:"https://blogs.nvidia.com/wp-content/uploads/2025/01/ces25-llm-promo-cosmos-dev-oss-blog-1280x680-1.jpg",                    desc:"Cosmosワールドファウンデーションモデルをオープンリリース。数千マイル実走行を数十億マイル仮想走行に変換する「データフライホイール」技術。" },
+  { num:38, title:"Simplify End-to-End AV Development with New NVIDIA Cosmos WFMs",                  url:"https://developer.nvidia.com/blog/simplify-end-to-end-autonomous-vehicle-development-with-new-nvidia-cosmos-world-foundation-models/",                      cat:"nvidia ai sim",   stars:5, year:2025, img:"https://developer-blogs.nvidia.com/wp-content/uploads/2025/06/AV-SIM-Cosmos.gif",                                                    desc:"Cosmos Predict 2.5/Transfer 2.5/Reason 2の技術詳細。E2E AV開発フローへの統合方法を実践的に解説。開発者向け必読。" },
+  { num:39, title:"NVIDIA DRIVE Partners Showcase Latest Mobility Innovations at CES",               url:"https://blogs.nvidia.com/blog/drive-partners-showcase-ces/",                                                                                                cat:"nvidia chip",     stars:4, year:2025, img:"https://blogs.nvidia.com/wp-content/uploads/2025/01/nvidia-drive-partners-ecosystem-ces-1280x680-1.jpg",                    desc:"CES 2025でのNVIDIA DRIVEパートナー最新動向。Toyota・Aurora・Continental等のDRIVE Thor採用事例を網羅。" },
+  { num:40, title:"NVIDIA Research Wins Autonomous Driving Challenge at CVPR 2024",                  url:"https://blogs.nvidia.com/blog/autonomous-driving-challenge-cvpr/",                                                                                          cat:"nvidia ai",       stars:4, year:2024, img:"",                                                                                                                       desc:"CVPR 2024自動運転チャレンジ優勝。3D Occupancy Predictionの精度向上技術の詳細。" },
+  { num:41, title:"Scale Synthetic Data and Physical AI Reasoning with NVIDIA Cosmos WFMs",          url:"https://developer.nvidia.com/blog/scale-synthetic-data-and-physical-ai-reasoning-with-nvidia-cosmos-world-foundation-models/",                              cat:"nvidia ai sim",   stars:4, year:2025, img:"",                                                                                                                       desc:"合成データ生成とPhysical AI推論のスケールアップ手法。Cosmos Predict/Reason/Transferの実装ガイド。" },
+  // ARM
+  { num:42, title:"Arm Announces New Automotive Technologies for AI-Enabled Vehicles",               url:"https://newsroom.arm.com/blog/accelerating-adas-adoption",                                                                                                  cat:"chip",            stars:5, year:2024, img:"https://newsroom.arm.com/wp-content/uploads/2024/03/newsroom-blogs_1600x900-4.jpg",                                              desc:"Arm Automotive Enhanced発表。Neoverse V3AEでサーバークラスAI性能を車載向けに実現。NVIDIA DRIVE Thor採用。BYD・XPENG・Volvoも採用表明。" },
+  { num:43, title:"Why Chiplets Are Key to Next-Gen Software-Defined Vehicles",                      url:"https://newsroom.arm.com/blog/arm-imec-automotive-chiplets",                                                                                                cat:"chip",            stars:4, year:2025, img:"https://newsroom.arm.com/wp-content/uploads/2024/03/Auto-launch-blog7.jpg",                                                       desc:"チップレット技術がソフトウェア定義車両のコスト・性能最適化に不可欠な理由。次世代車載コンピュータアーキテクチャの方向性。" },
+  // QUALCOMM / RENESAS
+  { num:44, title:"Qualcomm and BMW Unveil Snapdragon Ride Pilot",                                   url:"https://next-curve.com/2025/09/12/qualcomms-automotive-ecosystem-drive-with-snapdragon-ride-pilot/",                                                        cat:"chip",            stars:4, year:2025, img:"",                                                                                                                       desc:"BMW iX3でSnapdragon Ride Pilot実装。高速85mph対応のハンズフリー走行。コックピット+ADAS統合SoCのコスト優位性（25-50%削減）。" },
+  { num:45, title:"Renesas Unveils Industry's First Automotive Multi-Domain SoC Built with 3nm Process",url:"https://www.renesas.com/en/about/newsroom/renesas-unveils-industry-s-first-automotive-multi-domain-soc-built-3-nm-process-technology",                 cat:"chip",            stars:5, year:2024, img:"https://www.renesas.com/sites/default/files/styles/open_graph/public/r-car-x5h-en.jpg?itok=BW3KJ4tS",                      desc:"R-Car X5H発表。3nmプロセスのADAS/IVI/ゲートウェイ統合SoC。400 TOPS AI加速。ソフトウェア定義車両向け車載コンピュータの最前線。" },
+  { num:46, title:"Autonomous Driving Domain Controller and CCU Industry Review 2024-2025",          url:"https://autotech.news/autonomous-driving-domain-controller-and-central-control-unit-industry-review-2024-2025/",                                           cat:"chip",            stars:4, year:2024, img:"",                                                                                                                       desc:"自動運転ドメインコントローラの市場・技術動向。普及率17.4%（2024年9月）。One Chip統合ソリューションへの進化を解説。" },
+  // AI ARCHITECTURE
+  { num:47, title:"All You Need for End-to-End Autonomous Driving (IEEE T-PAMI 2024)",               url:"https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving",                                                                                             cat:"ai",              stars:5, year:2024, img:"",                                                                                                                       desc:"E2E自動運転の270本以上の論文を体系的に調査したIEEE T-PAMIサーベイ。手法・課題・トレンドを網羅。研究者必読の総合リファレンス。" },
+  { num:48, title:"LLM4AD: Large Language Models for Autonomous Driving (arXiv)",                    url:"https://arxiv.org/abs/2410.15281",                                                                                                                         cat:"ai",              stars:5, year:2024, img:"",                                                                                                                       desc:"自動運転へのLLM適用を体系化。コンセプト・レビュー・ベンチマーク・実験・将来動向を包括的に解説。" },
+  { num:49, title:"Vision-Language-Action Models for AD: Past, Present, and Future (arXiv)",         url:"https://arxiv.org/abs/2512.16760",                                                                                                                         cat:"ai",              stars:5, year:2024, img:"",                                                                                                                       desc:"VLAモデルの自動運転応用を体系的に整理。End-to-End VLAとDual-System VLAの2大パラダイムを比較。2025年最注目技術の先取りサーベイ。" },
+  { num:50, title:"Generative AI for Autonomous Driving: Frontiers and Opportunities (arXiv)",       url:"https://arxiv.org/abs/2505.08854",                                                                                                                         cat:"ai sim",          stars:5, year:2025, img:"",                                                                                                                       desc:"自動運転への生成AI適用の包括的レビュー。データ生成・世界モデル・E2Eシステムへの応用をカバー。" },
+  { num:51, title:"A Survey on Large Language Model-Powered Autonomous Driving",                     url:"https://www.sciencedirect.com/science/article/pii/S2095809925004709",                                                                                       cat:"ai",              stars:4, year:2025, img:"",                                                                                                                       desc:"LLM活用自動運転の最新サーベイ。意思決定・説明可能性・人車インタラクションへのLLM応用を整理。" },
+  { num:52, title:"Diffusion-Based Planning for Autonomous Driving (ICLR 2025 Oral)",                url:"https://github.com/ZhengYinan-AIR/Diffusion-Planner",                                                                                                     cat:"ai",              stars:5, year:2025, img:"",                                                                                                                       desc:"拡散モデルによるマルチモーダル運転行動のクローズドループプランニング。nuPlanベンチマークSOTA。ICLR 2025 Oral採択。" },
+  { num:53, title:"DiffusionDrive: Truncated Diffusion Model for End-to-End AD (CVPR 2025)",         url:"https://openaccess.thecvf.com/content/CVPR2025/papers/Liao_DiffusionDrive_Truncated_Diffusion_Model_for_End-to-End_Autonomous_Driving_CVPR_2025_paper.pdf",cat:"ai",stars:4, year:2025, img:"",                                                                                                                       desc:"E2E自動運転のための短縮拡散デコーダ。シーンコンテキストとのインタラクションで軌跡を段階的に洗練。CVPR 2025掲載。" },
+  { num:54, title:"Trajectory Prediction for AD: Progress, Limitations, and Future Directions (arXiv)",url:"https://arxiv.org/abs/2503.03262",                                                                                                                     cat:"ai",              stars:4, year:2025, img:"",                                                                                                                       desc:"自動運転軌跡予測の進展・限界・将来方向性を整理したサーベイ。物理ベース・DL・RL手法の比較。" },
+  // PERCEPTION
+  { num:55, title:"A Survey on Occupancy Perception for Autonomous Driving (arXiv)",                 url:"https://arxiv.org/abs/2405.05173",                                                                                                                         cat:"ai",              stars:5, year:2024, img:"",                                                                                                                       desc:"3D Occupancy知覚の包括的サーベイ。入力モダリティ別の手法分類と情報融合アプローチを体系化。Information Fusion掲載。" },
+  { num:56, title:"Vision-Based 3D Occupancy Prediction in AD: A Review and Outlook",                url:"https://link.springer.com/article/10.1007/s11704-024-40443-5",                                                                                             cat:"ai",              stars:4, year:2024, img:"",                                                                                                                       desc:"カメラベース3D Occupancy予測サーベイ。BEV知覚からの発展とコスト効果の高い知覚システム設計を解説。" },
+  { num:57, title:"Foundation Models for Autonomous Driving Perception: A Survey (arXiv)",           url:"https://arxiv.org/abs/2509.08302",                                                                                                                         cat:"ai",              stars:5, year:2025, img:"",                                                                                                                       desc:"自動運転知覚のファウンデーションモデルを体系的にサーベイ。コア能力別の分類と将来展望。" },
+  { num:58, title:"BEV Perception for Autonomous Driving: State of the Art and Future Perspectives", url:"https://www.sciencedirect.com/science/article/abs/pii/S0957417424019705",                                                                                  cat:"ai",              stars:4, year:2024, img:"",                                                                                                                       desc:"BEV知覚の現状と将来展望。BEVFormerからの進化と最新手法を包括的に整理。" },
+  { num:59, title:"Large Foundation Models for Trajectory Prediction in Autonomous Driving (arXiv)", url:"https://arxiv.org/abs/2509.10570",                                                                                                                         cat:"ai",              stars:4, year:2025, img:"",                                                                                                                       desc:"軌跡予測のための大規模ファウンデーションモデルの包括的サーベイ。LLM・MLLMによる文脈推論の活用法。" },
+  // SIMULATION
+  { num:60, title:"Applied Intuition 2024 Year in Review: Milestones in Autonomy",                   url:"https://www.appliedintuition.com/blog/2024-year-in-review",                                                                                                cat:"sim",             stars:4, year:2024, img:"https://cdn.sanity.io/images/a86leg7v/production/244126de6db1359c5a0ca8005d148d684f6bdc79-2000x2000.png?rect=0,475,2000,1050&w=1200&h=630", desc:"シミュレーションプラットフォームの2024年総括。5000万回シミュレーション実行、ラベリングコスト95%削減の実績。" },
+  { num:61, title:"Applied Intuition 2025 in Review: Autonomy at Scale",                             url:"https://www.appliedintuition.com/blog/2025-year-in-review",                                                                                                cat:"sim",             stars:4, year:2025, img:"https://cdn.sanity.io/images/a86leg7v/production/771658ba4f2aa0fe308e213956f2199cc54d99c2-2000x2000.png?rect=0,475,2000,1050&w=1200&h=630", desc:"AV開発ツールチェーンの進化。EpiSci買収によるLand/Air/Sea/Spaceへの拡張、OpenAI提携。" },
+  { num:62, title:"CARLA2Real: A Tool for Reducing the Sim2Real Appearance Gap (arXiv)",             url:"https://arxiv.org/abs/2410.18238",                                                                                                                         cat:"sim ai",          stars:5, year:2024, img:"",                                                                                                                       desc:"CARLAシミュレータのリアリティ向上ツール。13 FPSでリアルタイム変換。Cityscapes/KITTIレベルのリアリズムを実現。Sim2Real解消の実践的手法。" },
+  { num:63, title:"A Comprehensive Review on Traffic Datasets and Simulators for AVs (arXiv)",       url:"https://arxiv.org/abs/2412.14207",                                                                                                                         cat:"sim",             stars:4, year:2024, img:"",                                                                                                                       desc:"自動運転向けシミュレータとデータセットの包括的レビュー。CARLA/SUMO/BeamNG等の特性・適用場面を比較。" },
+  { num:64, title:"15 Notable AI Datasets for Autonomous Driving in 2024-2025",                      url:"https://www.basic.ai/blog-post/15-new-autonomous-driving-datasets-in-2024-2025",                                                                           cat:"sim ai",          stars:4, year:2024, img:"",                                                                                                                       desc:"2024-2025年に公開された15の主要自動運転データセットのカタログ。各データセットの特徴・用途・規模を比較。" },
+  { num:65, title:"Generative AI for Testing of Autonomous Driving Systems: A Survey (arXiv)",       url:"https://arxiv.org/abs/2508.19882",                                                                                                                         cat:"sim ai",          stars:4, year:2025, img:"",                                                                                                                       desc:"自動運転システムテストへの生成AI活用サーベイ。エッジケース生成・シナリオ多様化・評価自動化のアプローチ。" },
+  { num:66, title:"DrivingGen: A Comprehensive Benchmark for Video World Models in AD (arXiv)",      url:"https://arxiv.org/abs/2601.01528",                                                                                                                         cat:"sim ai",          stars:4, year:2025, img:"",                                                                                                                       desc:"自動運転向けビデオ世界モデルの包括的ベンチマーク。生成品質・制御可能性・安全性評価の新フレームワーク。" },
+  // SENSORS
+  { num:67, title:"Lidar on a Chip Puts Self-Driving Cars in the Fast Lane (IEEE Spectrum)",         url:"https://spectrum.ieee.org/lidar-on-a-chip",                                                                                                                cat:"sensor",          stars:5, year:2024, img:"https://spectrum.ieee.org/media-library/image.png?id=34878590&width=1200&height=600&coordinates=0%2C115%2C0%2C115",              desc:"チップ統合LiDAR技術の詳細。固体LiDARの量産・低コスト化への道筋をIEEE Spectrumが解説。" },
+  { num:68, title:"Hesai's Infinity Eye Lidar: A Game-Changer in Autonomous Driving",                url:"https://www.ainvest.com/news/hesai-infinity-eye-lidar-game-changer-autonomous-driving-risks-linger-2504/",                                                 cat:"sensor",          stars:4, year:2025, img:"",                                                                                                                       desc:"Hesaiの最先端LiDAR技術分析。世界市場シェア33%の技術的根拠と競合比較。2024年50万ユニット出荷の背景。" },
+  { num:69, title:"Innoviz Technologies Accelerates Delivery of LiDAR Platform to Volkswagen",       url:"https://ir.innoviz.tech/news-events/press-releases/detail/148/innoviz-technologies-accelerates-delivery-of-newly-designed",                               cat:"sensor",          stars:3, year:2025, img:"",                                                                                                                       desc:"VW ID. Buzz向け新設計LiDARプラットフォームの出荷加速発表。Innoviz固体LiDARの量産OEM採用事例。" },
+  { num:70, title:"4D Imaging Radar: Rising Adoption Outpaces 3D in ADAS 2025",                      url:"https://www.globenewswire.com/news-release/2025/08/13/3132326/28124/en/4D-Imaging-Radar-in-Autonomous-Vehicles-Research-and-Competition-Analysis-Report-2025-Rising-Adoption-of-4D-Radar-in-ADAS-Outpaces-3D-Enhances-Safety-and-Precision.html",cat:"sensor",stars:4, year:2025, img:"",desc:"4DイメージングレーダーのADAS普及動向。3Dレーダー超えの性能優位性と悪天候・夜間性能の解説。Waymo採用例も。" },
+  { num:71, title:"Deep Dive: Tesla, Waymo, and the Great Sensor Debate",                             url:"https://research.contrary.com/report/tesla-waymo-and-the-great-sensor-debate",                                                                             cat:"sensor waymo tesla",stars:5, year:2024, img:"https://images.prismic.io/contrary-research/aIz6wqTt2nPbZrk2_WaymovTesla.png?auto=format,compress",               desc:"TeslaのカメラオンリーとWaymoのマルチセンサー（LiDAR+カメラ+レーダー）アプローチの深い比較分析。センサー戦略の設計思想の違いを解説。" },
+  { num:72, title:"Driving Vision: Inside China's LiDAR Revolution – An Interview with Hesai",       url:"https://www.yolegroup.com/player-interviews/driving-vision-unside-chinas-lidar-revolution-an-interview-with-hesai/",                                       cat:"sensor",          stars:4, year:2024, img:"",                                                                                                                       desc:"Hesai CEOインタビュー。中国LiDAR産業が世界市場を席巻した背景と技術戦略を詳述。" },
+  // MAP
+  { num:73, title:"Maps for Autonomous Driving: Full-Process Survey and Frontiers (arXiv)",          url:"https://arxiv.org/abs/2509.12632",                                                                                                                         cat:"ai regulation",   stars:5, year:2025, img:"",                                                                                                                       desc:"自動運転マップのフルプロセスサーベイ。HDマップ→LDマップ→マップレスへの進化を体系化。3D Gaussianスプラッティング等の最新手法も解説。" },
+  { num:74, title:"Navigating the Future: Mapless vs Map-Based Autonomous Driving",                  url:"https://www.counterpointresearch.com/insight/navigating-the-future-mapless-vs-map-based-autonomous-driving/",                                              cat:"regulation",      stars:4, year:2024, img:"https://counterpointresearch.com/statics/images/admin/image-12.jpg",                                                       desc:"マップレスvsマップベースの自動運転を比較。コスト・拡張性・精度のトレードオフ分析。業界のマップレス移行トレンドを解説。" },
+  { num:75, title:"MapVision: CVPR 2024 Autonomous Grand Challenge Mapless Driving Tech Report",      url:"https://arxiv.org/abs/2406.10125",                                                                                                                         cat:"ai",              stars:4, year:2024, img:"",                                                                                                                       desc:"CVPR 2024 Autonomous Grand Challengeのマップレス走行技術レポート。オンラインマップ生成の最先端手法。" },
+  // SAFETY / REGULATION
+  { num:76, title:"A Unified Safety Framework: Integrating ISO 26262, SOTIF, and UL 4600",           url:"https://www.sciencedirect.com/science/article/pii/S259019822500510X",                                                                                       cat:"regulation",      stars:5, year:2025, img:"",                                                                                                                       desc:"ISO 26262・ISO 21448 (SOTIF)・UL 4600を統合したAV開発向け安全フレームワーク。自動運転開発者必読。" },
+  { num:77, title:"Rethinking AV Functional Safety Standards: ISO 26262 and SOTIF Analysis",         url:"https://www.automotive-iq.com/autonomous-drive/articles/rethinking-autonomous-vehicle-functional-safety-standards-an-analysis-of-sotif-and-iso-26262",    cat:"regulation",      stars:4, year:2024, img:"",                                                                                                                       desc:"SOTIFとISO 26262の補完関係を詳細分析。AI/センサー誤認識への対処としてのSOTIFの役割を解説。" },
+  { num:78, title:"Cybersecurity for Next-Generation Road Transportation (ACM)",                      url:"https://dl.acm.org/doi/full/10.1145/3744352",                                                                                                              cat:"regulation",      stars:4, year:2025, img:"",                                                                                                                       desc:"次世代道路交通のサイバーセキュリティ包括レビュー。V2X通信セキュリティとUN R155対応の技術的要件。" },
+  { num:79, title:"Regulations for Autonomous Vehicles: Global Policy Trends 2024-2030",             url:"https://patentpc.com/blog/regulations-for-autonomous-vehicles-where-do-countries-stand-in-2024-2030-global-policy-trends",                                cat:"regulation",      stars:4, year:2024, img:"",                                                                                                                       desc:"米・EU・中国の自動運転規制比較。中国の2025年L3以上義務化、EU統一フレームワーク2026、UNECE R155への対応。" },
+  { num:80, title:"The State of Autonomous Driving in 2025",                                         url:"https://autocrypt.io/state-of-autonomous-driving-2025/",                                                                                                    cat:"regulation",      stars:4, year:2025, img:"https://www.autocrypt.io/wp-content/uploads/2025/07/Thumbnail.png",                                                          desc:"2025年の自動運転産業総括。技術・規制・市場・セキュリティを網羅した業界年次レポート。" },
+  { num:81, title:"Waymo's 2025 Year in Review: The Year Robotaxis Scaled",                           url:"https://www.thedriverlessdigest.com/p/waymos-2025-year-in-review-the-year",                                                                                cat:"waymo regulation",stars:4, year:2025, img:"",                                                                                                                       desc:"ロボタクシー産業が本格スケールした2025年の総括。週17万5千ライド→45万ライドへの成長軌跡。" },
+  { num:82, title:"NACFE: The State of Autonomous Trucking in 2025 (2024 Recap)",                    url:"https://nacfe.org/autonomous-trucking/the-state-of-autonomous-trucking-in-2025-a-recap-of-2024/",                                                          cat:"aurora regulation",stars:4, year:2025, img:"",                                                                                                                       desc:"2024年の自動運転トラッキング産業の総括。Aurora・Gatik・Torc・Kodiak等の各社動向を比較分析。" },
+  { num:83, title:"Aurora Heads into 2026 with Big Plans on Tap",                                    url:"https://www.truckinginfo.com/10249848/aurora-heads-into-2026-with-big-plans-on-tap",                                                                        cat:"aurora",          stars:3, year:2025, img:"",                                                                                                                       desc:"Auroraの2026年計画。第2世代ハードウェアキット（コスト50%以上削減・LiDAR航続距離2倍）の詳細。" },
+  // DATASETS
+  { num:84, title:"nuScenes Revisited: Progress and Challenges in Autonomous Driving (arXiv)",       url:"https://arxiv.org/abs/2512.02448",                                                                                                                         cat:"ai sim",          stars:4, year:2024, img:"",                                                                                                                       desc:"nuSceneデータセットの進化と課題の包括的レビュー。マルチモーダル知覚のデファクトベンチマークの現状と限界。" },
+  { num:85, title:"CoVLA: Comprehensive Vision-Language-Action Dataset for AD (arXiv)",              url:"https://arxiv.org/abs/2408.10845",                                                                                                                         cat:"ai sim",          stars:5, year:2024, img:"",                                                                                                                       desc:"Turing Inc.が公開した自動運転向け最初の大規模VLAデータセット（WACV 2025採択）。東京1万シーン・80時間超の走行データに詳細な言語記述と軌跡アノテーション。" },
+  { num:86, title:"Occluded nuScenes: Multi-Sensor Dataset for Perception Robustness (arXiv)",       url:"https://arxiv.org/abs/2510.18552",                                                                                                                         cat:"ai sim",          stars:3, year:2024, img:"",                                                                                                                       desc:"遮蔽シナリオでの知覚ロバスト性評価向けデータセット。実世界の悪条件に対する知覚システムの信頼性評価に有用。" },
+  { num:87, title:"Are AI-Generated Driving Videos Ready for Autonomous Driving? (arXiv)",           url:"https://arxiv.org/abs/2512.06376",                                                                                                                         cat:"ai sim",          stars:4, year:2024, img:"",                                                                                                                       desc:"AI生成走行ビデオの自動運転活用可能性を診断的に評価するフレームワーク。生成データの品質基準を提示。" },
+  // PLANNING
+  { num:88, title:"A Crash Course of Planning for Perception Engineers in Autonomous Driving",       url:"https://medium.com/the-thinking-car/a-crash-course-of-planning-for-perception-engineers-in-autonomous-driving-ede324d78717",                               cat:"ai",              stars:5, year:2024, img:"",                                                                                                                       desc:"知覚エンジニア向けプランニング入門。行動決定・モーションプランニングの基礎からトランスフォーマーベース最新手法まで実践的に解説。" },
+  { num:89, title:"A Survey of Decision-Making and Planning Methods for Self-Driving Vehicles",      url:"https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2025.1451923/full",                                                              cat:"ai",              stars:4, year:2025, img:"",                                                                                                                       desc:"自動運転の意思決定・プランニング手法の包括的サーベイ。ルールベース・学習ベース・ハイブリッドアプローチを比較。" },
+  { num:90, title:"Vehicle Trajectory Prediction for AD: State-of-the-Art Review",                  url:"https://link.springer.com/article/10.1007/s42154-025-00382-8",                                                                                             cat:"ai",              stars:4, year:2025, img:"",                                                                                                                       desc:"自動運転の車両軌跡予測の最新レビュー。物理モデル・深層学習・インタラクションモデリングの比較。" },
+  { num:91, title:"Achieving Better Accuracy in 3D Occupancy Prediction for AD (NVIDIA GTC 2024)",   url:"https://www.nvidia.com/en-us/on-demand/session/gtc24-s62446/",                                                                                             cat:"nvidia ai",       stars:4, year:2024, img:"",                                                                                                                       desc:"GTC 2024でのNVIDIA発表。3D Occupancy予測の精度向上技術の詳細と実装アプローチ。" },
+  // OTHER
+  { num:92, title:"Autonomous Driving Map Industry Review 2025",                                     url:"https://autotech.news/autonomous-driving-map-industry-review-2025/",                                                                                       cat:"regulation",      stars:4, year:2025, img:"",                                                                                                                       desc:"2025年自動運転マップ産業総括。HD/LD/SDマップの市場シェアと各社のマップ戦略変化を分析。" },
+  { num:93, title:"GenAI4AD: GenAI Across the Full Autonomous Driving Stack (GitHub)",               url:"https://github.com/taco-group/GenAI4AD",                                                                                                                    cat:"ai sim",          stars:5, year:2024, img:"",                                                                                                                       desc:"自動運転スタック全体への生成AI適用の批判的・包括的総合分析。知覚・予測・プランニング・シミュレーション全領域を網羅。" },
+  { num:94, title:"Awesome World Models for Autonomous Driving (GitHub)",                            url:"https://github.com/LMD0311/Awesome-World-Model",                                                                                                            cat:"ai sim",          stars:4, year:2024, img:"",                                                                                                                       desc:"自動運転（・ロボット等）向けワールドモデル論文の厳選コレクション。継続更新される研究トラッキングリソース。" },
+  { num:95, title:"Awesome VLA for Autonomous Driving (GitHub)",                                     url:"https://github.com/worldbench/awesome-vla-for-ad",                                                                                                         cat:"ai",              stars:4, year:2025, img:"",                                                                                                                       desc:"自動運転向けVLA（Vision-Language-Action）モデルの論文・プロジェクト厳選コレクション。最新研究トラッキングに有用。" },
+  { num:96, title:"Exploring HD Mapping That Scales (Nuro Medium Blog)",                             url:"https://medium.com/nuro/exploring-hd-mapping-that-scales-939c3b69e232",                                                                                     cat:"ai",              stars:4, year:2024, img:"",                                                                                                                       desc:"NuroによるスケーラブルなHDマップ構築の技術詳細。自動マッピングパイプラインとクラウドソーシング活用の解説。" },
+  { num:97, title:"Turing Unveils CoVLA Dataset — Japan's First AD VLA Dataset",                     url:"https://tur.ing/en/news/20240910/",                                                                                                                         cat:"ai sim",          stars:4, year:2024, img:"",                                                                                                                       desc:"Turing Inc.の公式プレスリリース。CoVLAデータセット発表の背景と日本初の自動運転VLAモデル開発の意義を解説。" },
+  { num:98, title:"Waymo Statistics 2026: Funding, Revenue & Rides Per Cities",                      url:"https://awisee.com/blog/waymo-statistics/",                                                                                                                 cat:"waymo regulation",stars:4, year:2026, img:"",                                                                                                                       desc:"Waymoの最新統計まとめ。資金調達・収益・都市別乗車数・安全指標を網羅。競合分析の参考データとして有用。" },
+  { num:99, title:"OpenDriveLab Publications: E2E Autonomous Driving Research Hub",                  url:"https://opendrivelab.com/publications",                                                                                                                     cat:"ai",              stars:5, year:2024, img:"",                                                                                                                       desc:"上海AIラボ/Hong Kong Univ.のOpenDriveLabの論文リスト。UniAD・VAD・SparseDrive等、E2E自動運転の最先端研究を継続的に発表する研究ラボ。" },
+  { num:100,title:"Waymo Skyrocketing Ridership in One Chart (TechCrunch)",                          url:"https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",                                                                              cat:"waymo regulation",stars:4, year:2026, img:"",                                                                                                                       desc:"Waymoの急成長ライドシェア事業を1枚のグラフで示す分析記事。スケーリングの速度と市場インパクトを可視化。" }
+];
 
-  let activeCat = 'all';
-  let activeStars = 0;
+// ─── ARTICLE TYPE ────────────────────────────────────────────────────────────
+const PAPER_URL_PATTERNS = [
+  'arxiv.org', 'openaccess.thecvf.com', 'dl.acm.org',
+  'link.springer.com', 'tandfonline.com', 'frontiersin.org', 'sciencedirect.com'
+];
+const PAPER_NUMS = new Set([47, 52, 93]); // GitHub repos that host academic papers
 
-  function updateCards() {
-    const q = searchInput.value.toLowerCase().trim();
-    let visible = 0;
+function getArticleType(a) {
+  if (PAPER_URL_PATTERNS.some(p => a.url.includes(p))) return 'paper';
+  if (PAPER_NUMS.has(a.num)) return 'paper';
+  return 'article';
+}
 
-    cards.forEach(card => {
-      const cats = card.dataset.cat || '';
-      const stars = parseInt(card.dataset.stars) || 0;
-      const text = card.innerText.toLowerCase();
+// ─── CATEGORY META ────────────────────────────────────────────────────────────
+const CAT_META = {
+  waymo:      { label:"Waymo",        emoji:"🚗", grad:"linear-gradient(135deg,#0a2060,#1d50c8)" },
+  tesla:      { label:"Tesla",        emoji:"⚡", grad:"linear-gradient(135deg,#5a0000,#cc2020)" },
+  wayve:      { label:"Wayve",        emoji:"🌊", grad:"linear-gradient(135deg,#003322,#00875a)" },
+  aurora:     { label:"Aurora",       emoji:"🌌", grad:"linear-gradient(135deg,#0d0d30,#3a3a90)" },
+  nvidia:     { label:"NVIDIA",       emoji:"💡", grad:"linear-gradient(135deg,#003300,#5a9a00)" },
+  ai:         { label:"AI/ML",        emoji:"🤖", grad:"linear-gradient(135deg,#160828,#5a3aae)" },
+  sim:        { label:"シミュレーション",emoji:"🖥️", grad:"linear-gradient(135deg,#002e2e,#1aa8a8)" },
+  sensor:     { label:"センサー",      emoji:"📡", grad:"linear-gradient(135deg,#2e1800,#c06000)" },
+  chip:       { label:"チップ",        emoji:"🔧", grad:"linear-gradient(135deg,#101020,#3a3acc)" },
+  regulation: { label:"規制/動向",     emoji:"🌐", grad:"linear-gradient(135deg,#101830,#305878)" },
+  default:    { label:"記事",          emoji:"📄", grad:"linear-gradient(135deg,#1a1d27,#2e3250)" },
+};
 
-      const catMatch = activeCat === 'all' || cats.includes(activeCat);
-      const starMatch = activeStars === 0 || stars >= activeStars;
-      const searchMatch = !q || text.includes(q);
-
-      if (catMatch && starMatch && searchMatch) {
-        card.classList.remove('hidden');
-        visible++;
-      } else {
-        card.classList.add('hidden');
-      }
-    });
-
-    resultCount.textContent = visible + '件';
-    emptyState.style.display = visible === 0 ? 'block' : 'none';
-
-    // Hide empty sections
-    document.querySelectorAll('.cards').forEach(section => {
-      const visibleCards = section.querySelectorAll('.card:not(.hidden)');
-      const header = section.previousElementSibling;
-      const isHidden = visibleCards.length === 0;
-      section.style.display = isHidden ? 'none' : '';
-      if (header && header.classList.contains('section-header')) {
-        header.style.display = isHidden ? 'none' : '';
-      }
-    });
+function getCatMeta(catStr) {
+  const cats = (catStr||'').split(' ');
+  for (const c of cats) {
+    if (CAT_META[c]) return { key: c, ...CAT_META[c] };
   }
+  return { key:'default', ...CAT_META.default };
+}
 
-  searchInput.addEventListener('input', updateCards);
+// ─── SECTIONS ────────────────────────────────────────────────────────────────
+const SECTIONS = [
+  { id:"waymo",      title:"🚗 Waymo",                     filter: a => a.cat.includes('waymo') && !a.cat.includes('tesla') },
+  { id:"tesla",      title:"🚗 Tesla",                     filter: a => a.cat.includes('tesla') },
+  { id:"wayve",      title:"🚗 Wayve",                     filter: a => a.cat.includes('wayve') },
+  { id:"aurora",     title:"🚗 Aurora",                    filter: a => a.cat.includes('aurora') && !a.cat.includes('waymo') },
+  { id:"other-av",   title:"🚗 Zoox / Baidu / Pony.ai / WeRide / Nuro / Gatik / Mobileye / 中国EV", filter: a => [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36].includes(a.num) },
+  { id:"nvidia",     title:"🔧 NVIDIA",                    filter: a => a.cat.includes('nvidia') && !a.cat.includes('aurora') && !a.cat.includes('waymo') },
+  { id:"chip",       title:"🔧 ARM / Qualcomm / Renesas / ドメインコントローラ", filter: a => [42,43,44,45,46].includes(a.num) },
+  { id:"ai-arch",    title:"🤖 E2E・VLA・LLM アーキテクチャ", filter: a => [47,48,49,50,51,52,53,54].includes(a.num) },
+  { id:"perception", title:"🤖 知覚技術 (Perception)",      filter: a => [55,56,57,58,59].includes(a.num) },
+  { id:"sim",        title:"💡 シミュレーション・合成データ", filter: a => [60,61,62,63,64,65,66].includes(a.num) },
+  { id:"sensor",     title:"📡 センサー技術",               filter: a => [67,68,69,70,71,72].includes(a.num) },
+  { id:"map",        title:"🌐 地図・ローカライゼーション",  filter: a => [73,74,75].includes(a.num) },
+  { id:"safety",     title:"🌐 安全規格・機能安全",         filter: a => [76,77,78].includes(a.num) },
+  { id:"reg",        title:"🌐 規制・業界動向・データセット・その他", filter: a => [79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100].includes(a.num) },
+];
 
-  catButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      catButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeCat = btn.dataset.cat;
-      updateCards();
-    });
+// ─── RATINGS (localStorage) ──────────────────────────────────────────────────
+function getUserRating(num) {
+  return parseInt(localStorage.getItem('ur_' + num) || '0');
+}
+function setUserRating(num, val) {
+  localStorage.setItem('ur_' + num, val);
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────────────
+function starsHTML(n) {
+  return '⭐'.repeat(n) + (n < 5 ? '☆'.repeat(5-n) : '');
+}
+
+function renderCard(a) {
+  const meta = getCatMeta(a.cat);
+  const userRating = getUserRating(a.num);
+  const hasImg = !!a.img;
+  const imgInner = hasImg
+    ? `<img src="${a.img}" loading="lazy" alt="" onerror="this.style.display='none'">`
+    : `<div class="img-fallback">${meta.emoji}<span>${meta.label}</span></div>`;
+
+  return `
+  <div class="card"
+       data-cat="${a.cat}"
+       data-stars="${a.stars}"
+       data-year="${a.year}"
+       data-num="${a.num}"
+       data-type="${getArticleType(a)}"
+       data-text="${(a.title + ' ' + a.desc).toLowerCase()}">
+    <div class="card-img" style="background:${a.img ? '#000' : meta.grad}">
+      ${imgInner}
+      <div class="num-badge">#${a.num}</div>
+    </div>
+    <div class="card-body">
+      <div class="card-title"><a href="${a.url}" target="_blank" rel="noopener">${a.title}</a></div>
+      <div class="card-meta">
+        <span class="tag cat">${meta.emoji} ${meta.label}</span>
+        <span class="tag year">${a.year}</span>
+      </div>
+      <div class="card-desc">${a.desc}</div>
+      <div class="card-ratings">
+        <div class="rating-row">
+          <span class="rating-label">編集部</span>
+          <span class="editor-stars">${'⭐'.repeat(a.stars)}</span>
+        </div>
+        <div class="rating-row">
+          <span class="rating-label">マイ評価</span>
+          <div class="user-stars" data-num="${a.num}">
+            ${[1,2,3,4,5].map(v =>
+              `<span class="s${userRating >= v ? ' lit' : ''}" data-val="${v}">★</span>`
+            ).join('')}
+          </div>
+          ${userRating === 0 ? `<span class="user-note">クリックして評価</span>` : ''}
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function buildSections() {
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+
+  for (const sec of SECTIONS) {
+    const articles = ARTICLES.filter(sec.filter);
+    if (articles.length === 0) continue;
+
+    const secEl = document.createElement('div');
+    secEl.dataset.section = sec.id;
+
+    secEl.innerHTML = `
+      <div class="section-header">
+        <h2>${sec.title}</h2>
+        <span class="section-count">${articles.length}件</span>
+      </div>
+      <div class="cards">${articles.map(renderCard).join('')}</div>`;
+    main.appendChild(secEl);
+  }
+}
+
+buildSections();
+// Apply initial tab filter (show articles by default)
+// Called after filter logic is defined below — moved to end of script
+
+// ─── FILTER & SEARCH ─────────────────────────────────────────────────────────
+let activeCat = 'all', activeStars = 0, activeTab = 'article';
+
+function applyFilters() {
+  const q = document.getElementById('search').value.toLowerCase().trim();
+  let visible = 0;
+
+  document.querySelectorAll('.card').forEach(card => {
+    const cats = card.dataset.cat || '';
+    const stars = parseInt(card.dataset.stars) || 0;
+    const text = card.dataset.text || '';
+    const type = card.dataset.type || 'article';
+
+    const catOK = activeCat === 'all' || cats.split(' ').includes(activeCat);
+    const starOK = activeStars === 0 || stars >= activeStars;
+    const searchOK = !q || text.includes(q);
+    const tabOK = type === activeTab;
+
+    const show = catOK && starOK && searchOK && tabOK;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
   });
 
-  starButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      starButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeStars = parseInt(btn.dataset.stars);
-      updateCards();
-    });
+  document.getElementById('result-count').textContent = visible + '件';
+  document.getElementById('empty').style.display = visible === 0 ? 'block' : 'none';
+
+  // Hide sections with no visible cards
+  document.querySelectorAll('[data-section]').forEach(sec => {
+    const anyVisible = sec.querySelector('.card:not(.hidden)');
+    sec.style.display = anyVisible ? '' : 'none';
   });
+}
+
+document.getElementById('search').addEventListener('input', applyFilters);
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeCat = btn.dataset.cat;
+    applyFilters();
+  });
+});
+
+document.querySelectorAll('.star-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeStars = parseInt(btn.dataset.stars);
+    applyFilters();
+  });
+});
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeTab = btn.dataset.tab;
+    // Reset category filter when switching tabs
+    activeCat = 'all';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
+    applyFilters();
+  });
+});
+
+// ─── USER RATINGS ─────────────────────────────────────────────────────────────
+document.addEventListener('mouseover', e => {
+  const s = e.target.closest('.s');
+  if (!s) return;
+  const group = s.closest('.user-stars');
+  const val = parseInt(s.dataset.val);
+  group.querySelectorAll('.s').forEach(star => {
+    star.classList.toggle('hover-lit', parseInt(star.dataset.val) <= val);
+  });
+});
+
+document.addEventListener('mouseout', e => {
+  const s = e.target.closest('.s');
+  if (!s) return;
+  const group = s.closest('.user-stars');
+  const num = parseInt(group.dataset.num);
+  const saved = getUserRating(num);
+  group.querySelectorAll('.s').forEach(star => {
+    star.classList.remove('hover-lit');
+    star.classList.toggle('lit', parseInt(star.dataset.val) <= saved);
+  });
+});
+
+document.addEventListener('click', e => {
+  const s = e.target.closest('.s');
+  if (!s) return;
+  const group = s.closest('.user-stars');
+  const num = parseInt(group.dataset.num);
+  const val = parseInt(s.dataset.val);
+  // Toggle off if clicking same rating
+  const prev = getUserRating(num);
+  const newVal = prev === val ? 0 : val;
+  setUserRating(num, newVal);
+
+  group.querySelectorAll('.s').forEach(star => {
+    star.classList.toggle('lit', parseInt(star.dataset.val) <= newVal);
+  });
+
+  // Update note
+  const row = group.closest('.rating-row');
+  let note = row.querySelector('.user-note');
+  if (newVal === 0) {
+    if (!note) { note = document.createElement('span'); note.className = 'user-note'; row.appendChild(note); }
+    note.textContent = 'クリックして評価';
+  } else {
+    if (note) note.remove();
+  }
+});
+
+// Initial render: apply tab filter (articles tab is default)
+applyFilters();
 </script>
-
 </body>
 </html>
