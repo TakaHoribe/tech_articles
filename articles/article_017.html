@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wayve Science — 自律走行のためのエンボディドAI研究</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>Wayve Science — 自律走行のためのエンボディドAI研究</h1>
+<div class="meta">2025 · Wayve / Embodied AI · ⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://wayve.ai/science/" target="_blank" rel="noopener">https://wayve.ai/science/</a></div>
+</div>
+<div class="body">
+
+<p>Wayveは英国ロンドンに拠点を置く自律走行AIスタートアップ（2024年にソフトバンクが買収）である。同社は「AV2.0」と呼ぶエンドツーエンド学習アプローチを特徴とし、ルールベースのシステムではなく、大規模なニューラルネットワークで走行全体を学習させる方針を採用している。Wayve Scienceページは、その研究成果の集大成であり、生成型ワールドモデル（GAIA）、自然言語統合（LINGO）、ニューラルレンダリングを中心とした研究プログラムを公開している。</p>
+
+<img src="./images/17306a3b_img.jpg" alt="Wayve サイエンスチームの研究風景">
+
+<h2>研究ビジョン：エンボディドAIにおける科学的ブレークスルー</h2>
+
+<p>Wayveの科学的目標は、「自律走行とその先の現実世界の課題に取り組むエンボディドAIにおける科学的ブレークスルーを達成すること」にある。エンボディドAI（Embodied AI）とは、物理世界で行動するエージェントのためのAI——すなわち、知覚・判断・行動を一体的に学習するシステム——を指す概念であり、Wayveはこれを自律走行の根幹に据えている。</p>
+
+<p>同社の研究は主に以下の3つの柱で構成される。</p>
+<ul>
+  <li><strong>GAIA（生成型ワールドモデル）</strong>：リアルな走行動画・シナリオを生成し、AIの学習と評価に使う</li>
+  <li><strong>LINGO（自然言語統合）</strong>：言語でAIの判断を説明し、言語プロンプトで行動を制御する</li>
+  <li><strong>ニューラルレンダリング／測定・シミュレーション</strong>：実走行データから光リアルな3D環境を再構築する</li>
+</ul>
+
+<h2>GAIA：生成型ワールドモデル</h2>
+
+<img src="./images/803d5978_img.jpg" alt="GAIA-2 生成型ワールドモデルの概要">
+
+<p>GAIAはWayveの中核技術であり、テキスト・映像・アクション入力を受け取り、リアルな走行シナリオ動画を生成する生成型ワールドモデルである。自動運転AIの学習に必要な多様なデータをコスト効率よく生成するとともに、安全上重要な稀少シナリオ（急な割り込み、緊急回避、悪天候など）を制御された形でシミュレートできる。</p>
+
+<h3>GAIA-2（2025年3月）</h3>
+<p>最新世代のGAIA-2は、以下の特徴を持つ。</p>
+<ul>
+  <li><strong>マルチカメラ合成</strong>：複数視点にわたる時空間的一貫性を保ちながら長時間映像を生成</li>
+  <li><strong>潜在拡散フレームワーク（Latent Diffusion）</strong>：安定した長期映像シーケンスを実現</li>
+  <li><strong>高い制御性</strong>：天候・照明・道路構成・自車挙動を細粒度で制御可能</li>
+  <li><strong>地理的多様性</strong>：英国・米国・ドイツの都市・郊外・高速道路シーンに対応</li>
+  <li><strong>学習分布外シナリオ</strong>：衝突・ニアミスなど、現実では収集が困難な危険状況を生成</li>
+</ul>
+
+<h3>GAIA-1（2023年9月）</h3>
+<p>GAIA-1はGAIAシリーズの初代モデルであり、ビデオ・テキスト・アクションをマルチモーダルに処理して自律走行向けワールドモデルを実現した先駆的研究である。</p>
+
+<h2>LINGO：自然言語によるAI説明と制御</h2>
+
+<img src="./images/93e6bd20_img.jpg" alt="LINGO 自然言語統合システムの概要">
+
+<p>LINGOはWayveが開発するビジョン・言語・アクションモデルであり、自律走行AIの解釈可能性（Explainability）と言語制御を実現する。</p>
+
+<h3>主要機能</h3>
+<ul>
+  <li><strong>走行コメンタリー</strong>：AIが行っている判断と理由をリアルタイムで自然言語で説明する</li>
+  <li><strong>参照セグメンテーション（Referential Segmentation）</strong>：AIが注目しているシーン内の領域を視覚的にハイライトする</li>
+  <li><strong>ビジュアルQA（Visual Question Answering）</strong>：シーンや運転判断についての問いに答える</li>
+  <li><strong>言語ベースの行動制御</strong>：「路肩に寄せて」「右折して」などのプロンプトで走行挙動を変更する</li>
+  <li><strong>乗客対話</strong>：自然な会話を通じてシステムとやり取りできる</li>
+</ul>
+
+<p>LINGOの実用的な意義は、AIの「ブラックボックス」問題に対処することにある。走行AIが何をどう判断しているかを言語で可視化することで、安全性の検証・規制対応・ユーザー信頼の向上に貢献する。</p>
+
+<h2>測定・シミュレーション：ニューラルレンダリング</h2>
+
+<img src="./images/1bb47b72_img.jpg" alt="ニューラルレンダリングによる走行環境の3D再構築">
+
+<p>Wayveはニューラルレンダリング技術（NeRFベース）を用いて、実走行データから光リアルな3D走行環境を再構築する。これにより以下が実現する。</p>
+<ul>
+  <li>実際の走行シーンを高精度に3D復元してシミュレーション環境として活用</li>
+  <li>センサー（カメラ）のみで取得したデータから奥行き・3D構造を推定</li>
+  <li>走行AIの評価・検証を現実に近い環境でオフラインに実施</li>
+</ul>
+
+<h2>ファウンデーションモデルアプローチ</h2>
+
+<img src="./images/ba9018e4_img.jpg" alt="Wayveのファウンデーションモデル構造図">
+
+<p>Wayveの研究プログラム全体に共通するのは、大規模なファウンデーションモデル（Foundation Model）への注力である。GAIA・LINGOはいずれも、大量の走行データで事前学習した汎用的な表現を活用し、特定タスクへファインチューニングするパラダイムを採用している。これはLLM（大規模言語モデル）が言語タスクで示したスケーリング則を自律走行に応用するアプローチであり、Wayveが「AV2.0」と呼ぶ次世代の自律走行開発手法の核心をなす。</p>
+
+<h2>論文・出版物一覧</h2>
+
+<p>Wayve Scienceページに掲載されている研究論文を、発表年順（新しい順）で示す。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>発表日</th>
+      <th>論文タイトル</th>
+      <th>カテゴリ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2025年3月26日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2025/03/GAIA_2_Technical_Report.pdf" target="_blank" rel="noopener">GAIA-2: A Controllable Multi-View Generative World Model for Autonomous Driving</a></td>
+      <td>ワールドモデル</td>
+    </tr>
+    <tr>
+      <td>2025年3月12日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2025/04/2503.09594v1.pdf" target="_blank" rel="noopener">SimLingo: Vision-Only Closed-Loop Autonomous Driving with Language-Action Alignment</a></td>
+      <td>言語統合 / 閉ループ走行</td>
+    </tr>
+    <tr>
+      <td>2024年6月14日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2025/04/2406.10165v1-1.pdf" target="_blank" rel="noopener">CarLLaVA: Vision Language Models for Camera-Only Closed-Loop Driving</a></td>
+      <td>ビジョン言語モデル</td>
+    </tr>
+    <tr>
+      <td>2023年12月21日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2312.14115.pdf" target="_blank" rel="noopener">LingoQA: Video Question Answering for Autonomous Driving</a></td>
+      <td>LINGO / ビデオQA</td>
+    </tr>
+    <tr>
+      <td>2023年10月13日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2310.01957.pdf" target="_blank" rel="noopener">Driving with LLMs: Fusing Object-Level Vector Modality for Explainable Autonomous Driving</a></td>
+      <td>LINGO / LLM活用</td>
+    </tr>
+    <tr>
+      <td>2023年9月29日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2309.17080.pdf" target="_blank" rel="noopener">GAIA-1: A Generative World Model for Autonomous Driving</a></td>
+      <td>ワールドモデル</td>
+    </tr>
+    <tr>
+      <td>2022年11月3日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2210.07729-1.pdf" target="_blank" rel="noopener">Model-Based Imitation Learning for Urban Driving</a></td>
+      <td>模倣学習</td>
+    </tr>
+    <tr>
+      <td>2021年10月18日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2104.10490.pdf" target="_blank" rel="noopener">FIERY: Future Instance Prediction in Bird's-Eye View from Surround Monocular Cameras</a></td>
+      <td>鳥瞰図予測</td>
+    </tr>
+    <tr>
+      <td>2021年8月12日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2108.05805-1.pdf" target="_blank" rel="noopener">Reimagining an Autonomous Vehicle</a></td>
+      <td>AV2.0 フレームワーク</td>
+    </tr>
+    <tr>
+      <td>2021年5月7日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2105.03533.pdf" target="_blank" rel="noopener">Video Class Agnostic Segmentation with Contrastive Learning for Autonomous Driving</a></td>
+      <td>セグメンテーション</td>
+    </tr>
+    <tr>
+      <td>2021年4月20日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2103.11015.pdf" target="_blank" rel="noopener">Video Class Agnostic Segmentation Benchmark for Autonomous Driving</a></td>
+      <td>ベンチマーク</td>
+    </tr>
+    <tr>
+      <td>2020年7月17日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/2003.06409.pdf" target="_blank" rel="noopener">Probabilistic Future Prediction for Video Scene Understanding</a></td>
+      <td>確率的予測</td>
+    </tr>
+    <tr>
+      <td>2019年12月19日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/1912.08969.pdf" target="_blank" rel="noopener">Learning a Spatio-Temporal Embedding for Video Instance Segmentation</a></td>
+      <td>時空間埋め込み</td>
+    </tr>
+    <tr>
+      <td>2019年12月5日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/1912.00177.pdf" target="_blank" rel="noopener">Urban Driving with Conditional Imitation Learning</a></td>
+      <td>条件付き模倣学習</td>
+    </tr>
+    <tr>
+      <td>2018年12月10日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/1812.03823.pdf" target="_blank" rel="noopener">Learning to Drive from Simulation without Real World Labels</a></td>
+      <td>シミュレーション学習</td>
+    </tr>
+    <tr>
+      <td>2018年11月20日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/1811.08188.pdf" target="_blank" rel="noopener">Orthographic Feature Transform for Monocular 3D Object Detection</a></td>
+      <td>3D物体検出</td>
+    </tr>
+    <tr>
+      <td>2018年9月11日</td>
+      <td><a href="https://wayve.ai/wp-content/uploads/2024/04/1807.00412.pdf" target="_blank" rel="noopener">Learning to Drive in a Day</a></td>
+      <td>強化学習 / 初期研究</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>研究の歴史的文脈と意義</h2>
+
+<p>Wayveの研究の軌跡は、同社の設立思想を反映している。2018年の「Learning to Drive in a Day」は、強化学習と実車でわずか1日で自律走行を習得できることを示した挑戦的な論文であり、Wayve設立の象徴的な成果である。その後、模倣学習・確率的予測・セグメンテーション・鳥瞰図予測と研究領域を広げながら、2021年の「Reimagining an Autonomous Vehicle」でAV2.0という統一フレームワークを提唱した。</p>
+
+<p>2023年以降はLLM・生成AIの波を自律走行に取り込み、GAIA-1によるワールドモデル生成、LINGOによる言語統合へと発展した。2025年のGAIA-2・SimLingoはその最先端であり、カメラのみ（Vision-Only）で閉ループ走行を実現しながら、言語との整合を図る方向に研究が収束しつつある。</p>
+
+<h2>まとめ</h2>
+
+<p>Wayve Scienceは、エンドツーエンド学習を核とした一貫した研究プログラムを持つ。GAIAによるワールドモデル生成は合成データと評価の両面でAV開発の課題を解決し、LINGOは言語によってAIの解釈可能性と操作性を高め、ニューラルレンダリングはリアルなシミュレーション環境を提供する。これらは個別の研究ではなく、スケーラブルな自律走行AIを構築するための統合的なエコシステムを形成している。</p>
+
+<p>2018年のシンプルな強化学習実験から、2025年の150億パラメータ規模のワールドモデルまで、Wayveの研究の蓄積は「ルールを書かず、すべてを学習させる」という信念の深化を示している。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://wayve.ai/science/" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

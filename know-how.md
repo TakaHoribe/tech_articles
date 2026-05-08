@@ -392,6 +392,112 @@ with sync_playwright() as p:
 
 ---
 
+## 13. Agentプロンプトの圧縮
+
+Agentプロンプトにテンプレートや説明を丸ごと書かない。既存ファイルとknow-howを参照させる。
+
+**悪い例（冗長）**：
+```
+HTMLテンプレート：
+<!DOCTYPE html>
+<html lang="ja">
+...（50行）...
+
+画像命名規則は {md5_8char}_img.{ext} で、images/ に保存してください。
+vid-wrapパターンは以下のCSSを使います：...（30行）...
+```
+
+**良い例（簡潔）**：
+```
+article_013.html と know-how.md のセクション2〜4の規則に従って article_020.html を作成する。
+```
+
+ポイント：
+- HTMLテンプレートはプロンプトに書かず「既存の article_0XX.html に合わせる」と指示
+- vid-wrap、画像命名、ディレクトリ構成はknow-howを参照させる
+- Agentは会話履歴を持たないので「このプロジェクトのルール」は一言で参照させれば十分
+
+---
+
+## 14. タスク種別によるモデル切り替え
+
+Agentを生成するとき `model` パラメータでモデルを指定できる。**メイン会話のモデルは変更不可**だがAgent生成時に毎回選択できる。
+
+```
+Agent(model: "haiku",  prompt: "画像をダウンロードしてHTMLを書き出す")
+Agent(model: "sonnet", prompt: "記事を自然な日本語に翻訳する")
+```
+
+| タスク | 推奨モデル |
+|--------|-----------|
+| 翻訳・要約・構造判断・内容の選別 | sonnet |
+| 画像ダウンロード＋HTMLテンプレート書き出し | haiku |
+| WebFetch＋本文テキスト抽出のみ | haiku |
+| arXiv論文の図選別・セクション解析 | sonnet |
+
+**効果的な分業パターン**：メイン会話（sonnet）でページをfetchして本文を抽出・判断し、機械的なファイル書き出しをhaikuのAgentに渡す。WebFetchをAgent内部に任せると余分なHTMLゴミで10,000〜20,000トークン消費するが、事前に抽出済みテキストを渡せば1,000〜2,000トークンに収まる。
+
+---
+
+## 15. tools/ ディレクトリとトークン効率化方針
+
+`tools/` ディレクトリにPythonスクリプトを置き、**プログラムで処理できる部分はClaudeに任せない**。
+Claudeに渡すのは「翻訳・構造判断・品質が必要な部分のみ」とすることで、トークンを削減しつつ成果物の品質は落とさない。
+
+### ツール一覧
+
+| スクリプト | 役割 | トークン削減効果 |
+|-----------|------|----------------|
+| `tools/extract_article.py` | URLから本文テキスト＋画像URLを抽出（BS4） | **大**：full HTML（〜20,000token）→ 本文テキスト（〜2,000token） |
+| `tools/fetch_arxiv.py` | arXiv論文の構造・著者・Abstract・図を抽出＋図ダウンロード | **大**：Agentが論文HTMLをparseする必要なし |
+| `tools/build_article.py` | body HTMLからarticle_NNN.htmlを生成（boilerplate不要） | **中**：Agentプロンプトからテンプレート記述が消える |
+| `tools/download_image.py` | 1枚〜複数URLをimages/にダウンロード、YouTube thumbnail対応 | **中**：Agentがcurlコマンドを発行する必要なし |
+| `tools/add_to_index.py` | index.htmlのLOCAL_ARTICLESにエントリを追加 | **小**：index.html全体を読む必要なし |
+
+### 新記事作成の効率化フロー
+
+```bash
+# Step 1: 本文と画像URLを抽出（Claudeトークン0）
+python3 tools/extract_article.py https://example.com/article > /tmp/content.json
+
+# Step 2: 画像を一括ダウンロード（Claudeトークン0）
+cat /tmp/content.json | python3 tools/download_image.py --stdin-json
+
+# Step 3: Agentは翻訳と body HTML 生成のみ（トークン集中）
+# → extract_article.py の body_text を渡す（full HTMLではない）
+# → Agentは <div class="body"> の中身だけ出力すればよい
+
+# Step 4: article HTMLを生成（Claudeトークン0）
+python3 tools/build_article.py --num 021 --title "..." --meta "2025 · Source · ⭐⭐⭐⭐" --url "https://..." < /tmp/body.html
+
+# Step 5: index.htmlに追記（Claudeトークン0）
+python3 tools/add_to_index.py 21
+```
+
+### Agentへ渡す内容のルール
+
+- **渡すもの**: `extract_article.py` の `body_text`（plain text）＋ローカル保存済みの画像ファイル名一覧
+- **渡さないもの**: full HTML、HTMLテンプレート、curl手順、画像命名規則の説明
+- **Agentが返すもの**: `<div class="body">` の内側HTMLのみ（DOCTYPE/head/nav/footerは不要）
+
+### HTML構造の共通化
+
+`build_article.py` がboilerplate（DOCTYPE/head/nav/.ah/footer）を生成するため、
+記事ファイル間で構造が完全に統一される。Agentプロンプトにテンプレートを書く必要はない。
+
+```
+# Agentプロンプトへの記載（従来）
+テンプレート：
+<!DOCTYPE html>... (50行) ...
+画像命名規則は... vid-wrapパターンは...
+
+# Agentプロンプトへの記載（tools導入後）
+「以下のテキストを翻訳し、know-how.md セクション12のルールに従って
+ <div class="body"> の中身HTMLを出力してください。」
+```
+
+---
+
 ## 12. 今後の拡張方針
 
 - 記事追加時は `article_NNN.html` を作成し、`index.html` の `LOCAL_ARTICLES` に追加
