@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WOMD-LiDAR：モーション予測のための生センサーデータセットベンチマーク</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>WOMD-LiDAR：モーション予測のための生センサーデータセットベンチマーク</h1>
+<div class="meta">2024 · Waymo / データセット · ⭐ ICRA 2024</div>
+<div class="orig">原文: <a href="https://waymo.com/research/womd-lidar/" target="_blank" rel="noopener">https://waymo.com/research/womd-lidar/</a></div>
+</div>
+<div class="body">
+
+<h2>著者</h2>
+
+<p>Kan Chen、Runzhou Ge、Hang Qiu、Rami Al-Rfou、Charles R. Qi、Xuanyu Zhou、Zoey Yang、Scott Ettinger、Pei Sun、Zhaoqi Leng、Mustafa Baniodeh、Ivan Bogun、Weiyue Wang、Mingxing Tan、Dragomir Anguelov（Waymo Research）</p>
+
+<p><strong>発表：</strong> ICRA 2024（国際ロボット工学・自動化会議）｜<strong>arXiv：</strong> <a href="https://arxiv.org/abs/2304.03834" target="_blank" rel="noopener">arxiv.org/abs/2304.03834</a></p>
+
+<h2>アブストラクト</h2>
+
+<p>広く採用されているモーション予測データセットの多くは、観測されたセンサー入力を3Dボックスやポリラインなどの高次元の抽象表現に置き換えています。これらの疎な形状表現は、認識システムの予測によって元のシーンにアノテーションを付けることで得られるものです。このような設計の選択は、次の2つの制約をもたらします。第一に、認識システムが生成したノイズや誤りが後続のモーション予測モデルに波及するという問題。第二に、意味論的な情報が失われることによる、エンドツーエンド学習の発展の妨げという問題です。</p>
+
+<p>本研究では、これらのモジュラーアプローチの影響を研究し、その制約を軽減する新しいパラダイムを設計し、エンドツーエンドのモーション予測モデルの開発を加速することを目的として、Waymo Open Motion Datasetを大規模かつ高品質・多様なLiDARデータで拡充した新しいデータセット「WOMD-LiDAR」を提案します。WOMD-LiDARは、都市部および郊外の様々な場所で収集された、100,000件超の20秒間シーンにまたがる同期・較正済みのLiDARポイントクラウドを含んでいます。このデータセットは元のWaymo Open Datasetと比較して<strong>100倍</strong>のシーン数を誇ります。ベースラインモデルの提供を通じ、「LiDARデータがモーション予測タスクの改善をもたらす」ことを実証しています。</p>
+
+<h2>ICRA2024 発表</h2>
+
+<a class="vid-wrap" href="https://storage.googleapis.com/waymo-prod-cdn/uploads/72940ba7d2ac643bccc1596b82bb92ce-ICRA24_0409.compressed.mp4" target="_blank" rel="noopener">
+  <img src="./images/art009_icra_thumb.jpg" alt="WOMD-LiDAR ICRA2024 発表動画">
+  <div class="vid-overlay">
+    <div class="vid-play">
+      <svg viewBox="0 0 24 24" fill="#222"><polygon points="5,3 19,12 5,21"/></svg>
+    </div>
+    <div class="vid-badge">動画</div>
+    <div class="vid-title">WOMD-LiDAR — ICRA2024 発表プレゼンテーション</div>
+  </div>
+</a>
+<div class="vid-caption">ICRA2024でのWOMD-LiDAR発表プレゼンテーション（クリックで元動画を開く）</div>
+
+<h2>データセット</h2>
+
+<p>WOMD-LiDARデータセットはWaymo Open Motion Dataset（バージョン1.2.0）の一部として公開されており、<a href="https://waymo.com/open/data/motion/" target="_blank" rel="noopener">waymo.com/open/data/motion/</a>からアクセスできます。9秒間の観測ウィンドウの最初の1秒間分のLiDARカバレッジを提供しています。</p>
+
+<figure>
+<img src="./images/f56dffad2681_img.gif" alt="駐車場における車両シミュレーション（上空視点）">
+<figcaption>駐車場における車両走行シナリオのシミュレーション（上空視点）</figcaption>
+</figure>
+<figure>
+<img src="./images/a940a422dac5_img.gif" alt="街路における車両シミュレーション（上空視点）">
+<figcaption>街路における車両走行シナリオのシミュレーション（上空視点・その1）</figcaption>
+</figure>
+<figure>
+<img src="./images/eaf8396a3cff_img.gif" alt="街路における車両シミュレーション（別アングル）">
+<figcaption>街路における車両走行シナリオのシミュレーション（上空視点・その2）</figcaption>
+</figure>
+
+<h2>モデリング</h2>
+
+<p>WOMD-LiDARデータセットに基づくベースラインモデルを提供しています。モデルのアーキテクチャ概要を以下に示します。</p>
+
+<figure>
+<img src="./images/art009_model_arch.jpg" alt="WayFormer-LiDARモデルアーキテクチャ">
+<figcaption>図2：WayFormer-LiDARモデルのアーキテクチャ</figcaption>
+</figure>
+
+<figure>
+<img src="./images/art009_model_pred.jpg" alt="WayFormer vs WayFormer-LiDAR 予測結果比較">
+<figcaption>図3：WayFormer（左）とWayFormer-LiDAR（右）の予測結果比較。LiDARデータを活用することで、より精度の高いモーション予測が実現されています。</figcaption>
+</figure>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://waymo.com/research/womd-lidar/" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

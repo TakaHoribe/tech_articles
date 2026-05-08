@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>実証的に安全な自律走行のためのAI</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>実証的に安全な自律走行のためのAI</h1>
+<div class="meta">2025 · Waymo · ⭐ 5</div>
+<div class="orig">原文: <a href="https://waymo.com/blog/2025/12/demonstrably-safe-ai-for-autonomous-driving/" target="_blank" rel="noopener">https://waymo.com/blog/2025/12/demonstrably-safe-ai-for-autonomous-driving/</a></div>
+</div>
+<div class="body">
+
+<p><strong>公開日：</strong> 2025年12月9日　<strong>著者：</strong> Waymo AIチーム</p>
+
+<figure>
+<img src="./images/55a57993438e_img.png" alt="Waymo ブログ ヒーロー画像">
+</figure>
+
+<p>自律走行は、物理世界におけるAIの究極の挑戦です。Waymoはこれを「実証的に安全なAI（demonstrably safe AI）」を最優先とすることで解決しています。安全性はモデルとAIエコシステム全体の設計において根幹に据えられています。その結果、物理世界でスケールとともに安全に稼働する、非常に高度なAIシステムを構築しました。完全自律走行で1億マイル以上を走破し、重傷事故をヒューマンドライバーと比較して10分の1以上に削減しています。</p>
+
+<p>さあ、エンジンルームの中を覗いてみましょう。本記事ではWaymoのAI戦略と、それがいかにモメンタムを加速させ、より多くのライダーへこれまでにないスピードで安全にサービスを届けることを可能にしているかを詳しく解説します。Waymo Foundation Modelを中心としたホリスティックなAIアプローチを紐解きます。このFoundation Modelは、実証的に安全な統合AIエコシステムを動かし、加速された継続的な学習と改善をもたらしています。</p>
+
+<h2>AIへのホリスティックなアプローチ</h2>
+
+<p>多くのAIアプリケーションが機能を優先し安全性を後付けするのとは異なり、自律走行では安全性を後回しにすることはできません。Waymoにとって、それはAIエコシステムを構築する上での譲れない土台です。</p>
+
+<p>実証的に安全なAIを達成するには——安全性が約束ではなく証明されるためには——ホリスティックなアプローチが必要です。スマートで有能な<strong>Driver</strong>だけでなく、クローズドループ型の現実的な<strong>Simulator</strong>で様々な困難な状況においてDriverをトレーニングし厳格にテストすること、そしてDriverのパフォーマンスを評価し改善点を特定するための鋭敏な<strong>Critic</strong>も欠かせません。</p>
+
+<p>力は統一にあります。安全性を核として共同開発されたDriver、Simulator、Criticはすべて、同じ基盤となるAI——Waymo Foundation Model——によって駆動され、継続的な好循環サイクル（virtuous cycle）を生み出しています。</p>
+
+<figure>
+<img src="./images/847bc58208a3_img.png" alt="Waymo Driver、Simulator、Critic エコシステム図">
+<figcaption>Waymo Driver・Simulator・Critic の3要素が連携するエコシステム</figcaption>
+</figure>
+
+<h2>Waymo Foundation Model：WaymoのAIの礎</h2>
+
+<p>Waymo Foundation Modelは、WaymoのAIエコシステムを支える、汎用性の高い最先端のワールドモデルです。その革新的なアーキテクチャは、純粋なEnd-to-Endアプローチやモジュラーアプローチと比較して大きなメリットをもたらします。</p>
+
+<p>特に、学習済み埋め込み（learned embeddings）をモデルコンポーネント間のリッチなインターフェースとして最大限に活用し、トレーニング時に完全なEnd-to-Endシグナルのバックプロパゲーションをサポートしています。加えて、オブジェクト・セマンティック属性・道路グラフ要素といったコンパクトかつ具体化された構造化表現により、以下が可能になります：</p>
+
+<ul>
+<li>推論時における<strong>Driver</strong>の強力な正確性・安全性の検証</li>
+<li>大規模で物理的に正確なクローズドループ<strong>Simulation</strong>の高効率実行</li>
+<li><strong>Critic</strong>による評価とトレーニング時の強化学習のための、強力で検証可能なフィードバックシグナル</li>
+</ul>
+
+<figure>
+<img src="./images/3e047614257c_img.jpg" alt="Waymo Foundation Model のアーキテクチャ">
+<figcaption>Waymo Foundation Model のアーキテクチャ</figcaption>
+</figure>
+
+<p>Waymo Foundation Modelは「速く考え、じっくり考える（Think Fast and Think Slow、System 1とSystem 2とも呼ばれる）」アーキテクチャを採用しており、2つの異なるモデルコンポーネントで構成されています：</p>
+
+<ul>
+<li><strong>センサーフュージョンエンコーダー</strong>（高速な反応のため）。Foundation Modelの知覚コンポーネントであり、カメラ・LiDAR・レーダーの入力を時系列にわたって統合し、オブジェクト情報、セマンティクス情報、およびダウンストリームタスク向けのリッチな埋め込みを生成します。これらの入力により、システムが高速かつ安全な運転判断を下せるようになります。</li>
+<li><strong>Driving VLM</strong>（複雑なセマンティック推論のため）。Foundation Modelのこのコンポーネントは豊富なカメラデータを活用し、Waymoの走行データとタスクでファインチューニングされています。Geminiを使ってトレーニングされており、道路上の稀少・未知・複雑なセマンティックシナリオを理解するためにGeminiの広範な世界知識を活用します。例えば、前方の道路で車両が炎上しているという極めて稀なシナリオでは、物理的なスペースや走行可能なレーンが通過のために開いている場合でも、VLMはWaymo Driverが別のルートを選択したり引き返したりするよう促すセマンティックシグナルを提供できます。</li>
+</ul>
+
+<p>両エンコーダーは<strong>Waymoのワールドデコーダー</strong>にデータを送り、デコーダーはこれらの入力を処理して、他の道路利用者の行動予測、高精度マップの生成、車両軌道の生成、および軌道検証シグナルの提供を行います。</p>
+
+<h2>WaymoのAIエコシステム：TeacherモデルからStudentモデルへの知識蒸留</h2>
+
+<p>ホリスティックなアプローチに基づき、Waymo Foundation ModelはDriver、Simulator、Criticを支えます。まず各タスクにFoundation Modelを適応させ、それぞれの役割に優れた大規模で高品質なTeacherモデルを生成します。しかしこれらのTeacherモデルはリアルタイム意思決定のために車両上で動かすには大きすぎ、また何億マイルものシミュレーションや評価をクラウドで実行するにも大きすぎます。そのため、安全に小さなStudentモデルへと蒸留します。<strong>蒸留（Distillation）</strong>は重要な鍵です。大規模モデルの優れた性能を、よりコンパクトで効率的なバージョンの中に保持することを可能にします。AI他分野の傾向と同様に、強力で高容量のTeacherモデルをまずトレーニングし、その後に効率的な蒸留技術を活用することで、得られるStudentのスケーリング則を大幅に改善できます。</p>
+
+<figure>
+<img src="./images/2b3407cee076_img.jpg" alt="Waymo AI Ecosystem">
+<figcaption>Waymo AIエコシステム：大規模TeacherモデルからコンパクトなStudentモデルへの知識蒸留</figcaption>
+</figure>
+
+<p><strong>Driver</strong><br>
+Teacher Driverモデルは、安全で快適かつ法令遵守の動作シーケンスを生成するようトレーニングされています。蒸留によって、豊かな世界理解と推論能力が、リアルタイムの車載デプロイ向けに最適化された効率的なStudentモデルへ移転されます。蒸留のメリットを最大化するため、車載アーキテクチャはWaymo Foundation Modelの構造を反映するよう設計されています。重要なのは、Waymo Driverが独立した厳格な車載検証レイヤーを採用しており、Driverの生成的MLモデルが生成した軌道を検証している点です。</p>
+
+<!-- YouTube: Driver説明の直後（元記事の位置） -->
+<a class="vid-wrap" href="https://www.youtube.com/watch?v=wdAoxZO92Zs" target="_blank" rel="noopener">
+  <img src="./images/d11fa29c8462_img.jpg" alt="YouTube: Demonstrably Safe AI for Autonomous Driving">
+  <div class="vid-overlay">
+    <div class="vid-play">
+      <svg viewBox="0 0 24 24" fill="#ff0000"><path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.2.8C6.8 19 12 19 12 19s4.8 0 7-.1c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8z"/><polygon points="10,15 10,9 15,12" fill="white"/></svg>
+    </div>
+    <div class="vid-badge">YouTube</div>
+    <div class="vid-title">Demonstrably Safe AI for Autonomous Driving — Waymo</div>
+  </div>
+</a>
+<div class="vid-caption">YouTubeでWaymoの実証的安全AIに関する解説動画を見る（クリックでYouTubeを開く）</div>
+
+<p><strong>Simulator</strong><br>
+潜在的な衝突、悪天候、複雑な交差点、異常な道路挙動など、多様で困難なシナリオにわたるDriverのクローズドループのトレーニングとテストに不可欠なツールです。Simulator Teacherモデルは高精度のマルチモーダルな動的世界を作成し、Driverを評価します。Studentモデルはこれらの大規模モデルの計算効率の高いバージョンで、Driverの堅牢な評価に必要な大規模シミュレーションを実行するよう設計されています。Waymo Foundation Modelのアーキテクチャにより、コンパクトに具体化されたワールドステート表現とセンサーシミュレーションをシームレスに組み合わせることが可能となり、大規模で超リアル・物理的に正確、かつ計算効率の高い仮想環境を実現しています。</p>
+
+<figure>
+<img src="./images/b5cca2e65284_img.gif" alt="実世界からシミュレーションへの変換アニメーション">
+<figcaption>テキストプロンプトによるグローバル要素（天候・時刻）の制御と、セマンティックコンディショニングによる動的要素（他の道路利用者・信号機）の制御を組み合わせることで、実世界のシーン（左）を高精度なシミュレーション（中央：カメラシミュレーション、右：LiDARシミュレーション）へと変換できます。なお、このサンプルにおけるセンサーデータは純粋な合成データであり、基礎となるコンパクトな構造化ワールド表現から生成AIによるセンサーシミュレーションモデルが生成したものです。</figcaption>
+</figure>
+
+<p><strong>Critic</strong><br>
+Waymo Driverをストレステストし、微妙なエッジケースを事前に特定し、迅速かつ的確な改善を可能にする世界水準の評価システムです。Critic Teacherモデルは走行挙動を分析し、Studentモデルのトレーニングおよびリッチな評価データセットの自動構築に使用される高品質シグナルを生成します。Critic Studentモデルは走行ログを分析し、興味深いまたは問題のあるシナリオを特定し、走行品質に関するきめ細かいフィードバックを提供します。</p>
+
+<p>Waymo Foundation Modelによって支えられるこれらすべてのコンポーネントが、シームレスなAIエコシステムを構成し、継続的な学習と改善のフライホイールを生み出しています。</p>
+
+<h2>継続的改善のフライホイールを生み出す</h2>
+
+<p>優れたDriverは静的ではありません——それは継続的な学習と洗練の産物です。Waymo Driverの進化を支えるメカニズムはいくつかあります。SimulatorとCriticによって支えられた<strong>インナーループ</strong>では、強化学習（Reinforcement Learning）を活用してDriverをトレーニングします。安全に管理されたシミュレーション環境内でDriverは経験を積み、行動に基づいて報酬やペナルティを受け取ることで、大規模な学習が可能になります。</p>
+
+<p>Waymoの実世界走行データによって構築された<strong>アウターループ</strong>は、さらに強力な学習フライホイールを生み出します。サイクルはCriticが膨大な完全自律走行経験から最適でない走行挙動を自動的にフラグ立てすることから始まります。次に、これらの事象から改善された代替挙動を生成し、Driverのトレーニングデータとして活用します。改善内容はSimulatorで厳格にテストされ、Criticが修正を検証します。最終的に、安全フレームワークが不合理なリスクの不在を確認して初めて——そのときに限って——強化されたDriverが実世界にデプロイされます。</p>
+
+<figure>
+<img src="./images/d0657cc55db3_img.jpg" alt="Waymo AI Flywheel">
+<figcaption>Waymo AIフライホイール：インナーループとアウターループによる継続的な改善サイクル</figcaption>
+</figure>
+
+<p>このフライホイールは、長年にわたって蓄積し今や指数関数的なペースで増加し続けている、前例のない完全自律走行データによって実現されています。従来は高品質な手動運転データに大きく依存してきましたが、今日Waymoの完全自律走行マイレージは手動データを大幅に上回っています。<strong>この量の実世界での完全自律走行経験に代わるものは存在しません</strong>——どれほどのシミュレーション、手動運転データ収集、またはテストドライバーによる運用も、Waymo Driverが完全に主導権を握っているときに遭遇する状況と反応のスペクトルを再現することはできません。このリッチな実世界の完全自律走行データをWaymo独自のフライホイールに直接統合することで、Waymo Driverは自身の広大な経験から学習し、継続的に改善し続けることができます。</p>
+
+<p>AIへのホリスティックなアプローチを採用し、学習フライホイールを構築することで、私たちは単にWaymo Driverを進化させるだけでなく、スケールを伴った安全な自律走行のスタンダードを打ち立てています。継続的にイノベーションを進め、可能性の限界を押し広げており、AIにおけるワクワクする取り組みがまだ多く待ち受けています。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://waymo.com/blog/2025/12/demonstrably-safe-ai-for-autonomous-driving/" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>
