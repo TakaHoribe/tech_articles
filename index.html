@@ -73,13 +73,8 @@
     .tag { border-radius: 4px; padding: 2px 7px; font-size: .68rem; }
     .tag.cat { background: rgba(124,106,247,.12); border: 1px solid rgba(124,106,247,.25); color: var(--accent2); }
     .tag.year { background: rgba(76,175,130,.12); border: 1px solid rgba(76,175,130,.25); color: var(--green); }
+    .tag.rating { background: rgba(217,119,6,.12); border: 1px solid rgba(217,119,6,.25); color: var(--yellow); letter-spacing: .04em; }
     .card-desc { font-size: .76rem; color: var(--muted); line-height: 1.55; flex: 1; }
-
-    /* RATINGS */
-    .card-ratings { display: flex; flex-direction: column; gap: 5px; padding-top: 8px; border-top: 1px solid var(--border); margin-top: auto; }
-    .rating-row { display: flex; align-items: center; gap: 6px; }
-    .rating-label { font-size: .68rem; color: var(--muted); width: 52px; flex-shrink: 0; }
-    .editor-stars { font-size: .78rem; letter-spacing: .05em; }
     .orig-link { font-size: .65rem; color: var(--muted); margin-left: 6px; text-decoration: none; vertical-align: middle; }
     .orig-link:hover { color: var(--accent); }
 
@@ -486,14 +481,9 @@ function renderCard(a) {
       <div class="card-meta">
         <span class="tag cat">${meta.emoji} ${meta.label}</span>
         <span class="tag year">${a.year}</span>
+        <span class="tag rating">${'⭐'.repeat(a.stars)}</span>
       </div>
       <div class="card-desc">${a.desc}</div>
-      <div class="card-ratings">
-        <div class="rating-row">
-          <span class="rating-label">評価</span>
-          <span class="editor-stars">${'⭐'.repeat(a.stars)}</span>
-        </div>
-      </div>
     </div>
   </div>`;
 }
