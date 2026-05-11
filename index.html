@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自動運転・関連技術 おすすめ記事100選</title>
+  <title>自動運転技術記事</title>
   <style>
     /* =============================================================
        THEME — 色を変えるときはここだけ編集（記事側は articles/style.css）
@@ -18,9 +18,10 @@
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
     /* HEADER */
-    header { background: linear-gradient(135deg,#f0f4ff,#e8edf8); border-bottom: 1px solid var(--border); padding: 24px 20px 20px; text-align: center; }
-    header h1 { font-size: clamp(1.2rem,4vw,1.9rem); font-weight: 700; background: linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
-    header p { color: var(--muted); font-size: .85rem; }
+    header { background: var(--bg); border-bottom: 1px solid var(--border); padding: 22px 20px 18px; text-align: center; }
+    .header-inner { max-width: 1400px; margin: 0 auto; }
+    header h1 { font-size: clamp(1.25rem,3vw,1.8rem); font-weight: 650; color: var(--text); margin-bottom: 6px; letter-spacing: 0; }
+    header p { color: var(--muted); font-size: .86rem; }
     .stat-bar { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
     .stat-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 4px 14px; font-size: .78rem; color: var(--muted); }
     .stat-chip span { color: var(--accent); font-weight: 600; }
@@ -110,19 +111,22 @@
 <body>
 
 <header>
-  <h1>🚗 自動運転・関連技術 おすすめ記事100選</h1>
-  <p>2024-2026年の厳選記事 | 自動運転開発者向けキュレーション</p>
-  <div class="stat-bar">
-    <div class="stat-chip">⭐⭐⭐⭐⭐ <span>36件</span></div>
-    <div class="stat-chip">⭐⭐⭐⭐ <span>55件</span></div>
-    <div class="stat-chip">⭐⭐⭐ <span>9件</span></div>
-    <div class="stat-chip">収集日 <span>2026-05-07</span></div>
+  <div class="header-inner">
+    <h1>自動運転技術記事</h1>
+    <p>2024-2026 | AD/ADAS、AI、センサー、車載コンピュート</p>
+    <div class="stat-bar">
+      <div class="stat-chip">⭐⭐⭐⭐⭐ <span>49件</span></div>
+      <div class="stat-chip">⭐⭐⭐⭐ <span>60件</span></div>
+      <div class="stat-chip">⭐⭐⭐ <span>5件</span></div>
+      <div class="stat-chip">収集日 <span>2026-05-07</span></div>
+    </div>
   </div>
 </header>
 
 <div class="tabs">
-  <button class="tab-btn active" data-tab="article">📰 記事</button>
-  <button class="tab-btn" data-tab="paper">📄 論文</button>
+  <button class="tab-btn active" data-tab="all">すべて</button>
+  <button class="tab-btn" data-tab="article">記事</button>
+  <button class="tab-btn" data-tab="paper">論文</button>
 </div>
 
 <div class="controls">
@@ -139,6 +143,7 @@
       <button class="filter-btn" data-cat="sim">シミュレーション</button>
       <button class="filter-btn" data-cat="sensor">センサー</button>
       <button class="filter-btn" data-cat="chip">チップ</button>
+      <button class="filter-btn" data-cat="architecture">Architecture</button>
       <button class="filter-btn" data-cat="regulation">規制/動向</button>
     </div>
     <div class="star-filter">
@@ -146,7 +151,7 @@
       <button class="star-btn" data-stars="5">⭐x5</button>
       <button class="star-btn" data-stars="4">⭐x4+</button>
     </div>
-    <div id="result-count">100件</div>
+    <div id="result-count">114件</div>
   </div>
 </div>
 
@@ -158,7 +163,7 @@
 </div>
 
 <footer>
-  <p>自動運転・関連技術 おすすめ記事100選 | 収集日: 2026-05-07 |
+  <p>自動運転・関連技術 おすすめ記事114選 | 収集日: 2026-05-07 |
     <a href="articles.md">📄 Markdown版を見る</a>
   </p>
 </footer>
@@ -172,7 +177,7 @@ const ARTICLES = [
   { num:3,  title:"Introducing EMMA (Waymo公式ブログ)",                                               url:"https://waymo.com/blog/2024/10/introducing-emma/",                                                                                                          cat:"waymo ai",        stars:5, year:2024, img:"https://lh3.googleusercontent.com/9hO6a6ziF4SGI2QWnaxOvwW_mqE_a2pttPD8eTXwIzM-RZxH3nUDPcuKYbJLRbG9QIbi6GrY7TApaPBXOJEQRmlR2m-x3fQQo-0",              desc:"EMMAの概要と背景を分かりやすく解説した公式ブログ版。マルチモーダルLLMで自動運転を統一するアプローチの意義を説明。" },
   { num:4,  title:"Behind the Innovation: AI & ML at Waymo",                                         url:"https://waymo.com/blog/2024/10/ai-and-ml-at-waymo/",                                                                                                       cat:"waymo ai",        stars:4, year:2024, img:"https://lh3.googleusercontent.com/9a9TWkk5dd4qZiVJuu1aCpO-8GQBcYZXJEPXuNU010y6TdY_vZmfhG6pIAhE_FLSR3wwsRNwRhUrTuKYZZg-J5mPrPLSZIydWg",              desc:"WaymoのAI/ML技術全体像。複雑な交通パターンや他ドライバーの意図解釈まで含むWaymo Driverの開発アプローチを解説。" },
   { num:5,  title:"Meet the 6th-Generation Waymo Driver",                                             url:"https://waymo.com/blog/2024/08/meet-the-6th-generation-waymo-driver/",                                                                                     cat:"waymo chip",      stars:5, year:2024, img:"https://lh3.googleusercontent.com/Uj7J6Za-wbUs2eNXLvYbl8sx3CvodAUztVvfYAAtkUeihmNQw4zm546fjH2Eoqn6yJmuzaH2I76QmMmQXJ35NwchSNAGlqFVkYU",              desc:"第6世代Waymo Driverの詳細。センサー数42%削減、17MPカメラ、コスト$20,000以下を達成。ハードウェアスケーリング戦略の好事例。" },
-  { num:6,  title:"Beginning Fully Autonomous Operations with the 6th-Gen Waymo Driver",              url:"https://waymo.com/blog/2026/02/ro-on-6th-gen-waymo-driver/",                                                                                               cat:"waymo",           stars:5, year:2026, img:"https://lh3.googleusercontent.com/ZGX4QSQCSXHhnO7MuiT96ipUuVp98VoNu6-YvkvG7jHp2GKyM5RHJg4t2Bp68ltZoUIshDv9e621DTmGmBqAS1Dpu3eLG6CXDg",              desc:"6世代ドライバーで完全自律運転開始。週100万ライド目標。新センサー設計（13カメラ/4LiDAR/6レーダー）の技術的詳細。" },
+  { num:6,  title:"Beginning Fully Autonomous Operations with the 6th-Gen Waymo Driver",              url:"https://waymo.com/blog/2026/02/ro-on-6th-gen-waymo-driver/",                                                                                               cat:"waymo architecture",stars:5, year:2026, img:"https://lh3.googleusercontent.com/ZGX4QSQCSXHhnO7MuiT96ipUuVp98VoNu6-YvkvG7jHp2GKyM5RHJg4t2Bp68ltZoUIshDv9e621DTmGmBqAS1Dpu3eLG6CXDg",              desc:"6世代ドライバーで完全自律運転開始。週100万ライド目標。新センサー設計（13カメラ/4LiDAR/6レーダー）の技術的詳細。" },
   { num:7,  title:"Safe, Routine, Ready: Autonomous Driving in Five New Cities",                      url:"https://waymo.com/blog/2025/11/safe-routine-ready-autonomous-driving-in-new-cities/",                                                                      cat:"waymo regulation",stars:4, year:2025, img:"./articles/images/21171f65d941_frame.jpg",                                                                              desc:"Miami, Dallas等5都市への展開発表。地理的スケーリングの技術的課題と対処法を解説。" },
   { num:8,  title:"Comparison of Waymo Rider-Only Crash Rates at 56.7M Miles",                       url:"https://www.tandfonline.com/doi/full/10.1080/15389588.2025.2499887",                                                                                        cat:"waymo regulation",stars:5, year:2025, img:"./articles/images/art008_cover.png",                                                                               desc:"5670万マイルのデータで人間ドライバーと比較。重傷事故91%減・歩行者事故92%減を査読論文として発表。安全性の科学的実証として業界最重要データ。" },
   { num:9,  title:"WOMD-LiDAR: Raw Sensor Dataset for Motion Forecasting",                            url:"https://waymo.com/research/womd-lidar/",                                                                                                                    cat:"waymo ai",        stars:4, year:2024, img:"./articles/images/art009_icra_thumb.jpg",                                                                               desc:"10万シーン以上の高品質LiDARデータを含むモーション予測データセット。研究コミュニティへの貢献として価値大。" },
@@ -184,12 +189,12 @@ const ARTICLES = [
   { num:13, title:"Crossing the Pond and Beyond: Generalizable AI Driving for Global Deployment",    url:"https://wayve.ai/thinking/multi-country-generalization/",                                                                                                   cat:"wayve ai",        stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/03/WAYVE_STU-01.jpg",                                                              desc:"欧州・北米・日本500都市以上でゼロショット走行を実現した汎化技術。Embodied AIの地理的汎化性能として業界最先端の事例。" },
   { num:14, title:"GAIA-2: A Controllable Multi-View Generative World Model for AD (arXiv)",          url:"https://arxiv.org/abs/2503.20523",                                                                                                                         cat:"wayve ai sim",    stars:5, year:2025, img:"./articles/images/deae66da_img.png",                                                                                    desc:"マルチカメラ対応の制御可能なビデオ生成ワールドモデル。エッジケース生成・テスト・合成データ生成を統合。ワールドモデル研究の最前線。" },
   { num:15, title:"GAIA-2: Pushing the Boundaries of Video Generative Models (Wayve公式)",            url:"https://wayve.ai/thinking/gaia-2/",                                                                                                                         cat:"wayve ai sim",    stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/03/Wayve-GAIA-2-Hero-Blog-Image.jpg",                                              desc:"GAIA-2の開発背景と実用的な意義を解説。天候・照明・道路構成の制御、レアシナリオ生成のユースケース詳述。" },
-  { num:16, title:"Wayve Launches GAIA-3: Advancing World Models from Simulation to Evaluation",     url:"https://wayve.ai/press/wayve-launches-gaia3/",                                                                                                              cat:"wayve ai sim",    stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/12/GAIA3-PR-notice.jpg",                                                             desc:"GAIA-3発表。シミュレーションから評価まで一貫したフレームワーク。自動運転ワールドモデル研究の最前線。" },
+  { num:16, title:"Wayve Launches GAIA-3: Advancing World Models from Simulation to Evaluation",     url:"https://wayve.ai/press/wayve-launches-gaia3/",                                                                                                              cat:"wayve ai sim architecture",stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/12/GAIA3-PR-notice.jpg",                                                             desc:"GAIA-3発表。シミュレーションから評価まで一貫したフレームワーク。自動運転ワールドモデル研究の最前線。" },
   { num:17, title:"Wayve Science: Advancing AI Research in Autonomous Driving",                      url:"https://wayve.ai/science/",                                                                                                                                 cat:"wayve ai",        stars:4, year:2025, img:"./articles/images/17306a3b_img.jpg",                                                                                    desc:"SimLingo（2025年3月）等Wayveの研究成果ページ。VLAモデル統合の先進研究事例。" },
   // AURORA
   { num:18, title:"Aurora Becomes First Company to Deploy Class 8 Self-Driving Trucks on US Roads",  url:"https://electrek.co/2025/05/01/aurora-first-company-deploy-class-8-self-driving-trucks-us-public-roads-video/",                                           cat:"aurora regulation",stars:5, year:2025, img:"https://electrek.co/wp-content/uploads/sites/3/2025/05/Aurora-self-driving-trucks-logo.jpg?quality=82&strip=all",      desc:"米国初のClass 8自動運転トラック公道走行開始。商用Level 4の歴史的マイルストーン。Fort Worth〜El Paso間600マイル。" },
   { num:19, title:"Progress in 2024: Readying for Commercial Launch",                                url:"https://aurora.tech/newsroom/progress-in-2024-readying-for-commercial-launch",                                                                             cat:"aurora",          stars:4, year:2024, img:"https://images.ctfassets.net/9i0s3p5vkth9/7vXQrEJVG4EGFCdJsUGSzt/f690e360dd0b26ffa8c9d9a7cdd5bd53/Aurora-2024-progress.jpg",         desc:"商用ローンチに向けた技術進歩を総括。Verifiable AI、360度センサーアレイ、安全ケース構築プロセスを解説。" },
-  { num:20, title:"Aurora, Continental, and NVIDIA Partner to Deploy Driverless Trucks at Scale",    url:"https://ir.aurora.tech/news-events/press-releases/detail/112/aurora-continental-and-nvidia-partner-to-deploy-driverless-trucks-at-scale",                 cat:"aurora nvidia chip",stars:4, year:2025, img:"https://ir.aurora.tech/_assets/_d96982a6cb3e2be2be272120a6bd8bb4/aurora/db/949/8341/social_image_resized.jpg",       desc:"Aurora・Continental・NVIDIAのDRIVE Thor採用パートナーシップ。2027年Continental量産を目指す3社協業の詳細。" },
+  { num:20, title:"Aurora, Continental, and NVIDIA Partner to Deploy Driverless Trucks at Scale",    url:"https://ir.aurora.tech/news-events/press-releases/detail/112/aurora-continental-and-nvidia-partner-to-deploy-driverless-trucks-at-scale",                 cat:"aurora nvidia chip architecture",stars:4, year:2025, img:"https://ir.aurora.tech/_assets/_d96982a6cb3e2be2be272120a6bd8bb4/aurora/db/949/8341/social_image_resized.jpg",       desc:"Aurora・Continental・NVIDIAのDRIVE Thor採用パートナーシップ。2027年Continental量産を目指す3社協業の詳細。" },
   // ZOOX
   { num:21, title:"Zoox Unveils Robotaxi Powered by NVIDIA",                                         url:"https://blogs.nvidia.com/blog/zoox-autonomous-robotaxi-powered-by-nvidia/",                                                                                cat:"nvidia chip",     stars:5, year:2024, img:"./articles/images/2fb0de6b0b69_img.jpg",                                                                                  desc:"ステアリングホイール・ペダルなし専用設計EV「Zoox」の技術詳細。4輪ステアリングによる超小回りと乗客安全設計を解説。" },
   { num:22, title:"Zoox Has Officially Begun Offering Free Robotaxi Rides to the General Public",    url:"https://electrek.co/2025/09/10/zoox-free-driverless-robotaxi-rides-general-public-vegas/",                                                                 cat:"regulation",      stars:4, year:2025, img:"https://electrek.co/wp-content/uploads/sites/3/2025/09/Robotaxi-Vegas-Zoox-hero.jpg?quality=82&strip=all",                   desc:"ラスベガスで一般公開の無人ロボタクシー開始。専用設計EVの初商用運行事例。2Mマイル・35万乗客達成。" },
@@ -205,12 +210,12 @@ const ARTICLES = [
   { num:29, title:"Nuro's $106M Raise Backs Its Shift from Delivery Robots to Licensing Autonomy Tech",url:"https://techcrunch.com/2025/04/09/nuros-106m-raise-backs-its-shift-from-delivery-robots-to-licensing-autonomy-tech/",                                   cat:"regulation",      stars:4, year:2025, img:"https://techcrunch.com/wp-content/uploads/2025/04/Nuro_Series-E_3.jpg",                                                       desc:"Uber・Lucid MotorsとのL4ロボタクシーフリート構築。ADシステムライセンスビジネスモデルの具体的展開事例。" },
   // GATIK
   { num:30, title:"Gatik Becomes First U.S. Company to Operate Fully Driverless Trucks at Scale",   url:"https://www.businesswire.com/news/home/20260127742958/en/Gatik-Becomes-First-U.S.-Company-to-Operate-Fully-Driverless-Trucks-at-Scale-for-Commercial-Deliveries",cat:"regulation",stars:5, year:2026, img:"./articles/images/gatik030_img.png",                                                                                         desc:"米国初の商用完全無人トラック大規模運行。60,000件の無人配送オーダーを無事故で完遂。中距離自動運転トラックの商用化事例。" },
-  { num:31, title:"Gatik and Isuzu Team Up to Mass-Produce L4 Autonomous Trucks Powered by NVIDIA", url:"https://gatik.ai/news/blog/gatik-isuzu-mass-production-powered-by-nvidia/",                                                                                  cat:"nvidia chip",     stars:4, year:2025, img:"https://gatik.ai/wp-content/uploads/Gatik_NVIDIA_Isuzu-highres_FINAL.png",                                                      desc:"Isuzu・NVIDIAとのL4量産トラック協業。DRIVE AGX Thor採用。TIMEベスト発明2025選出のGatik Driver詳細。" },
+  { num:31, title:"Gatik and Isuzu Team Up to Mass-Produce L4 Autonomous Trucks Powered by NVIDIA", url:"https://gatik.ai/news/blog/gatik-isuzu-mass-production-powered-by-nvidia/",                                                                                  cat:"nvidia chip architecture",stars:4, year:2025, img:"https://gatik.ai/wp-content/uploads/Gatik_NVIDIA_Isuzu-highres_FINAL.png",                                                      desc:"Isuzu・NVIDIAとのL4量産トラック協業。DRIVE AGX Thor採用。TIMEベスト発明2025選出のGatik Driver詳細。" },
   // MOBILEYE
   { num:32, title:"Bridging to the Autonomous Future with Mobileye SuperVision",                     url:"https://www.mobileye.com/blog/mobileye-supervision-bridge-to-consumer-autonomous-vehicles/",                                                               cat:"ai sensor",       stars:4, year:2024, img:"https://static.mobileye.com/website/us/corporate/images/21a6e12d0e849bbf17263e0f0770df82_1676885917761.png",               desc:"SuperVisionの全路種ハンズオフ走行技術の解説。11カメラ・EyeQ SoC・REM地図統合の設計思想。消費者向けAVへの橋渡し戦略。" },
   { num:33, title:"Unveiling Surround ADAS: A New Standard of Safety and Tech",                      url:"https://www.mobileye.com/blog/how-surround-adas-delivers-the-new-standard-of-safety-and-tech/",                                                             cat:"ai sensor",       stars:4, year:2025, img:"https://static.mobileye.com/website/us/corporate/images/568d780921661f2b09c78783f39caeda_1741266123244.jpg",               desc:"次世代Surround ADASの詳細。VW Group向け1900万台確定受注。SuperVisionとの違いと都市走行への拡張を解説。" },
   // CHINA EV
-  { num:34, title:"Li Auto Unveils MindVLA Architecture to Move Toward Truly Autonomous Driving",    url:"https://cnevpost.com/2025/03/18/li-auto-unveils-mindvla-autonomous-driving-architecture/",                                                                   cat:"ai",              stars:5, year:2025, img:"https://cnevpost.com/wp-content/uploads/2025/03/2025031808021517.jpg",                                                             desc:"空間・言語・行動知能を統合したMindVLAアーキテクチャ発表。L4自動運転への最重要ステップとして位置付け。E2E+VLM+VLAの実装例。" },
+  { num:34, title:"Li Auto Unveils MindVLA Architecture to Move Toward Truly Autonomous Driving",    url:"https://cnevpost.com/2025/03/18/li-auto-unveils-mindvla-autonomous-driving-architecture/",                                                                   cat:"ai architecture", stars:5, year:2025, img:"https://cnevpost.com/wp-content/uploads/2025/03/2025031808021517.jpg",                                                             desc:"空間・言語・行動知能を統合したMindVLAアーキテクチャ発表。L4自動運転への最重要ステップとして位置付け。E2E+VLM+VLAの実装例。" },
   { num:35, title:"Xpeng to Roll Out VLA 2.0 Across Its Models",                                     url:"https://eletric-vehicles.com/xpeng/xpeng-to-roll-out-vla-2-0-across-its-models-in-march-launches-three-suv-facelifts/",                                    cat:"ai",              stars:5, year:2025, img:"./articles/images/art035_cover.webp",                                                                               desc:"VLA 2.0のL4自動運転開発とVolkswagen採用。70億パラメータ規模のモデルが量産車に搭載される中国最前線事例。" },
   { num:36, title:"How Do NIO, Xpeng, and Li Auto Differ in Their AI Approaches?",                   url:"https://cnevpost.com/2026/01/19/how-do-nio-xpeng-li-auto-differ-in-ai-approaches/",                                                                         cat:"ai regulation",   stars:4, year:2026, img:"./articles/images/art036_cover.jpg",                                                                                desc:"3社のAI戦略の違いを比較分析。ワールドモデルシフトと組織再編の詳細。競合他社分析として有用。" },
   // NVIDIA
@@ -224,7 +229,7 @@ const ARTICLES = [
   { num:43, title:"Why Chiplets Are Key to Next-Gen Software-Defined Vehicles",                      url:"https://newsroom.arm.com/blog/arm-imec-automotive-chiplets",                                                                                                cat:"chip",            stars:4, year:2025, img:"https://newsroom.arm.com/wp-content/uploads/2024/03/Auto-launch-blog7.jpg",                                                       desc:"チップレット技術がソフトウェア定義車両のコスト・性能最適化に不可欠な理由。次世代車載コンピュータアーキテクチャの方向性。" },
   // QUALCOMM / RENESAS
   { num:44, title:"Qualcomm and BMW Unveil Snapdragon Ride Pilot",                                   url:"https://next-curve.com/2025/09/12/qualcomms-automotive-ecosystem-drive-with-snapdragon-ride-pilot/",                                                        cat:"chip",            stars:4, year:2025, img:"./articles/images/art044_cover.jpg",                                                                               desc:"BMW iX3でSnapdragon Ride Pilot実装。高速85mph対応のハンズフリー走行。コックピット+ADAS統合SoCのコスト優位性（25-50%削減）。" },
-  { num:45, title:"Renesas Unveils Industry's First Automotive Multi-Domain SoC Built with 3nm Process",url:"https://www.renesas.com/en/about/newsroom/renesas-unveils-industry-s-first-automotive-multi-domain-soc-built-3-nm-process-technology",                 cat:"chip",            stars:5, year:2024, img:"https://www.renesas.com/sites/default/files/styles/open_graph/public/r-car-x5h-en.jpg?itok=BW3KJ4tS",                      desc:"R-Car X5H発表。3nmプロセスのADAS/IVI/ゲートウェイ統合SoC。400 TOPS AI加速。ソフトウェア定義車両向け車載コンピュータの最前線。" },
+  { num:45, title:"Renesas Unveils Industry's First Automotive Multi-Domain SoC Built with 3nm Process",url:"https://www.renesas.com/en/about/newsroom/renesas-unveils-industry-s-first-automotive-multi-domain-soc-built-3-nm-process-technology",                 cat:"chip architecture",stars:5, year:2024, img:"https://www.renesas.com/sites/default/files/styles/open_graph/public/r-car-x5h-en.jpg?itok=BW3KJ4tS",                      desc:"R-Car X5H発表。3nmプロセスのADAS/IVI/ゲートウェイ統合SoC。400 TOPS AI加速。ソフトウェア定義車両向け車載コンピュータの最前線。" },
   { num:46, title:"Autonomous Driving Domain Controller and CCU Industry Review 2024-2025",          url:"https://autotech.news/autonomous-driving-domain-controller-and-central-control-unit-industry-review-2024-2025/",                                           cat:"chip",            stars:4, year:2024, img:"./articles/images/art046_cover.webp",                                                                               desc:"自動運転ドメインコントローラの市場・技術動向。普及率17.4%（2024年9月）。One Chip統合ソリューションへの進化を解説。" },
   // AI ARCHITECTURE
   { num:47, title:"All You Need for End-to-End Autonomous Driving (IEEE T-PAMI 2024)",               url:"https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving",                                                                                             cat:"ai",              stars:5, year:2024, img:"./articles/images/art047_cover.jpg",                                                                               desc:"E2E自動運転の270本以上の論文を体系的に調査したIEEE T-PAMIサーベイ。手法・課題・トレンドを網羅。研究者必読の総合リファレンス。" },
@@ -288,7 +293,22 @@ const ARTICLES = [
   { num:97, title:"Turing Unveils CoVLA Dataset — Japan's First AD VLA Dataset",                     url:"https://tur.ing/en/news/20240910/",                                                                                                                         cat:"ai sim",          stars:4, year:2024, img:"./articles/images/art097_cover.jpg",                                                                                                                       desc:"Turing Inc.の公式プレスリリース。CoVLAデータセット発表の背景と日本初の自動運転VLAモデル開発の意義を解説。" },
   { num:98, title:"Waymo Statistics 2026: Funding, Revenue & Rides Per Cities",                      url:"https://awisee.com/blog/waymo-statistics/",                                                                                                                 cat:"waymo regulation",stars:4, year:2026, img:"./articles/images/art098_cover.png",                                                                                                                       desc:"Waymoの最新統計まとめ。資金調達・収益・都市別乗車数・安全指標を網羅。競合分析の参考データとして有用。" },
   { num:99, title:"OpenDriveLab Publications: E2E Autonomous Driving Research Hub",                  url:"https://opendrivelab.com/publications",                                                                                                                     cat:"ai",              stars:5, year:2024, img:"./articles/images/art099_cover.jpg",                                                                               desc:"上海AIラボ/Hong Kong Univ.のOpenDriveLabの論文リスト。UniAD・VAD・SparseDrive等、E2E自動運転の最先端研究を継続的に発表する研究ラボ。" },
-  { num:100,title:"Waymo Skyrocketing Ridership in One Chart (TechCrunch)",                          url:"https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",                                                                              cat:"waymo regulation",stars:4, year:2026, img:"./articles/images/art100_cover.png",                                                                               desc:"Waymoの急成長ライドシェア事業を1枚のグラフで示す分析記事。スケーリングの速度と市場インパクトを可視化。" }
+  { num:100,title:"Waymo Skyrocketing Ridership in One Chart (TechCrunch)",                          url:"https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",                                                                              cat:"waymo regulation",stars:4, year:2026, img:"./articles/images/art100_cover.png",                                                                               desc:"Waymoの急成長ライドシェア事業を1枚のグラフで示す分析記事。スケーリングの速度と市場インパクトを可視化。" },
+  // PRODUCT ARCHITECTURE PICKS
+  { num:101,title:"AI & Robotics (Tesla公式)",                                                       url:"https://www.tesla.com/AI",                                                                                                                                  cat:"tesla ai chip architecture",stars:5, year:2026, img:"https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/tesla-logo-thumbnail.jpg",                         desc:"TeslaのFSD向けAI推論チップ、カメラベースNN、BEVネットワーク、車両フリート学習ループを公式に確認できる。Vision+独自推論HWの採用思想を把握するための基礎資料。" },
+  { num:102,title:"Wayve Advances Embodied AI for Driving with NVIDIA DRIVE AGX Thor",                url:"https://wayve.ai/thinking/wayve-gen-3/",                                                                                                                    cat:"wayve nvidia chip ai architecture",stars:5, year:2026, img:"https://wayve.ai/wp-content/uploads/2026/03/Wayve-Gen-3-NVIDIA-DRIVE-AGX-Thor.jpg",                                  desc:"Wayve Gen 3 robot vehicle platformがNVIDIA DRIVE AGX Thorを採用。E2E/Embodied AI DriverをL3 eyes-off/L4 driverlessへ載せる量産計算基盤の方向性が分かる。" },
+  { num:103,title:"Driving the World, Sight Unseen: Wayve AI-500 Roadshow",                           url:"https://wayve.ai/thinking/ai-500-roadshow-90-cities/",                                                                                                      cat:"wayve ai architecture",stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/06/AI-500-Roadshow-Hero.jpg",                                            desc:"1つのAIモデルを90都市で再学習なしに走らせるWayveの汎化検証。HDマップや都市別チューニングを減らし、単一モデルでODD拡張する戦略の実例。" },
+  { num:104,title:"Seeing with Superhuman Clarity: Aurora Driver Perception Architecture",             url:"https://aurora.tech/newsroom/seeing-with-superhuman-clarity-the-physics-and-architecture-behind-the",                                                       cat:"aurora sensor ai architecture",stars:5, year:2026, img:"https://images.ctfassets.net/9i0s3p5vkth9/7vXQrEJVG4EGFCdJsUGSzt/f690e360dd0b26ffa8c9d9a7cdd5bd53/Aurora-2024-progress.jpg",desc:"Aurora DriverのFirstLight FMCW LiDAR、イメージングレーダー、高解像度カメラ、Mainline Perception/Fault Managementを解説。高速L4トラックの長距離知覚要件が具体的。" },
+  { num:105,title:"Nuro Driver: Universal Autonomy Platform",                                         url:"https://www.nuro.ai/nuro-driver",                                                                                                                           cat:"ai sensor chip architecture",stars:5, year:2026, img:"https://nuro.imgix.net/Allthree_Zoomedout_Lightv1_2025-04-25-021038_xjiw.jpg",                            desc:"Nuro DriverのE2E AIモデル、ガードレール、AI-driven mapping、LiDAR/レーダー/カメラ、独自ECU、NVIDIA Thor採用を整理した公式製品ページ。ライセンス型L4基盤として重要。" },
+  { num:106,title:"Lucid, Nuro, and Uber Partner on Next-Generation Autonomous Robotaxi Program",      url:"https://www.nuro.ai/blog/lucid-nuro-and-uber-partner-on-next-generation-autonomous-robotaxi-program",                                                       cat:"ai sensor chip regulation architecture",stars:4, year:2025, img:"https://nuro.imgix.net/Allthree_Zoomedout_Lightv1_2025-04-25-021038_xjiw.jpg",                  desc:"Lucid車両、Nuro Driver、Uber運行網を組み合わせ、6年間で2万台以上を狙うロボタクシー提携。垂直統合ではなくAV Driverを部品化して供給するモデル。" },
+  { num:107,title:"NVIDIA Makes the World Robotaxi-Ready With Uber Partnership",                      url:"https://nvidianews.nvidia.com/news/nvidia-uber-robotaxi",                                                                                                    cat:"nvidia chip ai architecture",stars:5, year:2025, img:"https://blogs.nvidia.com/wp-content/uploads/2025/01/nvidia-drive-partners-ecosystem-ces-1280x680-1.jpg",      desc:"DRIVE AGX Hyperion 10をL4-readyな計算・センサー参照アーキテクチャとして提示。2基のDRIVE AGX Thor、Blackwell、VLA/生成AI最適化、Cosmos data factoryが要点。" },
+  { num:108,title:"Qualcomm and BMW Group Unveil Snapdragon Ride Pilot",                              url:"https://www.qualcomm.com/news/releases/2025/09/qualcomm-and-bmw-group-unveil-groundbreaking-automated-driving-s",                                          cat:"chip sensor ai architecture",stars:5, year:2025, img:"./articles/images/art044_cover.jpg",                                                                  desc:"BMW iX3 Neue Klasseに搭載されるSnapdragon Ride Pilot公式発表。8MP/3MPカメラ、レーダー、HD map、GNSS、V2X、BEV低レベル知覚、AI+ルール計画を具体化。" },
+  { num:109,title:"Mobileye's New ECU Series: Modularity from ADAS to AV",                            url:"https://www.mobileye.com/blog/modularity-from-adas-to-av/",                                                                                                  cat:"chip sensor ai architecture",stars:5, year:2025, img:"https://static.mobileye.com/website/us/corporate/images/21a6e12d0e849bbf17263e0f0770df82_1676885917761.png",desc:"EyeQ6Hを2基載せた共通プライマリボードとMCUを中核に、SuperVisionからChauffeurまで拡張するECUシリーズ。検証済み基盤を使い回すモジュラー戦略。" },
+  { num:110,title:"Mobileye Chauffeur: Eyes-Off Driving Platform",                                    url:"https://www.mobileye.com/solutions/chauffeur/",                                                                                                             cat:"sensor chip ai architecture",stars:5, year:2026, img:"https://static.mobileye.com/website/us/corporate/images/21a6e12d0e849bbf17263e0f0770df82_1676885917761.png",desc:"REM、EyeQ6 High、True Redundancy、RSS、カメラ系とレーダー/LiDAR系の独立冗長構成を説明。Consumer AV向けeyes-off製品の具体構成が分かる。" },
+  { num:111,title:"Pony.ai Unveils Seventh-Generation Robotaxi Lineup",                               url:"https://ir.pony.ai/news-releases/news-release-details/pony-ai-inc-unveils-seventh-generation-robotaxi-lineup-targets/",                                   cat:"sensor chip regulation architecture",stars:5, year:2025, img:"./articles/images/art026_cover.png",                                                        desc:"Toyota、BAIC、GACとの第7世代Robotaxi量産計画。100% automotive-grade ADK、BOM 70%削減、計算ユニット80%削減、LiDAR 68%削減など量産コストが具体的。" },
+  { num:112,title:"WeRide and Lenovo Launch Automotive-Grade HPC 3.0 Powered by NVIDIA DRIVE AGX Thor",url:"https://ir.weride.ai/news-releases/news-release-details/weride-teams-lenovo-launch-100-automotive-grade-hpc-30-platform",                                cat:"nvidia chip regulation architecture",stars:5, year:2025, img:"./articles/images/art026_cover.png",                                                        desc:"WeRide Robotaxi GXR向けHPC 3.0の公式発表。デュアルNVIDIA DRIVE AGX Thor、DriveOS、Lenovo AD1 L4 domain controller、最大2,000 TOPSが要点。" },
+  { num:113,title:"XPENG Accelerates Global Deployment of VLA 2.0",                                   url:"https://www.xpeng.com/pressroom/news/019cae5e67b99c0960ee8a028129016a",                                                                                     cat:"ai architecture regulation",stars:5, year:2026, img:"./articles/images/art035_cover.webp",                                                               desc:"XPENG VLA 2.0は逐次的なvision-language-actionではなくvision-to-actionのE2E構造を掲げる。乗用車、Robotaxi、ロボット、飛行体へ広げるPhysical AI戦略。" },
+  { num:114,title:"BYD Unveils God's Eye DiPilot ADAS Suite",                                        url:"https://paultan.org/2025/02/13/byd-unveils-gods-eye-dipilot-adas-suite-to-roll-out-in-all-byd-denza-yangwang-models-sold-in-china/",                       cat:"sensor chip regulation architecture",stars:4, year:2025, img:"https://paultan.org/image/2025/02/byd-gods-eye-dipilot-adas-suite-1.jpg",                      desc:"BYDがGod's Eye/DiPilotを中国販売モデルへ広く展開。God's Eye CはDiPilot 100、12カメラ、5ミリ波レーダー、12超音波レーダーで、上位はLiDARを含む。" }
 ];
 
 // ─── LOCAL TRANSLATED PAGES ──────────────────────────────────────────────────
@@ -347,6 +367,7 @@ const CAT_META = {
   sim:        { label:"シミュレーション",emoji:"🖥️", grad:"linear-gradient(135deg,#002e2e,#1aa8a8)" },
   sensor:     { label:"センサー",      emoji:"📡", grad:"linear-gradient(135deg,#2e1800,#c06000)" },
   chip:       { label:"チップ",        emoji:"🔧", grad:"linear-gradient(135deg,#101020,#3a3acc)" },
+  architecture:{ label:"Architecture", emoji:"🏗️", grad:"linear-gradient(135deg,#15311f,#3f7d4a)" },
   regulation: { label:"規制/動向",     emoji:"🌐", grad:"linear-gradient(135deg,#101830,#305878)" },
   default:    { label:"記事",          emoji:"📄", grad:"linear-gradient(135deg,#dde6f5,#c8d4ef)" },
 };
@@ -360,21 +381,49 @@ function getCatMeta(catStr) {
 }
 
 // ─── SECTIONS ────────────────────────────────────────────────────────────────
+const FIRST_PASS_ORDER = [
+  1, 6, 8,
+  104, 20,
+  105,
+  107,
+  108, 109, 110,
+  102, 103,
+  101, 10,
+  34, 113,
+  111, 112, 114,
+  76
+];
+
+const FULL_READING_ORDER = [
+  1, 6, 5, 8, 81, 100, 98, 7, 4, 3, 2, 9,
+  104, 18, 20, 19, 83, 82,
+  30, 31,
+  21, 22,
+  23, 24, 25,
+  111, 112, 26, 27,
+  105, 106, 28, 29, 96,
+  107, 39, 37, 38, 41, 40, 91,
+  108, 44, 109, 110, 32, 33, 114,
+  34, 113, 35, 36,
+  101, 10, 11, 71, 12,
+  102, 103, 13, 16, 15, 14, 17,
+  45, 42, 43, 46,
+  47, 49, 48, 50, 51, 93, 94, 95, 99,
+  52, 53, 88, 89, 54, 90,
+  55, 57, 58, 56, 59,
+  60, 61, 65, 66, 87, 62, 63, 64, 84, 85, 97, 86,
+  67, 68, 72, 70, 69,
+  73, 74, 75, 92,
+  76, 77, 78, 79, 80
+];
+const READING_ORDER = FIRST_PASS_ORDER.concat(
+  FULL_READING_ORDER.filter(num => !FIRST_PASS_ORDER.includes(num))
+);
+const READING_RANK = new Map(READING_ORDER.map((num, i) => [num, i + 1]));
+
 const SECTIONS = [
-  { id:"waymo",      title:"🚗 Waymo",                     filter: a => a.cat.includes('waymo') && !a.cat.includes('tesla') },
-  { id:"tesla",      title:"🚗 Tesla",                     filter: a => a.cat.includes('tesla') },
-  { id:"wayve",      title:"🚗 Wayve",                     filter: a => a.cat.includes('wayve') },
-  { id:"aurora",     title:"🚗 Aurora",                    filter: a => a.cat.includes('aurora') && !a.cat.includes('waymo') },
-  { id:"other-av",   title:"🚗 Zoox / Baidu / Pony.ai / WeRide / Nuro / Gatik / Mobileye / 中国EV", filter: a => [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36].includes(a.num) },
-  { id:"nvidia",     title:"🔧 NVIDIA",                    filter: a => a.cat.includes('nvidia') && !a.cat.includes('aurora') && !a.cat.includes('waymo') },
-  { id:"chip",       title:"🔧 ARM / Qualcomm / Renesas / ドメインコントローラ", filter: a => [42,43,44,45,46].includes(a.num) },
-  { id:"ai-arch",    title:"🤖 E2E・VLA・LLM アーキテクチャ", filter: a => [47,48,49,50,51,52,53,54].includes(a.num) },
-  { id:"perception", title:"🤖 知覚技術 (Perception)",      filter: a => [55,56,57,58,59].includes(a.num) },
-  { id:"sim",        title:"💡 シミュレーション・合成データ", filter: a => [60,61,62,63,64,65,66].includes(a.num) },
-  { id:"sensor",     title:"📡 センサー技術",               filter: a => [67,68,69,70,71,72].includes(a.num) },
-  { id:"map",        title:"🌐 地図・ローカライゼーション",  filter: a => [73,74,75].includes(a.num) },
-  { id:"safety",     title:"🌐 安全規格・機能安全",         filter: a => [76,77,78].includes(a.num) },
-  { id:"reg",        title:"🌐 規制・業界動向・データセット・その他", filter: a => [79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100].includes(a.num) },
+  { id:"first-pass", title:"最初の一巡（20本）", filter: a => FIRST_PASS_ORDER.includes(a.num), order: FIRST_PASS_ORDER },
+  { id:"deep-dive", title:"次に読む（残り94本）", filter: a => READING_RANK.has(a.num), order: READING_ORDER },
 ];
 
 // ─── RATINGS (localStorage) ──────────────────────────────────────────────────
@@ -395,6 +444,8 @@ function renderCard(a) {
   const userRating = getUserRating(a.num);
   const hasImg = !!a.img;
   const localUrl = LOCAL_ARTICLES[a.num];
+  const rank = READING_RANK.get(a.num);
+  const badgeText = rank ? `${rank}. #${a.num}` : `#${a.num}`;
   const imgInner = hasImg
     ? `<img src="${a.img}" loading="lazy" alt="" onerror="this.style.display='none'">`
     : `<div class="img-fallback">${meta.emoji}<span>${meta.label}</span></div>`;
@@ -409,7 +460,7 @@ function renderCard(a) {
        data-text="${(a.title + ' ' + a.desc).toLowerCase()}">
     <div class="card-img" style="background:${a.img ? '#000' : meta.grad}">
       ${imgInner}
-      <div class="num-badge">#${a.num}</div>
+      <div class="num-badge">${badgeText}</div>
     </div>
     <div class="card-body">
       <div class="card-title"><a href="${localUrl || a.url}" ${localUrl ? '' : 'target="_blank" rel="noopener"'}>${a.title}</a>${localUrl ? `<a href="${a.url}" target="_blank" rel="noopener" class="orig-link" title="原文(英語)を開く">↗原文</a>` : ''}</div>
@@ -440,10 +491,16 @@ function renderCard(a) {
 function buildSections() {
   const main = document.getElementById('main');
   main.innerHTML = '';
+  const rendered = new Set();
 
   for (const sec of SECTIONS) {
-    const articles = ARTICLES.filter(sec.filter);
+    let articles = ARTICLES.filter(a => sec.filter(a) && !rendered.has(a.num));
+    if (sec.order) {
+      const rank = new Map(sec.order.map((num, i) => [num, i]));
+      articles = articles.sort((a, b) => rank.get(a.num) - rank.get(b.num));
+    }
     if (articles.length === 0) continue;
+    articles.forEach(a => rendered.add(a.num));
 
     const secEl = document.createElement('div');
     secEl.dataset.section = sec.id;
@@ -463,7 +520,7 @@ buildSections();
 // Called after filter logic is defined below — moved to end of script
 
 // ─── FILTER & SEARCH ─────────────────────────────────────────────────────────
-let activeCat = 'all', activeStars = 0, activeTab = 'article';
+let activeCat = 'all', activeStars = 0, activeTab = 'all';
 
 function applyFilters() {
   const q = document.getElementById('search').value.toLowerCase().trim();
@@ -478,7 +535,7 @@ function applyFilters() {
     const catOK = activeCat === 'all' || cats.split(' ').includes(activeCat);
     const starOK = activeStars === 0 || stars >= activeStars;
     const searchOK = !q || text.includes(q);
-    const tabOK = type === activeTab;
+    const tabOK = activeTab === 'all' || type === activeTab;
 
     const show = catOK && starOK && searchOK && tabOK;
     card.classList.toggle('hidden', !show);
