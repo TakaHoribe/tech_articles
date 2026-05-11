@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVIDIAリサーチ、CVPR自動運転チャレンジで優勝・イノベーション賞を受賞</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>NVIDIAリサーチ、CVPR自動運転チャレンジで優勝・イノベーション賞を受賞</h1>
+<div class="meta">2023年6月 · NVIDIA Blog · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://blogs.nvidia.com/blog/autonomous-driving-challenge-cvpr/" target="_blank" rel="noopener">https://blogs.nvidia.com/blog/autonomous-driving-challenge-cvpr/</a></div>
+</div>
+<div class="body">
+
+<figure>
+  <img src="./images/2f2efe5d31c8_img.jpg" alt="NVIDIA CVPR自動運転チャレンジ受賞">
+</figure>
+
+<p>NVIDIAは来週、カナダのバンクーバーで開催されるコンピュータビジョンとパターン認識の国際会議（CVPR）において、自動運転開発向けの3D占有予測チャレンジで激戦を制した優勝者として表彰される。</p>
+
+<p>このコンテストには10地域から約150チームが参加し、400件以上の応募が集まった。</p>
+
+<p>3D占有予測とは、シーン内の各ボクセル、すなわち3Dバードアイビューグリッド上の各データポイントの状態を予測するプロセスである。ボクセルは「空き」「占有」「不明」のいずれかに分類される。</p>
+
+<p>3D占有予測に関するNVIDIA DRIVE Labsの動画をご覧ください：</p>
+
+<a class="vid-wrap" href="https://www.youtube.com/watch?v=KEn8oklzyvo" target="_blank" rel="noopener">
+  <img src="./images/bfc1626e8149_img.jpg" alt="NVIDIA DRIVE Labs: 3D Occupancy Prediction">
+  <div class="vid-overlay">
+    <div class="vid-play">
+      <svg viewBox="0 0 24 24" fill="#ff0000">
+        <path d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 5 12 5 12 5s-4.8 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.2.8C6.8 19 12 19 12 19s4.8 0 7-.1c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8z"/>
+        <polygon points="10,15 10,9 15,12" fill="white"/>
+      </svg>
+    </div>
+    <div class="vid-badge">YouTube</div>
+    <div class="vid-title">NVIDIA DRIVE Labs: 3D Occupancy Prediction</div>
+  </div>
+</a>
+<div class="vid-caption">NVIDIA DRIVE Labsによる3D占有予測の解説動画（クリックでYouTubeを開く）</div>
+
+<p>3D占有グリッド予測は、自動運転システムの安全で堅牢な開発において不可欠であり、NVIDIA DRIVEプラットフォームによって実現される最先端の畳み込みニューラルネットワーク（CNN）およびTransformerモデルを用いて、自律走行車（AV）の計画・制御スタックに情報を提供する。</p>
+
+<p>「NVIDIAの受賞ソリューションには、AVにおける2つの重要な技術的進歩が含まれています」と、NVIDIAで学習と知覚を担当するシニアリサーチサイエンティストのZhiding Yu氏は述べた。「このソリューションは、優れたバードアイビュー知覚をもたらす最先端のモデル設計を実証しています。また、最大10億パラメータを持つビジュアル基盤モデルと大規模な事前学習が3D占有予測に有効であることも示しています。」</p>
+
+<p>自動運転における知覚は、画像内の物体や空き空間の検出といった2Dタスクの処理から、複数の入力画像を用いて3Dで世界を推論するへと、ここ数年で大きく進化してきた。</p>
+
+<p>これにより、複雑な交通シーン内の物体について柔軟かつ精密な細粒度の表現が可能となり、「自動運転に必要な安全な知覚要件を達成するために不可欠だ」とNVIDIAのAV応用研究ディレクター兼ディスティングイッシュドサイエンティストのJose Alvarez氏は述べている。</p>
+
+<p>Yu氏は、NVIDIAリサーチチームの受賞作を、6月18日（日）太平洋時間午前10時20分のCVPRエンドツーエンド自動運転ワークショップと、6月19日（月）太平洋時間午後4時のビジョン中心型自動運転ワークショップで発表する予定だ。</p>
+
+<p>チャレンジで1位を獲得したことに加え、NVIDIAはイベントにおいてイノベーション賞も受賞する予定だ。この賞は、CVPRワークショップ委員会によれば、「ビュー変換モジュールの開発に対する斬新な洞察」と、従来アプローチと比較して「大幅に向上したパフォーマンス」を評価するものだ。</p>
+
+<p><a href="https://arxiv.org/abs/2306.09117" target="_blank" rel="noopener">応募に関するNVIDIAの技術レポートを読む。</a></p>
+
+<h2>3D占有予測でより安全な車両を実現</h2>
+
+<p>従来の3D物体検出——シーン内の物体を検出し、3Dバウンディングボックスで表現すること——はAV知覚における中核的なタスクだが、その限界もある。たとえば、表現力に乏しく、バウンディングボックスが十分なリアルワールド情報を表現できない場合がある。また、トラックから落下した道路上の危険物など、現実世界で稀にしか登場しない物体も含め、あらゆる可能性のある物体についてタクソノミーとグランドトゥルースを定義する必要がある。</p>
+
+<p>これに対し、3D占有予測はエンドツーエンドの自動運転に不可欠な、自動運転車の計画スタックに対する豊富な世界情報を提供する。</p>
+
+<p>ソフトウェア定義型車両は、時間をかけて実証・検証された新たな開発によって継続的にアップグレードできる。CVPRで認められたような研究イニシアティブから生まれる最先端のソフトウェアアップデートが、新たな機能とより安全な走行能力を実現している。</p>
+
+<p>NVIDIA DRIVEプラットフォームは、自動車メーカーに量産への道筋を提供し、車内からデータセンターまで安全でセキュアなAV開発のためのフルスタックのハードウェアとソフトウェアを提供している。</p>
+
+<h2>CVPRチャレンジの詳細</h2>
+
+<p>CVPRにおける3D占有予測チャレンジでは、推論時にカメラ入力のみを使用するアルゴリズムの開発が参加者に求められた。参加者はオープンソースのデータセットとモデルを使用でき、データ駆動型アルゴリズムや大規模モデルの探求が促進された。主催者は、実際のシナリオにおける最先端の3D占有予測アルゴリズムのためのベースラインサンドボックスを提供した。</p>
+
+<h2>CVPRにおけるNVIDIA</h2>
+
+<p>NVIDIAはCVPRで約30本の論文・発表を行う。自動運転について議論する専門家には以下の方々が含まれる：</p>
+
+<ul>
+  <li>Jose Alvarez——エンドツーエンド自動運転ワークショップ：新興タスクとチャレンジワークショップにおけるAVの3D知覚に関する新興課題、およびエンベデッドビジョンワークショップにおけるリアルタイム推論向け大規模深層モデルの最適化について。</li>
+  <li>Nikolai Smolyanskiy（NVIDIAディープラーニングディレクター）——エンドツーエンド自動運転ワークショップ：知覚・予測・計画・シミュレーションにおけるAV向けリアルタイム交通予測について。</li>
+  <li>Robin Jenkin（NVIDIAディスティングイッシュドエンジニア）——CVPRと連携して開催されるOmniCVワークショップにおける魚眼カメラの画質について。</li>
+  <li>Xinshuo Weng（NVIDIAのAV研究リサーチサイエンティスト）——ビジョン中心型自動運転ワークショップにおける自動運転向けビジョンソリューションについて。</li>
+</ul>
+
+<p>その他の講演のアジェンダをご覧いただき、6月18〜22日に開催されるCVPRにおけるNVIDIAの取り組みについて詳しくご確認ください。</p>
+
+<p><em>Featured imageはOccNetおよびOcc3Dの提供による。</em></p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://blogs.nvidia.com/blog/autonomous-driving-challenge-cvpr/" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>
