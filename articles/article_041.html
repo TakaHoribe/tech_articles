@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVIDIA Cosmos World Foundation Modelsで合成データとPhysical AI推論をスケールさせる</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+
+    <div class="ah">
+      <h1>NVIDIA Cosmos World Foundation Modelsで合成データとPhysical AI推論をスケールさせる</h1>
+      <div class="meta">NVIDIA Technical Blog · Pranjali Joshi / Asawaree Bhide · 2026年3月13日更新 · ⭐4</div>
+      <div class="orig">原文: <a href="https://developer.nvidia.com/blog/scale-synthetic-data-and-physical-ai-reasoning-with-nvidia-cosmos-world-foundation-models/" target="_blank" rel="noopener">Scale Synthetic Data and Physical AI Reasoning with NVIDIA Cosmos World Foundation Models</a></div>
+    </div>
+
+    <div class="body">
+      <figure>
+        <img src="./images/art041_cover.gif" alt="NVIDIA Cosmosによるデータ生成と推論">
+      </figure>
+
+      <p>ヒューマノイドや自動運転車のような、次世代のAI駆動ロボットは、高忠実度で物理を考慮した訓練データに依存している。多様で代表性のあるデータセットがなければ、こうしたシステムは適切に訓練されず、汎化性能の不足、現実世界の変動への露出不足、エッジケースでの予測不能な振る舞いにより、テスト時のリスクに直面する。訓練用に大規模な実世界データセットを収集することは高コストで時間がかかり、実現可能性にも制約されることが多い。</p>
+
+      <p>NVIDIA Cosmosは、World Foundation Model（WFM）の開発を加速することでこの課題に対処する。Cosmosプラットフォームの中核では、Cosmos WFMが合成データ生成を高速化し、下流のドメイン固有またはタスク固有のPhysical AIモデルを開発するためのポストトレーニング基盤として機能する。本記事では、最新のCosmos WFM、Physical AIを前進させる主要機能、そしてその使い方を解説する。</p>
+
+      <h2>Cosmos World Foundation Modelのアップデート</h2>
+      <p>NVIDIA CosmosのWorld Foundation Modelは急速に進化し続けており、合成データ生成とPhysical AI開発をさらに加速する重要な進歩が加わっている。発表から1年後の主なアップデートは以下の通り。</p>
+
+      <ul>
+        <li><strong>Cosmos Transfer 2.5</strong> - シミュレーションと3D空間入力から、より高速かつスケーラブルにデータ拡張を行う。環境、照明条件、シーンバリエーションの多様性を高められる。</li>
+        <li><strong>Cosmos Predict 2.5</strong> - 最大30秒のシーケンスに対するロングテールシナリオ生成を強化。独自データやドメイン固有データでポストトレーニングすると、最大10倍高い精度を実現する。マルチビュー出力、カスタムカメラレイアウト、アクションシミュレーションのような代替ポリシー出力にも対応する。</li>
+        <li><strong>Cosmos Reason 2</strong> - 時空間理解とタイムスタンプ精度を改善した、高度なPhysical AI推論を提供する。2D/3D点位置とバウンディングボックス座標を伴う物体検出、推論説明、ラベル付けを追加。最大256K入力トークンまでのロングコンテキスト対応も拡張された。</li>
+      </ul>
+
+      <h2>物理に基づくフォトリアル動画のためのCosmos Transfer</h2>
+      <p>Cosmos Transferは、構造化入力から高忠実度な世界シーンを生成し、正確な空間アライメントとシーン構成を保証する。</p>
+
+      <p>Cosmos TransferはControlNetアーキテクチャを採用し、事前学習済みの知識を保持しながら、構造化され一貫した出力を可能にする。時空間制御マップを利用して、合成表現と実世界表現を動的に整合させ、シーン構成、物体配置、モーションダイナミクスを細かく制御できる。</p>
+
+      <p><strong>入力:</strong></p>
+      <ul>
+        <li>構造化された視覚データまたは幾何データ: セグメンテーションマップ、デプスマップ、エッジマップ、人間のモーションキーポイント、LiDARスキャン、軌跡、HDマップ、3Dバウンディングボックス。</li>
+        <li>Ground Truthアノテーション: 正確なアライメントのための高忠実度な参照情報。</li>
+      </ul>
+
+      <p><strong>出力:</strong> レイアウト、物体配置、モーションを制御したフォトリアルな動画シーケンス。</p>
+
+      <figure>
+        <img src="./images/art041_virtual.gif" alt="Omniverseで作成した仮想シミュレーション">
+        <figcaption>図1左。NVIDIA Omniverseで作成した仮想シミュレーション、またはGround Truth。</figcaption>
+      </figure>
+      <figure>
+        <img src="./images/art041_photoreal.gif" alt="Cosmos Transferによるフォトリアル変換">
+        <figcaption>図1右。Cosmos Transferによるフォトリアル変換。</figcaption>
+      </figure>
+
+      <p><strong>主要機能:</strong></p>
+      <ul>
+        <li>現実世界の物理と整合する、スケーラブルでフォトリアルな合成データを生成する。</li>
+        <li>構造化されたマルチモーダル入力を通じて、物体の相互作用とシーン構成を制御する。</li>
+      </ul>
+
+      <h3>制御可能な合成データにCosmos Transferを使う</h3>
+      <p>生成AI APIとSDKにより、NVIDIA OmniverseはPhysical AIシミュレーションを加速する。開発者はOpenUSD上に構築されたNVIDIA Omniverseを使い、ロボットや自動運転車の訓練・テストに向けて、現実環境を正確にシミュレートする3Dシーンを作成する。これらのシミュレーションは、アノテーションとテキスト指示と組み合わせられ、Cosmos TransferへのGround Truth動画入力として機能する。Cosmos Transferは、環境、照明、視覚条件を変化させながらフォトリアリズムを高め、スケーラブルで多様な世界状態を生成する。</p>
+
+      <p>このワークフローは、高品質な訓練データセットの作成を加速し、AIエージェントがシミュレーションから現実世界のデプロイへ効果的に汎化できるようにする。</p>
+
+      <figure>
+        <img src="./images/art041_workflow.png" alt="Omniverseの生成APIとSDKからCosmos Transferに渡すワークフロー">
+        <figcaption>図2。NVIDIA Omniverseの生成APIとSDKが、Cosmos Transfer向けのGround Truthシミュレーションを支える。</figcaption>
+      </figure>
+
+      <figure>
+        <img src="./images/art041_robot.gif" alt="Cosmos Transferで生成されたフォトリアル動画">
+        <figcaption>図3。Cosmos Transferで生成されたフォトリアル動画。</figcaption>
+      </figure>
+
+      <p>Cosmos Transferは、合成マニピュレーションモーション生成のためのIsaac GR00T Blueprintや、訓練時に環境条件・天候条件を変化させるAutonomous Vehicle Simulation向けOmniverse Blueprintにおいて、現実的な照明、色、テクスチャを可能にし、ロボティクス開発を強化する。このフォトリアルなデータは、ポリシーモデルのポストトレーニングに不可欠であり、スムーズなSim-to-Real移行を保証し、Perception AIやGR00T N1のような専用ロボットモデルの訓練を支援する。</p>
+
+      <h2>新しいCosmos Transfer 2.5を実行する方法</h2>
+      <ul>
+        <li>新しいCosmos Transfer 2.5で推論を実行するには、<a href="https://github.com/NVIDIA/Cosmos" target="_blank" rel="noopener">推論ガイド</a>に従う。</li>
+        <li>独自データまたはドメインデータでポストトレーニングするには、<a href="https://github.com/NVIDIA/Cosmos" target="_blank" rel="noopener">ポストトレーニングガイド</a>に従う。</li>
+        <li>Cosmosユーザーによる段階的なワークフローと技術レシピは、<a href="https://github.com/NVIDIA/Cosmos-Cookbook" target="_blank" rel="noopener">NVIDIA Cosmos Cookbook</a>で確認できる。</li>
+      </ul>
+
+      <h2>将来の世界状態を生成するCosmos Predict</h2>
+      <p>Cosmos Predict WFMは、テキスト、動画、開始・終了フレームシーケンスなどのマルチモーダル入力から、将来の世界状態を動画としてモデル化するよう設計されている。時間的一貫性とフレーム補間を強化するTransformerベースのアーキテクチャで構築されている。</p>
+
+      <p><strong>主要機能:</strong></p>
+      <ul>
+        <li>テキストプロンプトから現実的な世界状態を直接生成する。</li>
+        <li>欠落フレームの予測やモーションの延長により、動画シーケンスに基づいて次の状態を予測する。</li>
+        <li>開始画像と終了画像の間に複数フレームを生成し、完全で滑らかなシーケンスを作成する。</li>
+      </ul>
+
+      <p>Cosmos Predict WFMは、ロボティクスと自動運転車における下流のWorld Model訓練の強力な基盤を提供する。これらのモデルをポストトレーニングして、ポリシーモデリング向けに動画ではなくアクションを生成させることも、視覚言語理解に適応させてカスタムPerception AIモデルを作成することもできる。</p>
+
+      <h2>新しいCosmos Predict 2.5を実行する方法</h2>
+      <ul>
+        <li>新しいCosmos Predict 2.5で推論を実行するには、<a href="https://github.com/NVIDIA/Cosmos" target="_blank" rel="noopener">推論ガイド</a>に従う。</li>
+        <li>独自データまたはドメインデータでポストトレーニングするには、<a href="https://github.com/NVIDIA/Cosmos" target="_blank" rel="noopener">ポストトレーニングガイド</a>に従う。</li>
+        <li>Cosmosユーザーによる段階的なワークフローと技術レシピは、<a href="https://github.com/NVIDIA/Cosmos-Cookbook" target="_blank" rel="noopener">NVIDIA Cosmos Cookbook</a>で確認できる。</li>
+      </ul>
+
+      <h2>知覚し、推論し、知的に応答するCosmos Reason</h2>
+      <p>Cosmos Reasonは、モーション、物体相互作用、時空間関係を理解する目的で作られた、完全にカスタマイズ可能なマルチモーダルAI推論モデルである。Chain-of-Thought（CoT）推論を使い、視覚入力を解釈し、与えられたプロンプトに基づいて結果を予測し、最適な意思決定に報酬を与える。テキストベースのLLMと異なり、Cosmos Reasonは現実世界の物理に推論を接地し、明確で文脈を考慮した応答を自然言語で生成する。</p>
+
+      <p><strong>入力:</strong> 動画観測とテキストベースの質問または指示。<strong>出力:</strong> 長期ホライズンのCoT推論によって生成されたテキスト応答。</p>
+
+      <p><strong>主要機能:</strong></p>
+      <ul>
+        <li>物体がどのように動き、相互作用し、時間とともに変化するかを理解する。</li>
+        <li>入力観測に基づき、次に取るべき最良の行動を予測し、報酬付けする。</li>
+        <li>意思決定を継続的に改善する。</li>
+        <li>Perception AIとEmbodied AIモデルを構築するためのポストトレーニングを前提に設計されている。</li>
+      </ul>
+
+      <h3>訓練パイプライン</h3>
+      <p>Cosmos Reasonは3段階で訓練され、現実世界のシナリオにおいて推論し、予測し、意思決定へ応答する能力を高める。</p>
+
+      <ul>
+        <li><strong>事前学習:</strong> Vision Transformer（ViT）を使って動画フレームを構造化埋め込みに変換し、それをテキストと整合させることで、物体、行動、空間関係に対する共通理解を形成する。</li>
+        <li><strong>教師ありファインチューニング（SFT）:</strong> 2つの主要レベルで、モデルを物理推論に特化させる。一般的なファインチューニングでは、多様な動画テキストデータセットを使って言語グラウンディングとマルチモーダル知覚を強化する。さらにPhysical AIデータで追加訓練することで、現実世界の相互作用を推論する能力を磨く。モデルは、現実世界で物体をどのように使えるかという物体の振る舞い、複数ステップのタスクがどう展開するかを決める行動シーケンス、現実的な配置と不可能な配置を区別する空間的実現可能性を学習する。</li>
+      </ul>
+
+      <figure>
+        <img src="./images/art041_rl.png" alt="強化学習フィードバックループ">
+        <figcaption>図4。強化学習フィードバックループは、正負のフィードバックとモデル調整を通じて継続的に改善する。</figcaption>
+      </figure>
+
+      <p><strong>強化学習（RL）:</strong> モデルは複数の推論経路を評価し、試行と報酬フィードバックを通じてより良い意思決定が現れた場合にのみ自身を更新する。人手でラベル付けされたデータに依存するのではなく、ルールベースの報酬を使う。</p>
+
+      <ul>
+        <li><strong>エンティティ認識:</strong> 物体とその属性を正確に識別した場合に報酬を与える。</li>
+        <li><strong>空間制約:</strong> 物理的に不可能な配置にペナルティを与え、現実的な物体配置を強化する。</li>
+        <li><strong>時間推論:</strong> 因果関係に基づく正しいシーケンス予測を促す。</li>
+      </ul>
+
+      <h2>新しいCosmos Reason 2を実行する方法</h2>
+      <ul>
+        <li>新しいCosmos Reason 2で推論を実行するには、<a href="https://github.com/NVIDIA/Cosmos" target="_blank" rel="noopener">推論ガイド</a>に従う。</li>
+        <li>独自データまたはドメインデータでポストトレーニングするには、<a href="https://github.com/NVIDIA/Cosmos" target="_blank" rel="noopener">ポストトレーニングガイド</a>に従う。</li>
+        <li>Cosmosユーザーによる段階的なワークフローと技術レシピは、<a href="https://github.com/NVIDIA/Cosmos-Cookbook" target="_blank" rel="noopener">NVIDIA Cosmos Cookbook</a>で確認できる。</li>
+      </ul>
+
+      <h2>始め方</h2>
+      <ul>
+        <li>Cosmos WFMの構築、適応、デプロイに向けた段階的なワークフロー、技術レシピ、具体例は、<a href="https://github.com/NVIDIA/Cosmos-Cookbook" target="_blank" rel="noopener">Cosmos Cookbook</a>で確認できる。</li>
+        <li>新しいオープンなCosmosモデルとデータセットは、<a href="https://huggingface.co/nvidia" target="_blank" rel="noopener">Hugging Face</a>と<a href="https://github.com/NVIDIA/Cosmos" target="_blank" rel="noopener">GitHub</a>で確認できる。モデルは<a href="https://build.nvidia.com/" target="_blank" rel="noopener">build.nvidia.com</a>でも試せる。</li>
+        <li>コミュニティに参加するには、Cosmos Discordチャンネルに参加する。</li>
+        <li>すでにCosmosを使っている場合は、コントリビュート方法を確認する。</li>
+        <li>NVIDIA創業者兼CEO Jensen HuangによるGTC基調講演を視聴し、Cosmos関連セッションを確認する。</li>
+      </ul>
+
+      <p class="note">2026年3月13日に、NVIDIA Cosmos World Foundation Modelの進歩を反映して更新。</p>
+    </div>
+
+    <footer>
+      <p>日本語翻訳版 | 原文: <a href="https://developer.nvidia.com/blog/scale-synthetic-data-and-physical-ai-reasoning-with-nvidia-cosmos-world-foundation-models/" target="_blank" rel="noopener">こちら</a></p>
+    </footer>
+  </div>
+</body>
+</html>

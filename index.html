@@ -32,12 +32,14 @@
     #search { flex: 1; min-width: 200px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; color: var(--text); font-size: .9rem; outline: none; transition: border-color .2s; }
     #search:focus { border-color: var(--accent); }
     #search::placeholder { color: var(--muted); }
-    .filter-group { display: flex; flex-wrap: wrap; gap: 6px; }
-    .filter-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: .78rem; color: var(--muted); cursor: pointer; transition: all .2s; white-space: nowrap; }
-    .filter-btn:hover, .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .filter-select { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 34px 8px 12px; font-size: .82rem; color: var(--text); cursor: pointer; outline: none; min-width: 170px; }
+    .filter-select:focus { border-color: var(--accent); }
     .star-filter { display: flex; gap: 4px; }
     .star-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: .78rem; color: var(--muted); cursor: pointer; transition: all .2s; }
     .star-btn:hover, .star-btn.active { background: var(--yellow); border-color: var(--yellow); color: #111; }
+    .sort-filter { display: flex; gap: 4px; }
+    .sort-btn { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: .78rem; color: var(--muted); cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .sort-btn:hover, .sort-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     #result-count { color: var(--muted); font-size: .8rem; margin-left: auto; }
 
     /* MAIN */
@@ -78,12 +80,6 @@
     .rating-row { display: flex; align-items: center; gap: 6px; }
     .rating-label { font-size: .68rem; color: var(--muted); width: 52px; flex-shrink: 0; }
     .editor-stars { font-size: .78rem; letter-spacing: .05em; }
-    .user-stars { display: flex; gap: 2px; }
-    .user-stars .s { font-size: 1rem; cursor: pointer; color: #bbb; transition: color .1s, transform .1s; line-height: 1; }
-    .user-stars .s:hover { transform: scale(1.2); }
-    .user-stars .s.lit { color: var(--yellow); }
-    .user-stars .s.hover-lit { color: #c8a200; }
-    .user-note { font-size: .65rem; color: var(--muted); opacity: .6; }
     .orig-link { font-size: .65rem; color: var(--muted); margin-left: 6px; text-decoration: none; vertical-align: middle; }
     .orig-link:hover { color: var(--accent); }
 
@@ -132,24 +128,28 @@
 <div class="controls">
   <div class="controls-inner">
     <input type="text" id="search" placeholder="🔍 タイトル・概要を検索...">
-    <div class="filter-group" id="cat-filters">
-      <button class="filter-btn active" data-cat="all">すべて</button>
-      <button class="filter-btn" data-cat="waymo">Waymo</button>
-      <button class="filter-btn" data-cat="tesla">Tesla</button>
-      <button class="filter-btn" data-cat="wayve">Wayve</button>
-      <button class="filter-btn" data-cat="aurora">Aurora</button>
-      <button class="filter-btn" data-cat="nvidia">NVIDIA</button>
-      <button class="filter-btn" data-cat="ai">AI/ML</button>
-      <button class="filter-btn" data-cat="sim">シミュレーション</button>
-      <button class="filter-btn" data-cat="sensor">センサー</button>
-      <button class="filter-btn" data-cat="chip">チップ</button>
-      <button class="filter-btn" data-cat="architecture">Architecture</button>
-      <button class="filter-btn" data-cat="regulation">規制/動向</button>
-    </div>
+    <select class="filter-select" id="cat-filter" aria-label="タグで絞り込み">
+      <option value="all">すべてのタグ</option>
+      <option value="waymo">Waymo</option>
+      <option value="tesla">Tesla</option>
+      <option value="wayve">Wayve</option>
+      <option value="aurora">Aurora</option>
+      <option value="nvidia">NVIDIA</option>
+      <option value="ai">AI/ML</option>
+      <option value="sim">シミュレーション</option>
+      <option value="sensor">センサー</option>
+      <option value="chip">チップ</option>
+      <option value="architecture">Architecture</option>
+      <option value="regulation">規制/動向</option>
+    </select>
     <div class="star-filter">
       <button class="star-btn active" data-stars="0">全★</button>
       <button class="star-btn" data-stars="5">⭐x5</button>
       <button class="star-btn" data-stars="4">⭐x4+</button>
+    </div>
+    <div class="sort-filter">
+      <button class="sort-btn active" data-sort="priority">優先度順</button>
+      <button class="sort-btn" data-sort="num">記事番号順</button>
     </div>
     <div id="result-count">114件</div>
   </div>
@@ -223,9 +223,9 @@ const ARTICLES = [
   { num:38, title:"Simplify End-to-End AV Development with New NVIDIA Cosmos WFMs",                  url:"https://developer.nvidia.com/blog/simplify-end-to-end-autonomous-vehicle-development-with-new-nvidia-cosmos-world-foundation-models/",                      cat:"nvidia ai sim",   stars:5, year:2025, img:"https://developer-blogs.nvidia.com/wp-content/uploads/2025/06/AV-SIM-Cosmos.gif",                                                    desc:"Cosmos Predict 2.5/Transfer 2.5/Reason 2の技術詳細。E2E AV開発フローへの統合方法を実践的に解説。開発者向け必読。" },
   { num:39, title:"NVIDIA DRIVE Partners Showcase Latest Mobility Innovations at CES",               url:"https://blogs.nvidia.com/blog/drive-partners-showcase-ces/",                                                                                                cat:"nvidia chip",     stars:4, year:2025, img:"https://blogs.nvidia.com/wp-content/uploads/2025/01/nvidia-drive-partners-ecosystem-ces-1280x680-1.jpg",                    desc:"CES 2025でのNVIDIA DRIVEパートナー最新動向。Toyota・Aurora・Continental等のDRIVE Thor採用事例を網羅。" },
   { num:40, title:"NVIDIA Research Wins Autonomous Driving Challenge at CVPR 2024",                  url:"https://blogs.nvidia.com/blog/autonomous-driving-challenge-cvpr/",                                                                                          cat:"nvidia ai",       stars:4, year:2024, img:"./articles/images/art040_cover.jpg",                                                                                desc:"CVPR 2024自動運転チャレンジ優勝。3D Occupancy Predictionの精度向上技術の詳細。" },
-  { num:41, title:"Scale Synthetic Data and Physical AI Reasoning with NVIDIA Cosmos WFMs",          url:"https://developer.nvidia.com/blog/scale-synthetic-data-and-physical-ai-reasoning-with-nvidia-cosmos-world-foundation-models/",                              cat:"nvidia ai sim",   stars:4, year:2025, img:"./articles/images/art041_cover.gif",                                                                                desc:"合成データ生成とPhysical AI推論のスケールアップ手法。Cosmos Predict/Reason/Transferの実装ガイド。" },
+  { num:41, title:"Scale Synthetic Data and Physical AI Reasoning with NVIDIA Cosmos World Foundation Models", url:"https://developer.nvidia.com/blog/scale-synthetic-data-and-physical-ai-reasoning-with-nvidia-cosmos-world-foundation-models/",                      cat:"nvidia ai sim",   stars:4, year:2026, img:"./articles/images/art041_cover.gif",                                                                                desc:"合成データ生成とPhysical AI推論のスケールアップ手法。Cosmos Predict/Reason/Transferの実装ガイド。" },
   // ARM
-  { num:42, title:"Arm Announces New Automotive Technologies for AI-Enabled Vehicles",               url:"https://newsroom.arm.com/blog/accelerating-adas-adoption",                                                                                                  cat:"chip",            stars:5, year:2024, img:"https://newsroom.arm.com/wp-content/uploads/2024/03/newsroom-blogs_1600x900-4.jpg",                                              desc:"Arm Automotive Enhanced発表。Neoverse V3AEでサーバークラスAI性能を車載向けに実現。NVIDIA DRIVE Thor採用。BYD・XPENG・Volvoも採用表明。" },
+  { num:42, title:"Accelerating ADAS Adoption: How Arm is Transforming the Driving Experience",      url:"https://newsroom.arm.com/blog/accelerating-adas-adoption",                                                                                                  cat:"chip",            stars:5, year:2024, img:"./articles/images/art042_cover.jpg",                                                                               desc:"Arm Automotive Enhancedと仮想プラットフォームによるADAS導入加速。Neoverse V3AE、Cortex-A720AE、Cortex-R82AE、Mali-C720AE ISPなど車載AE IPの具体像。" },
   { num:43, title:"Why Chiplets Are Key to Next-Gen Software-Defined Vehicles",                      url:"https://newsroom.arm.com/blog/arm-imec-automotive-chiplets",                                                                                                cat:"chip",            stars:4, year:2025, img:"https://newsroom.arm.com/wp-content/uploads/2024/03/Auto-launch-blog7.jpg",                                                       desc:"チップレット技術がソフトウェア定義車両のコスト・性能最適化に不可欠な理由。次世代車載コンピュータアーキテクチャの方向性。" },
   // QUALCOMM / RENESAS
   { num:44, title:"Qualcomm and BMW Unveil Snapdragon Ride Pilot",                                   url:"https://next-curve.com/2025/09/12/qualcomms-automotive-ecosystem-drive-with-snapdragon-ride-pilot/",                                                        cat:"chip",            stars:4, year:2025, img:"./articles/images/art044_cover.jpg",                                                                               desc:"BMW iX3でSnapdragon Ride Pilot実装。高速85mph対応のハンズフリー走行。コックピット+ADAS統合SoCのコスト優位性（25-50%削減）。" },
@@ -266,7 +266,7 @@ const ARTICLES = [
   { num:74, title:"Navigating the Future: Mapless vs Map-Based Autonomous Driving",                  url:"https://www.counterpointresearch.com/insight/navigating-the-future-mapless-vs-map-based-autonomous-driving/",                                              cat:"regulation",      stars:4, year:2024, img:"https://counterpointresearch.com/statics/images/admin/image-12.jpg",                                                       desc:"マップレスvsマップベースの自動運転を比較。コスト・拡張性・精度のトレードオフ分析。業界のマップレス移行トレンドを解説。" },
   { num:75, title:"MapVision: CVPR 2024 Autonomous Grand Challenge Mapless Driving Tech Report",      url:"https://arxiv.org/abs/2406.10125",                                                                                                                         cat:"ai",              stars:4, year:2024, img:"./articles/images/art075_fig1.png",                                                                                desc:"CVPR 2024 Autonomous Grand Challengeのマップレス走行技術レポート。オンラインマップ生成の最先端手法。" },
   // SAFETY / REGULATION
-  { num:76, title:"A Unified Safety Framework: Integrating ISO 26262, SOTIF, and UL 4600",           url:"https://www.sciencedirect.com/science/article/pii/S259019822500510X",                                                                                       cat:"regulation",      stars:5, year:2025, img:"./articles/images/art076_cover.jpg",                                                                               desc:"ISO 26262・ISO 21448 (SOTIF)・UL 4600を統合したAV開発向け安全フレームワーク。自動運転開発者必読。" },
+  { num:76, title:"A Unified Safety Framework: Integrating ISO 26262, SOTIF, and UL 4600",           url:"https://www.sciencedirect.com/science/article/pii/S259019822500510X?via%3Dihub",                                                                            cat:"regulation",      stars:5, year:2025, img:"",                                                                                                          desc:"ISO 26262・ISO 21448 (SOTIF)・UL 4600を統合したAV開発向け安全フレームワーク。自動運転開発者必読。" },
   { num:77, title:"Rethinking AV Functional Safety Standards: ISO 26262 and SOTIF Analysis",         url:"https://www.automotive-iq.com/autonomous-drive/articles/rethinking-autonomous-vehicle-functional-safety-standards-an-analysis-of-sotif-and-iso-26262",    cat:"regulation",      stars:4, year:2024, img:"./articles/images/art077_cover.jpg",                                                                               desc:"SOTIFとISO 26262の補完関係を詳細分析。AI/センサー誤認識への対処としてのSOTIFの役割を解説。" },
   { num:78, title:"Cybersecurity for Next-Generation Road Transportation (ACM)",                      url:"https://dl.acm.org/doi/full/10.1145/3744352",                                                                                                              cat:"regulation",      stars:4, year:2025, img:"./articles/images/art078_cover.jpg",                                                                               desc:"次世代道路交通のサイバーセキュリティ包括レビュー。V2X通信セキュリティとUN R155対応の技術的要件。" },
   { num:79, title:"Regulations for Autonomous Vehicles: Global Policy Trends 2024-2030",             url:"https://patentpc.com/blog/regulations-for-autonomous-vehicles-where-do-countries-stand-in-2024-2030-global-policy-trends",                                cat:"regulation",      stars:4, year:2024, img:"./articles/images/art079_cover.jpeg",                                                                               desc:"米・EU・中国の自動運転規制比較。中国の2025年L3以上義務化、EU統一フレームワーク2026、UNECE R155への対応。" },
@@ -295,19 +295,19 @@ const ARTICLES = [
   { num:99, title:"OpenDriveLab Publications: E2E Autonomous Driving Research Hub",                  url:"https://opendrivelab.com/publications",                                                                                                                     cat:"ai",              stars:5, year:2024, img:"./articles/images/art099_cover.jpg",                                                                               desc:"上海AIラボ/Hong Kong Univ.のOpenDriveLabの論文リスト。UniAD・VAD・SparseDrive等、E2E自動運転の最先端研究を継続的に発表する研究ラボ。" },
   { num:100,title:"Waymo Skyrocketing Ridership in One Chart (TechCrunch)",                          url:"https://techcrunch.com/2026/03/27/waymo-skyrocketing-ridership-in-one-chart/",                                                                              cat:"waymo regulation",stars:4, year:2026, img:"./articles/images/art100_cover.png",                                                                               desc:"Waymoの急成長ライドシェア事業を1枚のグラフで示す分析記事。スケーリングの速度と市場インパクトを可視化。" },
   // PRODUCT ARCHITECTURE PICKS
-  { num:101,title:"AI & Robotics (Tesla公式)",                                                       url:"https://www.tesla.com/AI",                                                                                                                                  cat:"tesla ai chip architecture",stars:5, year:2026, img:"https://digitalassets.tesla.com/tesla-contents/image/upload/f_auto,q_auto/tesla-logo-thumbnail.jpg",                         desc:"TeslaのFSD向けAI推論チップ、カメラベースNN、BEVネットワーク、車両フリート学習ループを公式に確認できる。Vision+独自推論HWの採用思想を把握するための基礎資料。" },
-  { num:102,title:"Wayve Advances Embodied AI for Driving with NVIDIA DRIVE AGX Thor",                url:"https://wayve.ai/thinking/wayve-gen-3/",                                                                                                                    cat:"wayve nvidia chip ai architecture",stars:5, year:2026, img:"https://wayve.ai/wp-content/uploads/2026/03/Wayve-Gen-3-NVIDIA-DRIVE-AGX-Thor.jpg",                                  desc:"Wayve Gen 3 robot vehicle platformがNVIDIA DRIVE AGX Thorを採用。E2E/Embodied AI DriverをL3 eyes-off/L4 driverlessへ載せる量産計算基盤の方向性が分かる。" },
-  { num:103,title:"Driving the World, Sight Unseen: Wayve AI-500 Roadshow",                           url:"https://wayve.ai/thinking/ai-500-roadshow-90-cities/",                                                                                                      cat:"wayve ai architecture",stars:5, year:2025, img:"https://wayve.ai/wp-content/uploads/2025/06/AI-500-Roadshow-Hero.jpg",                                            desc:"1つのAIモデルを90都市で再学習なしに走らせるWayveの汎化検証。HDマップや都市別チューニングを減らし、単一モデルでODD拡張する戦略の実例。" },
-  { num:104,title:"Seeing with Superhuman Clarity: Aurora Driver Perception Architecture",             url:"https://aurora.tech/newsroom/seeing-with-superhuman-clarity-the-physics-and-architecture-behind-the",                                                       cat:"aurora sensor ai architecture",stars:5, year:2026, img:"https://images.ctfassets.net/9i0s3p5vkth9/7vXQrEJVG4EGFCdJsUGSzt/f690e360dd0b26ffa8c9d9a7cdd5bd53/Aurora-2024-progress.jpg",desc:"Aurora DriverのFirstLight FMCW LiDAR、イメージングレーダー、高解像度カメラ、Mainline Perception/Fault Managementを解説。高速L4トラックの長距離知覚要件が具体的。" },
-  { num:105,title:"Nuro Driver: Universal Autonomy Platform",                                         url:"https://www.nuro.ai/nuro-driver",                                                                                                                           cat:"ai sensor chip architecture",stars:5, year:2026, img:"https://nuro.imgix.net/Allthree_Zoomedout_Lightv1_2025-04-25-021038_xjiw.jpg",                            desc:"Nuro DriverのE2E AIモデル、ガードレール、AI-driven mapping、LiDAR/レーダー/カメラ、独自ECU、NVIDIA Thor採用を整理した公式製品ページ。ライセンス型L4基盤として重要。" },
+  { num:101,title:"AI & Robotics (Tesla公式)",                                                       url:"https://www.tesla.com/AI",                                                                                                                                  cat:"tesla ai chip architecture",stars:5, year:2026, img:"./articles/images/art101_cover.jpg",                                                                 desc:"TeslaのFSD向けAI推論チップ、カメラベースNN、BEVネットワーク、車両フリート学習ループを公式に確認できる。Vision+独自推論HWの採用思想を把握するための基礎資料。" },
+  { num:102,title:"Wayve Advances Embodied AI for Driving with NVIDIA DRIVE AGX Thor",                url:"https://wayve.ai/thinking/wayve-gen-3/",                                                                                                                    cat:"wayve nvidia chip ai architecture",stars:5, year:2026, img:"./articles/images/art102_cover.jpg",                                                         desc:"Wayve Gen 3 robot vehicle platformがNVIDIA DRIVE AGX Thorを採用。E2E/Embodied AI DriverをL3 eyes-off/L4 driverlessへ載せる量産計算基盤の方向性が分かる。" },
+  { num:103,title:"Driving the World, Sight Unseen: Wayve AI-500 Roadshow",                           url:"https://wayve.ai/thinking/ai-500-roadshow-90-cities/",                                                                                                      cat:"wayve ai architecture",stars:5, year:2025, img:"./articles/images/art103_cover.jpg",                                                            desc:"1つのAIモデルを90都市で再学習なしに走らせるWayveの汎化検証。HDマップや都市別チューニングを減らし、単一モデルでODD拡張する戦略の実例。" },
+  { num:104,title:"Seeing with Superhuman Clarity: Aurora Driver Perception Architecture",             url:"https://aurora.tech/newsroom/seeing-with-superhuman-clarity-the-physics-and-architecture-behind-the",                                                       cat:"aurora sensor ai architecture",stars:5, year:2026, img:"./articles/images/art104_cover.jpg",                                            desc:"Aurora DriverのFirstLight FMCW LiDAR、イメージングレーダー、高解像度カメラ、Mainline Perception/Fault Managementを解説。高速L4トラックの長距離知覚要件が具体的。" },
+  { num:105,title:"Nuro Driver: Universal Autonomy Platform",                                         url:"https://www.nuro.ai/nuro-driver",                                                                                                                           cat:"ai sensor chip architecture",stars:5, year:2026, img:"./articles/images/art105_cover.jpg",                                           desc:"Nuro DriverのE2E AIモデル、ガードレール、AI-driven mapping、LiDAR/レーダー/カメラ、独自ECU、NVIDIA Thor採用を整理した公式製品ページ。ライセンス型L4基盤として重要。" },
   { num:106,title:"Lucid, Nuro, and Uber Partner on Next-Generation Autonomous Robotaxi Program",      url:"https://www.nuro.ai/blog/lucid-nuro-and-uber-partner-on-next-generation-autonomous-robotaxi-program",                                                       cat:"ai sensor chip regulation architecture",stars:4, year:2025, img:"https://nuro.imgix.net/Allthree_Zoomedout_Lightv1_2025-04-25-021038_xjiw.jpg",                  desc:"Lucid車両、Nuro Driver、Uber運行網を組み合わせ、6年間で2万台以上を狙うロボタクシー提携。垂直統合ではなくAV Driverを部品化して供給するモデル。" },
-  { num:107,title:"NVIDIA Makes the World Robotaxi-Ready With Uber Partnership",                      url:"https://nvidianews.nvidia.com/news/nvidia-uber-robotaxi",                                                                                                    cat:"nvidia chip ai architecture",stars:5, year:2025, img:"https://blogs.nvidia.com/wp-content/uploads/2025/01/nvidia-drive-partners-ecosystem-ces-1280x680-1.jpg",      desc:"DRIVE AGX Hyperion 10をL4-readyな計算・センサー参照アーキテクチャとして提示。2基のDRIVE AGX Thor、Blackwell、VLA/生成AI最適化、Cosmos data factoryが要点。" },
-  { num:108,title:"Qualcomm and BMW Group Unveil Snapdragon Ride Pilot",                              url:"https://www.qualcomm.com/news/releases/2025/09/qualcomm-and-bmw-group-unveil-groundbreaking-automated-driving-s",                                          cat:"chip sensor ai architecture",stars:5, year:2025, img:"./articles/images/art044_cover.jpg",                                                                  desc:"BMW iX3 Neue Klasseに搭載されるSnapdragon Ride Pilot公式発表。8MP/3MPカメラ、レーダー、HD map、GNSS、V2X、BEV低レベル知覚、AI+ルール計画を具体化。" },
-  { num:109,title:"Mobileye's New ECU Series: Modularity from ADAS to AV",                            url:"https://www.mobileye.com/blog/modularity-from-adas-to-av/",                                                                                                  cat:"chip sensor ai architecture",stars:5, year:2025, img:"https://static.mobileye.com/website/us/corporate/images/21a6e12d0e849bbf17263e0f0770df82_1676885917761.png",desc:"EyeQ6Hを2基載せた共通プライマリボードとMCUを中核に、SuperVisionからChauffeurまで拡張するECUシリーズ。検証済み基盤を使い回すモジュラー戦略。" },
-  { num:110,title:"Mobileye Chauffeur: Eyes-Off Driving Platform",                                    url:"https://www.mobileye.com/solutions/chauffeur/",                                                                                                             cat:"sensor chip ai architecture",stars:5, year:2026, img:"https://static.mobileye.com/website/us/corporate/images/21a6e12d0e849bbf17263e0f0770df82_1676885917761.png",desc:"REM、EyeQ6 High、True Redundancy、RSS、カメラ系とレーダー/LiDAR系の独立冗長構成を説明。Consumer AV向けeyes-off製品の具体構成が分かる。" },
+  { num:107,title:"NVIDIA Makes the World Robotaxi-Ready With Uber Partnership",                      url:"https://nvidianews.nvidia.com/news/nvidia-uber-robotaxi",                                                                                                    cat:"nvidia chip ai architecture",stars:5, year:2025, img:"./articles/images/art107_cover.jpg",      desc:"DRIVE AGX Hyperion 10をL4-readyな計算・センサー参照アーキテクチャとして提示。2基のDRIVE AGX Thor、Blackwell、VLA/生成AI最適化、Cosmos data factoryが要点。" },
+  { num:108,title:"Qualcomm and BMW Group Unveil Snapdragon Ride Pilot",                              url:"https://www.qualcomm.com/news/releases/2025/09/qualcomm-and-bmw-group-unveil-groundbreaking-automated-driving-s",                                          cat:"chip sensor ai architecture",stars:5, year:2025, img:"./articles/images/art108_cover.jpg",                                                                  desc:"BMW iX3 Neue Klasseに搭載されるSnapdragon Ride Pilot公式発表。8MP/3MPカメラ、レーダー、HD map、GNSS、V2X、BEV低レベル知覚、AI+ルール計画を具体化。" },
+  { num:109,title:"Mobileye's New ECU Series: Modularity from ADAS to AV",                            url:"https://www.mobileye.com/blog/modularity-from-adas-to-av/",                                                                                                  cat:"chip sensor ai architecture",stars:5, year:2025, img:"./articles/images/art109_cover.jpg",desc:"EyeQ6Hを2基載せた共通プライマリボードとMCUを中核に、SuperVisionからChauffeurまで拡張するECUシリーズ。検証済み基盤を使い回すモジュラー戦略。" },
+  { num:110,title:"Mobileye Chauffeur: Eyes-Off Driving Platform",                                    url:"https://www.mobileye.com/solutions/chauffeur/",                                                                                                             cat:"sensor chip ai architecture",stars:5, year:2026, img:"./articles/images/art110_cover.jpg",desc:"REM、EyeQ6 High、True Redundancy、RSS、カメラ系とレーダー/LiDAR系の独立冗長構成を説明。Consumer AV向けeyes-off製品の具体構成が分かる。" },
   { num:111,title:"Pony.ai Unveils Seventh-Generation Robotaxi Lineup",                               url:"https://ir.pony.ai/news-releases/news-release-details/pony-ai-inc-unveils-seventh-generation-robotaxi-lineup-targets/",                                   cat:"sensor chip regulation architecture",stars:5, year:2025, img:"./articles/images/art026_cover.png",                                                        desc:"Toyota、BAIC、GACとの第7世代Robotaxi量産計画。100% automotive-grade ADK、BOM 70%削減、計算ユニット80%削減、LiDAR 68%削減など量産コストが具体的。" },
-  { num:112,title:"WeRide and Lenovo Launch Automotive-Grade HPC 3.0 Powered by NVIDIA DRIVE AGX Thor",url:"https://ir.weride.ai/news-releases/news-release-details/weride-teams-lenovo-launch-100-automotive-grade-hpc-30-platform",                                cat:"nvidia chip regulation architecture",stars:5, year:2025, img:"./articles/images/art026_cover.png",                                                        desc:"WeRide Robotaxi GXR向けHPC 3.0の公式発表。デュアルNVIDIA DRIVE AGX Thor、DriveOS、Lenovo AD1 L4 domain controller、最大2,000 TOPSが要点。" },
-  { num:113,title:"XPENG Accelerates Global Deployment of VLA 2.0",                                   url:"https://www.xpeng.com/pressroom/news/019cae5e67b99c0960ee8a028129016a",                                                                                     cat:"ai architecture regulation",stars:5, year:2026, img:"./articles/images/art035_cover.webp",                                                               desc:"XPENG VLA 2.0は逐次的なvision-language-actionではなくvision-to-actionのE2E構造を掲げる。乗用車、Robotaxi、ロボット、飛行体へ広げるPhysical AI戦略。" },
+  { num:112,title:"WeRide and Lenovo Launch Automotive-Grade HPC 3.0 Powered by NVIDIA DRIVE AGX Thor",url:"https://ir.weride.ai/news-releases/news-release-details/weride-teams-lenovo-launch-100-automotive-grade-hpc-30-platform",                                cat:"nvidia chip regulation architecture",stars:5, year:2025, img:"./articles/images/art112_cover.jpg",                                                        desc:"WeRide Robotaxi GXR向けHPC 3.0の公式発表。デュアルNVIDIA DRIVE AGX Thor、DriveOS、Lenovo AD1 L4 domain controller、最大2,000 TOPSが要点。" },
+  { num:113,title:"XPENG Accelerates Global Deployment of VLA 2.0",                                   url:"https://www.xpeng.com/pressroom/news/019cae5e67b99c0960ee8a028129016a",                                                                                     cat:"ai architecture regulation",stars:5, year:2026, img:"./articles/images/art113_cover.png",                                                               desc:"XPENG VLA 2.0は逐次的なvision-language-actionではなくvision-to-actionのE2E構造を掲げる。乗用車、Robotaxi、ロボット、飛行体へ広げるPhysical AI戦略。" },
   { num:114,title:"BYD Unveils God's Eye DiPilot ADAS Suite",                                        url:"https://paultan.org/2025/02/13/byd-unveils-gods-eye-dipilot-adas-suite-to-roll-out-in-all-byd-denza-yangwang-models-sold-in-china/",                       cat:"sensor chip regulation architecture",stars:4, year:2025, img:"https://paultan.org/image/2025/02/byd-gods-eye-dipilot-adas-suite-1.jpg",                      desc:"BYDがGod's Eye/DiPilotを中国販売モデルへ広く展開。God's Eye CはDiPilot 100、12カメラ、5ミリ波レーダー、12超音波レーダーで、上位はLiDARを含む。" }
 ];
 
@@ -341,6 +341,22 @@ const LOCAL_ARTICLES = {
   38:'./articles/article_038.html',
   39:'./articles/article_039.html',
   40:'./articles/article_040.html',
+  41:'./articles/article_041.html',
+  42:'./articles/article_042.html',
+  76:'./articles/article_076.html',
+  101:'./articles/article_101.html',
+  102:'./articles/article_102.html',
+  103:'./articles/article_103.html',
+  104:'./articles/article_104.html',
+  105:'./articles/article_105.html',
+  107:'./articles/article_107.html',
+  108:'./articles/article_108.html',
+  109:'./articles/article_109.html',
+  110:'./articles/article_110.html',
+  111:'./articles/article_111.html',
+  112:'./articles/article_112.html',
+  113:'./articles/article_113.html',
+  114:'./articles/article_114.html',
 };
 
 // ─── ARTICLE TYPE ────────────────────────────────────────────────────────────
@@ -421,31 +437,29 @@ const READING_ORDER = FIRST_PASS_ORDER.concat(
 );
 const READING_RANK = new Map(READING_ORDER.map((num, i) => [num, i + 1]));
 
-const SECTIONS = [
+const PRIORITY_SECTIONS = [
   { id:"first-pass", title:"最初の一巡（20本）", filter: a => FIRST_PASS_ORDER.includes(a.num), order: FIRST_PASS_ORDER },
   { id:"deep-dive", title:"次に読む（残り94本）", filter: a => READING_RANK.has(a.num), order: READING_ORDER },
 ];
 
-// ─── RATINGS (localStorage) ──────────────────────────────────────────────────
-function getUserRating(num) {
-  return parseInt(localStorage.getItem('ur_' + num) || '0');
+function getSections(sortMode) {
+  if (sortMode === 'num') {
+    return [
+      { id:"num-order", title:"記事番号順", filter: () => true, order: ARTICLES.map(a => a.num).sort((a, b) => a - b) },
+    ];
+  }
+  return PRIORITY_SECTIONS;
 }
-function setUserRating(num, val) {
-  localStorage.setItem('ur_' + num, val);
-}
+
+let activeCat = 'all', activeStars = 0, activeTab = 'all', activeSort = 'priority';
 
 // ─── RENDER ──────────────────────────────────────────────────────────────────
-function starsHTML(n) {
-  return '⭐'.repeat(n) + (n < 5 ? '☆'.repeat(5-n) : '');
-}
-
 function renderCard(a) {
   const meta = getCatMeta(a.cat);
-  const userRating = getUserRating(a.num);
   const hasImg = !!a.img;
   const localUrl = LOCAL_ARTICLES[a.num];
   const rank = READING_RANK.get(a.num);
-  const badgeText = rank ? `${rank}. #${a.num}` : `#${a.num}`;
+  const badgeText = activeSort === 'priority' && rank ? `${rank}. #${a.num}` : `#${a.num}`;
   const imgInner = hasImg
     ? `<img src="${a.img}" loading="lazy" alt="" onerror="this.style.display='none'">`
     : `<div class="img-fallback">${meta.emoji}<span>${meta.label}</span></div>`;
@@ -474,15 +488,6 @@ function renderCard(a) {
           <span class="rating-label">編集部</span>
           <span class="editor-stars">${'⭐'.repeat(a.stars)}</span>
         </div>
-        <div class="rating-row">
-          <span class="rating-label">マイ評価</span>
-          <div class="user-stars" data-num="${a.num}">
-            ${[1,2,3,4,5].map(v =>
-              `<span class="s${userRating >= v ? ' lit' : ''}" data-val="${v}">★</span>`
-            ).join('')}
-          </div>
-          ${userRating === 0 ? `<span class="user-note">クリックして評価</span>` : ''}
-        </div>
       </div>
     </div>
   </div>`;
@@ -493,7 +498,7 @@ function buildSections() {
   main.innerHTML = '';
   const rendered = new Set();
 
-  for (const sec of SECTIONS) {
+  for (const sec of getSections(activeSort)) {
     let articles = ARTICLES.filter(a => sec.filter(a) && !rendered.has(a.num));
     if (sec.order) {
       const rank = new Map(sec.order.map((num, i) => [num, i]));
@@ -520,8 +525,6 @@ buildSections();
 // Called after filter logic is defined below — moved to end of script
 
 // ─── FILTER & SEARCH ─────────────────────────────────────────────────────────
-let activeCat = 'all', activeStars = 0, activeTab = 'all';
-
 function applyFilters() {
   const q = document.getElementById('search').value.toLowerCase().trim();
   let visible = 0;
@@ -554,13 +557,9 @@ function applyFilters() {
 
 document.getElementById('search').addEventListener('input', applyFilters);
 
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    activeCat = btn.dataset.cat;
-    applyFilters();
-  });
+document.getElementById('cat-filter').addEventListener('change', e => {
+  activeCat = e.target.value;
+  applyFilters();
 });
 
 document.querySelectorAll('.star-btn').forEach(btn => {
@@ -572,6 +571,16 @@ document.querySelectorAll('.star-btn').forEach(btn => {
   });
 });
 
+document.querySelectorAll('.sort-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeSort = btn.dataset.sort;
+    buildSections();
+    applyFilters();
+  });
+});
+
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -579,59 +588,9 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     activeTab = btn.dataset.tab;
     // Reset category filter when switching tabs
     activeCat = 'all';
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector('.filter-btn[data-cat="all"]').classList.add('active');
+    document.getElementById('cat-filter').value = 'all';
     applyFilters();
   });
-});
-
-// ─── USER RATINGS ─────────────────────────────────────────────────────────────
-document.addEventListener('mouseover', e => {
-  const s = e.target.closest('.s');
-  if (!s) return;
-  const group = s.closest('.user-stars');
-  const val = parseInt(s.dataset.val);
-  group.querySelectorAll('.s').forEach(star => {
-    star.classList.toggle('hover-lit', parseInt(star.dataset.val) <= val);
-  });
-});
-
-document.addEventListener('mouseout', e => {
-  const s = e.target.closest('.s');
-  if (!s) return;
-  const group = s.closest('.user-stars');
-  const num = parseInt(group.dataset.num);
-  const saved = getUserRating(num);
-  group.querySelectorAll('.s').forEach(star => {
-    star.classList.remove('hover-lit');
-    star.classList.toggle('lit', parseInt(star.dataset.val) <= saved);
-  });
-});
-
-document.addEventListener('click', e => {
-  const s = e.target.closest('.s');
-  if (!s) return;
-  const group = s.closest('.user-stars');
-  const num = parseInt(group.dataset.num);
-  const val = parseInt(s.dataset.val);
-  // Toggle off if clicking same rating
-  const prev = getUserRating(num);
-  const newVal = prev === val ? 0 : val;
-  setUserRating(num, newVal);
-
-  group.querySelectorAll('.s').forEach(star => {
-    star.classList.toggle('lit', parseInt(star.dataset.val) <= newVal);
-  });
-
-  // Update note
-  const row = group.closest('.rating-row');
-  let note = row.querySelector('.user-note');
-  if (newVal === 0) {
-    if (!note) { note = document.createElement('span'); note.className = 'user-note'; row.appendChild(note); }
-    note.textContent = 'クリックして評価';
-  } else {
-    if (note) note.remove();
-  }
 });
 
 // Initial render: apply tab filter (articles tab is default)

@@ -231,7 +231,7 @@
 
 | # | タイトル | 年 | ★ | 概要 |
 |---|---------|-----|-----|------|
-| 76 | [A Unified Safety Framework: Integrating ISO 26262, SOTIF, and UL 4600](https://www.sciencedirect.com/science/article/pii/S259019822500510X) | 2025 | ⭐⭐⭐⭐⭐ | ISO 26262・ISO 21448 (SOTIF)・UL 4600を統合したAV開発向け安全フレームワーク。自動運転開発者必読。 |
+| 76 | [A Unified Safety Framework: Integrating ISO 26262, SOTIF, and UL 4600](https://www.sciencedirect.com/science/article/pii/S259019822500510X?via%3Dihub) | 2025 | ⭐⭐⭐⭐⭐ | ISO 26262・ISO 21448 (SOTIF)・UL 4600を統合したAV開発向け安全フレームワーク。自動運転開発者必読。 |
 | 77 | [Rethinking AV Functional Safety Standards: ISO 26262 and SOTIF Analysis](https://www.automotive-iq.com/autonomous-drive/articles/rethinking-autonomous-vehicle-functional-safety-standards-an-analysis-of-sotif-and-iso-26262) | 2024 | ⭐⭐⭐⭐ | SOTIFとISO 26262の補完関係を詳細分析。AI/センサー誤認識への対処としてのSOTIFの役割を解説。 |
 | 78 | [Cybersecurity for Next-Generation Road Transportation (ACM)](https://dl.acm.org/doi/full/10.1145/3744352) | 2025 | ⭐⭐⭐⭐ | 次世代道路交通のサイバーセキュリティ包括レビュー。V2X通信セキュリティとUN R155対応の技術的要件。 |
 

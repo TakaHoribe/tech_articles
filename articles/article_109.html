@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mobileye ECU Series</title><link rel="stylesheet" href="./style.css"></head>
+<body><div class="wrap"><nav><a href="../index.html">← 記事一覧に戻る</a></nav><div class="ah"><h1>Mobileyeの新ECUシリーズ: ADASからAVまでのモジュラリティ</h1><div class="meta">Mobileye Blog · 2025年2月27日 · ⭐5</div><div class="orig">原文: <a href="https://www.mobileye.com/blog/modularity-from-adas-to-av/" target="_blank" rel="noopener">Mobileye’s new ECU Series</a></div></div><div class="body">
+<figure><img src="./images/art109_cover.jpg" alt="Mobileye ECU Series"></figure>
+<p>Mobileyeの新しいECUシリーズの中心には、2つのEyeQ6Hチップと統合MCUを搭載した共通プライマリボードがある。このAI搭載ソリューション群は、運転支援から自動運転までのスペクトラム全体でモジュラリティを提供する。</p>
+<p>Mobileye EyeQチップは、ADASを動かすことで道路安全に貢献してきた。ビジョンファーストのアプローチに基づき、自動緊急ブレーキやレーンキープなどの機能を支えている。2億個以上のチップが搭載された実績を背景に、Mobileyeはその技術をさらに進め、スケーラビリティを持つECUシリーズへ展開する。</p>
+<h2>ECU内部: EyeQの優位性</h2>
+<p>スケーラブルでモジュラーな先進運転プラットフォームを作る大きな課題は、中核部で柔軟性と効率を両立することである。Mobileye EyeQ6Hは、固定機能処理と汎用処理を組み合わせる独自アーキテクチャによって、そのトレードオフを小さくするよう設計されている。</p>
+<p>EyeQ6HはMobileyeが設計・製造するボード上に配置される。これにより自動車メーカーのニーズに対応し、統合プロセスを滑らかにし、製品ロードマップへの適応性を高める。</p>
+<h2>1枚のボードで製品ロードマップを支える</h2>
+<p>共通プライマリボードは、2つのEyeQ6Hと統合MCUを備える。コンパクトだが強力なこのアーキテクチャは、自動車メーカーに自動運転ソリューションの基盤を提供し、将来のハードウェア・ソフトウェア調整だけで機能を拡張できるようにする。</p>
+<p>ベース構成はMobileye SuperVisionであり、11台のカメラと任意のレーダーに接続される。SuperVisionはhands-off/eyes-onのプラットフォームで、継続的なソフトウェア更新を通じてnavigate-on-pilotなどの機能を提供する。</p>
+<p>SuperVision ECUにセカンダリ計算ボードを追加し、設計の大部分を維持することで、Mobileye Chauffeurが導入される。これは消費者車両向けのhands-off/eyes-offプラットフォームであり、カメラに加えてレーダーとLiDARのネットワークを使い、ODD内でeyes-off運転を可能にする。</p>
+<p>Mobileye Driveは、さらに多くの構成要素をプライマリボード周辺に追加し、最も大きな要素であるドライバーを取り除く。MaaS向けに設計され、プライマリ・セカンダリボード上の合計4つのEyeQ6H、最大13台のカメラ、イメージングレーダー、LiDARを備える。</p>
+<p>3つのECUを並べると、SuperVision、Chauffeur、Driveが共通のハードウェア・ソフトウェア基盤を共有していることが分かる。これは、検証済み基盤を使い回しながらADASからAVへ拡張する、Mobileyeのモジュラー戦略である。</p>
+</div><footer><p>日本語翻訳版 | 原文: <a href="https://www.mobileye.com/blog/modularity-from-adas-to-av/" target="_blank" rel="noopener">こちら</a></p></footer></div></body></html>
