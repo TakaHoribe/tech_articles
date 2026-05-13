@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動運転の機能安全規格を再考する：ISO 26262とSOTIF分析</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>自動運転の機能安全規格を再考する：ISO 26262とSOTIF分析</h1>
+<div class="meta">Automotive IQ · 2024年 · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://www.automotive-iq.com/autonomous-drive/articles/rethinking-autonomous-vehicle-functional-safety-standards-an-analysis-of-sotif-and-iso-26262" target="_blank" rel="noopener">https://www.automotive-iq.com/autonomous-drive/articles/rethinking-autonomous-vehicle-functional-safety-standards-an-analysis-of-sotif-and-iso-26262</a></div>
+</div>
+<div class="body">
+
+<figure>
+        <img src="./images/art077_cover.jpg" alt="自動運転の機能安全規格：ISO 26262とSOTIF分析">
+      </figure>
+
+      <p>ISO 26262は、自動車の電気・電子システムに起因する機能安全リスクを管理するために設計された標準規格である。しかし自動運転技術が急速に進化するにつれ、この規格だけでは対処しきれない新たな課題が浮き彫りになっている。本稿では、現行の安全規格の限界と、それを補完するために策定されたSOTIF（意図した機能の安全性）について分析する。</p>
+
+      <h2>消費者の信頼低下</h2>
+
+      <p>2018年にCox Automotiveが実施した調査によると、自動運転車に対する消費者の信頼は低下していることが明らかになった。回答者のほぼ半数が、レベル5の完全自動運転車を「絶対に購入しない」と回答しており、2016年の30%から大きく増加している。自動化レベルに対する購買希望もレベル4からレベル2へと後退し、「完全自動運転車が道路を安全にする」という信念を持つ人の割合も大幅に低下した。</p>
+
+      <h2>現行安全規格の限界</h2>
+
+      <p>ISO 26262は従来、電気・電子システムの誤動作を対象として機能安全基準を策定してきた。しかし自動運転の安全性は、E/Eシステムの故障だけにとどまらない。センサーの性能限界、ドライバーによる誤使用の可能性、環境の変化なども重要な要因となる。</p>
+
+      <p>自動運転モードにおける自動車インシデントの多くは、「電気的な故障」ではなく「ソフトウェアおよびシステムの設計・エンジニアリング上の欠陥」から生じているとされる。さらに、AIや機械学習アルゴリズムが非決定論的なディープラーニングモデルを通じて大量の安全クリティカルなセンサーデータを処理する場合、その検証は極めて困難になる。</p>
+
+      <h2>SOTIF規格の策定</h2>
+
+      <p>ISO PAS 21448、すなわち「Safety of the Intended Functionality（SOTIF：意図した機能の安全性）」は、こうしたギャップを埋めるために策定された。当初はISO 26262の一部として計画されていたが、その複雑性から独立した規格として分離された。</p>
+
+      <p>SOTIFは、テスト・シミュレーション・統計的分析を通じた「未知かつ危険な」動作の防止を目的としている。この規格が対処しようとするのは、以下の3つのカテゴリーの安全脅威である。</p>
+
+      <ul>
+        <li>意図した機能に残存するリスク</li>
+        <li>既知の状況における意図しない動作</li>
+        <li>意図しない動作を引き起こす可能性のある未知の状況</li>
+      </ul>
+
+      <h2>NVIDIAのアプローチ</h2>
+
+      <p>NVIDIAは、SOTIFの原則を採用した「世界初の機能安全AI自動運転プラットフォーム」と主張するアーキテクチャを開発した。このアーキテクチャは、ソフトウェア・アルゴリズム・仮想現実シミュレーションにわたる冗長システムを組み込み、システム障害が発生した場合でも安全な動作を可能にする。</p>
+
+      <h2>安全性への期待値</h2>
+
+      <p>中国の大学による研究では、自動運転車が人間のドライバーより4〜5倍安全であれば、人々はその受容に前向きになることが示されている。これは死亡リスクを75〜80%削減することを意味し、SOTIFが目標とする安全水準と一致している。</p>
+
+      <p>ISO 26262とSOTIFは相互補完的な規格である。ISO 26262がE/Eシステムのランダム故障や系統的故障に対処する一方、SOTIFはシステムが正常に動作していても発生しうる性能限界や予期しない動作を扱う。自動運転技術の実用化と普及のためには、両規格を適切に組み合わせた包括的な安全フレームワークの構築が不可欠である。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://www.automotive-iq.com/autonomous-drive/articles/rethinking-autonomous-vehicle-functional-safety-standards-an-analysis-of-sotif-and-iso-26262" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

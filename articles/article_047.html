@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>End-to-end Autonomous Driving: 自動運転研究に必要な包括的リソース</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+
+    <div class="ah">
+      <h1>End-to-end Autonomous Driving: 自動運転研究に必要な包括的リソース</h1>
+      <div class="meta">OpenDriveLab · GitHub / IEEE T-PAMI 2024 · ⭐5</div>
+      <div class="orig">原文: <a href="https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving" target="_blank" rel="noopener">OpenDriveLab/End-to-end-Autonomous-Driving</a></div>
+    </div>
+
+    <div class="body">
+      <figure>
+        <img src="./images/art047_cover.jpg" alt="End-to-end Autonomous Driving">
+      </figure>
+
+      <p><strong>重要:</strong> 最新情報は<a href="https://opendrivelab.com/#news" target="_blank" rel="noopener">opendrivelab.com</a>で確認できる。</p>
+
+      <h2>End-to-end Autonomous Driving</h2>
+      <p><strong>このリポジトリは、エンドツーエンド自動運転研究に必要なものをまとめたリソースである。</strong> 優れた講演、包括的な論文コレクション、ベンチマーク、チャレンジが提示されている。</p>
+
+      <h2>目次</h2>
+      <ul>
+        <li>概観</li>
+        <li>初心者向け学習資料</li>
+        <li>ワークショップと講演</li>
+        <li>論文コレクション</li>
+        <li>ベンチマークとデータセット</li>
+        <li>コンペティション / チャレンジ</li>
+        <li>コントリビューション</li>
+        <li>ライセンス</li>
+        <li>引用</li>
+        <li>連絡先</li>
+      </ul>
+
+      <h2>概観</h2>
+      <p>自動運転コミュニティでは、検出やモーション予測のような個別タスクに集中するのではなく、生センサー入力を使って車両の運動計画を生成する、エンドツーエンドのアルゴリズムフレームワークを採用するアプローチが急速に増えている。このサーベイでは、エンドツーエンド自動運転における動機、ロードマップ、方法論、課題、将来動向について、270本を超える論文を包括的に分析している。詳細はサーベイ論文に記載されている。</p>
+
+      <blockquote>
+        <p><a href="https://arxiv.org/abs/2306.16927" target="_blank" rel="noopener"><strong>End-to-end Autonomous Driving: Challenges and Frontiers</strong></a></p>
+        <p>Li Chen、Penghao Wu、Kashyap Chitta、Bernhard Jaeger、Andreas Geiger、Hongyang Li</p>
+        <p>OpenDriveLab / Shanghai AI Lab、University of Hong Kong、University of Tübingen、Tübingen AI Center</p>
+      </blockquote>
+
+      <figure>
+        <img src="./images/art047_overview.jpg" alt="エンドツーエンド自動運転の研究領域概要">
+      </figure>
+
+      <p>関連する有用な資料を見つけた場合は、メールを送るか、Pull Requestを開いてほしい。</p>
+
+      <h2>初心者向け学習資料</h2>
+      <h3>オンラインコース</h3>
+      <ul>
+        <li><a href="https://uni-tuebingen.de/en/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/autonomous-vision/lectures/self-driving-cars/" target="_blank" rel="noopener">Lecture: Self-Driving Cars</a> - Andreas Geiger、University of Tübingen、ドイツ</li>
+        <li><a href="https://www.coursera.org/specializations/self-driving-cars" target="_blank" rel="noopener">Self-Driving Cars Specialization</a> - University of Toronto、Coursera</li>
+        <li><a href="https://www.udemy.com/course/applied-deep-learningtm-the-complete-self-driving-car-course/" target="_blank" rel="noopener">The Complete Self-Driving Car Course - Applied Deep Learning</a> - Udemy</li>
+        <li><a href="https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd0013" target="_blank" rel="noopener">Self-Driving Car Engineer Nanodegree Program</a> - Udacity</li>
+      </ul>
+
+      <h2>ワークショップと講演</h2>
+      <h3>ワークショップ（近年）</h3>
+      <ul>
+        <li>CVPR 2024: <a href="https://opendrivelab.com/cvpr2024/workshop/" target="_blank" rel="noopener">Foundation Models for Autonomous Systems</a></li>
+        <li>CVPR 2024: <a href="https://wayve.ai/cvpr-e2ead-tutorial/" target="_blank" rel="noopener">Tutorial: End-to-End Autonomy: A New Era of Self-Driving</a></li>
+        <li>CVPR 2024: <a href="https://opendrivelab.com/cvpr2024/tutorial/" target="_blank" rel="noopener">Tutorial: Towards Building AGI in Autonomy and Robotics</a></li>
+        <li>CVPR 2023: <a href="https://opendrivelab.com/e2ead/cvpr23.html" target="_blank" rel="noopener">Workshop on End-to-end Autonomous Driving</a></li>
+        <li>CVPR 2023: <a href="https://e2ead.github.io/2023.html" target="_blank" rel="noopener">End-to-End Autonomous Driving: Perception, Prediction, Planning and Simulation</a></li>
+        <li>ICRA 2023: <a href="https://sites.google.com/view/icra2023av/home?authuser=0" target="_blank" rel="noopener">Scalable Autonomous Driving</a></li>
+      </ul>
+
+      <h3>ワークショップ（以前の年）</h3>
+      <ul>
+        <li>NeurIPS 2022: <a href="https://ml4ad.github.io/" target="_blank" rel="noopener">Machine Learning for Autonomous Driving</a></li>
+        <li>IROS 2022: <a href="https://gamma.umd.edu/workshops/badue22/" target="_blank" rel="noopener">Behavior-driven Autonomous Driving in Unstructured Environments</a></li>
+        <li>ICRA 2022: <a href="https://www.self-driving-cars.org/" target="_blank" rel="noopener">Fresh Perspectives on the Future of Autonomous Driving Workshop</a></li>
+        <li>NeurIPS 2021: <a href="https://ml4ad.github.io/2021/" target="_blank" rel="noopener">Machine Learning for Autonomous Driving</a></li>
+        <li>NeurIPS 2020: <a href="https://ml4ad.github.io/2020/" target="_blank" rel="noopener">Machine Learning for Autonomous Driving</a></li>
+        <li>CVPR 2020: <a href="https://sites.google.com/view/cvpr20-scalability" target="_blank" rel="noopener">Workshop on Scalability in Autonomous Driving</a></li>
+      </ul>
+
+      <h3>関連講演</h3>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=x_42Fji1Z2M" target="_blank" rel="noopener">Common Misconceptions in Autonomous Driving</a> - Andreas Geiger、Workshop on Autonomous Driving、CVPR 2023</li>
+        <li><a href="https://www.youtube.com/watch?v=rm-1sPQV4zg" target="_blank" rel="noopener">Learning Robust Policies for Self-Driving</a> - Andreas Geiger、AVVision: Autonomous Vehicle Vision Workshop、ECCV 2022</li>
+        <li><a href="https://www.youtube.com/watch?v=XmtTjqimW3g" target="_blank" rel="noopener">Autonomous Driving: The Way Forward</a> - Vladlen Koltun、Workshop on AI for Autonomous Driving、ICML 2020</li>
+        <li><a href="https://www.youtube.com/watch?v=4VAwdCIBTG8" target="_blank" rel="noopener">Feedback in Imitation Learning: Confusion on Causality and Covariate Shift</a> - Sanjiban Choudhury、Arun Venkatraman、Workshop on AI for Autonomous Driving、ICML 2020</li>
+      </ul>
+
+      <h2>論文コレクション</h2>
+      <p>このリポジトリでは、幅広い候補課題から主要なチャレンジを列挙し、トレンドとなっている方法論も整理している。完全な一覧は<a href="https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving/blob/main/papers.md" target="_blank" rel="noopener">papers.md</a>を参照し、詳細な議論は<a href="https://arxiv.org/abs/2306.16927" target="_blank" rel="noopener">サーベイ論文</a>を参照する。</p>
+      <ul>
+        <li>Survey</li>
+        <li>Language / VLM for Driving: 運転のための言語モデルおよびVision-Language Model</li>
+        <li>World Model &amp; Model-based RL: ワールドモデルとモデルベース強化学習</li>
+        <li>Multi-sensor Fusion: マルチセンサー融合</li>
+        <li>Multi-task Learning: マルチタスク学習</li>
+        <li>Interpretability: 解釈可能性、注意可視化、解釈可能タスク、コスト学習、言語的説明可能性、不確実性モデリング、反実仮想説明と因果推論</li>
+        <li>Visual Abstraction / Representation Learning: 視覚抽象化と表現学習</li>
+        <li>Policy Distillation: 方策蒸留</li>
+        <li>Causal Confusion: 因果混同</li>
+        <li>Robustness: ロングテール分布、共変量シフト、ドメイン適応</li>
+        <li>Affordance Learning: アフォーダンス学習</li>
+        <li>BEV</li>
+        <li>Transformer</li>
+        <li>V2V Cooperative: 車車間協調</li>
+        <li>Distributed RL: 分散強化学習</li>
+        <li>Data-driven Simulation: データ駆動シミュレーション、パラメータ初期化、交通シミュレーション、センサーシミュレーション</li>
+      </ul>
+
+      <h2>ベンチマークとデータセット</h2>
+      <blockquote>現実世界でのデプロイが、自動運転の最終的なベンチマークである。しかし、現実世界でのテストには費用がかかる。学術的なベンチマーキングについては、Jaegerらによる2024年の記事 <a href="https://github.com/autonomousvision/carla_garage/blob/leaderboard_2/docs/common_mistakes_in_benchmarking_ad.md" target="_blank" rel="noopener">Common mistakes in benchmarking</a> を読むことが推奨されている。</blockquote>
+
+      <h3>クローズドループ</h3>
+      <ul>
+        <li><a href="https://leaderboard.carla.org/leaderboard/" target="_blank" rel="noopener">CARLA</a>: <a href="https://leaderboard.carla.org/get_started_v1/" target="_blank" rel="noopener">Leaderboard 1.0</a>、<a href="https://leaderboard.carla.org/get_started/" target="_blank" rel="noopener">Leaderboard 2.0</a></li>
+        <li><a href="https://www.nuscenes.org/nuplan" target="_blank" rel="noopener">nuPlan</a>: <a href="https://eval.ai/web/challenges/challenge-page/1856/overview" target="_blank" rel="noopener">Leaderboard</a>（CVPR 2023チャレンジ後は非アクティブ）、<a href="https://github.com/autonomousvision/navsim" target="_blank" rel="noopener">NAVSIM</a></li>
+      </ul>
+
+      <h3>オープンループ</h3>
+      <ul>
+        <li><a href="https://www.nuscenes.org/nuscenes" target="_blank" rel="noopener">nuScenes</a></li>
+        <li><a href="https://www.nuscenes.org/nuplan" target="_blank" rel="noopener">nuPlan</a></li>
+        <li><a href="https://www.argoverse.org/av2.html" target="_blank" rel="noopener">Argoverse</a></li>
+        <li><a href="https://waymo.com/open/" target="_blank" rel="noopener">Waymo Open Dataset</a></li>
+      </ul>
+
+      <h2>コンペティション / チャレンジ</h2>
+      <ul>
+        <li><a href="https://opendrivelab.com/challenge2024/#end_to_end_driving_at_scale" target="_blank" rel="noopener">End-to-End Driving at Scale</a>、Foundation Models for Autonomous Systems、CVPR 2024</li>
+        <li><a href="https://opendrivelab.com/challenge2024/#carla" target="_blank" rel="noopener">CARLA Autonomous Driving Challenge</a>、Foundation Models for Autonomous Systems、CVPR 2024</li>
+        <li><a href="https://opendrivelab.com/AD23Challenge.html#nuplan_planning" target="_blank" rel="noopener">nuPlan planning</a>、Workshop on End-to-end Autonomous Driving、CVPR 2023</li>
+        <li><a href="https://ml4ad.github.io/#challenge" target="_blank" rel="noopener">CARLA Autonomous Driving Challenge 2022</a>、Machine Learning for Autonomous Driving、NeurIPS 2022</li>
+        <li><a href="https://ml4ad.github.io/2021/#challenge" target="_blank" rel="noopener">CARLA Autonomous Driving Challenge 2021</a>、Machine Learning for Autonomous Driving、NeurIPS 2021</li>
+        <li><a href="https://ml4ad.github.io/2020/#challenge" target="_blank" rel="noopener">CARLA Autonomous Driving Challenge 2020</a>、Machine Learning for Autonomous Driving、NeurIPS 2020</li>
+        <li><a href="https://www.aicrowd.com/challenges/learn-to-race-autonomous-racing-virtual-challenge" target="_blank" rel="noopener">Learn-to-Race Autonomous Racing Virtual Challenge</a>、2022</li>
+        <li><a href="https://www.indyautonomouschallenge.com/" target="_blank" rel="noopener">INDY Autonomous Challenge</a></li>
+      </ul>
+
+      <h2>コントリビューション</h2>
+      <p>すべての貢献に感謝する。Pull Requestを作成する前に、<a href="https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">コントリビューションガイド</a>を読む必要がある。</p>
+
+      <h2>ライセンス</h2>
+      <p>End-to-end Autonomous Drivingは<a href="https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving/blob/main/LICENSE" target="_blank" rel="noopener">MITライセンス</a>で公開されている。</p>
+
+      <h2>引用</h2>
+      <p>このプロジェクトが研究に役立つ場合は、次の文献の引用が推奨されている。</p>
+      <pre><code>@article{chen2023e2esurvey,
+  title={End-to-end Autonomous Driving: Challenges and Frontiers},
+  author={Chen, Li and Wu, Penghao and Chitta, Kashyap and Jaeger, Bernhard and Geiger, Andreas and Li, Hongyang},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2024}
+}</code></pre>
+
+      <h2>連絡先</h2>
+      <p>主な連絡先は <code>hy@opendrivelab.com</code>。また、<code>lichen@opendrivelab.com</code> にも連絡できる。</p>
+      <p><a href="https://opendrivelab.slack.com/join/shared_invite/zt-2ft3dfjoz-6XErfBts4s_8Fen88wO4Jg#/shared-invite/email" target="_blank" rel="noopener">OpenDriveLab Slack</a>に参加してコミュニティと会話できる。Slackチャンネルは <code>#e2ead</code>。</p>
+    </div>
+
+    <footer>
+      <p>日本語翻訳版 | 原文: <a href="https://github.com/OpenDriveLab/End-to-end-Autonomous-Driving" target="_blank" rel="noopener">こちら</a></p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -100,7 +100,13 @@ def fetch_arxiv(arxiv_id, download_figs=False, img_dir=IMAGES_DIR):
                 t = sib.get_text(strip=True)
                 if t:
                     paras.append(t)
-            if len(paras) >= 4:
+            # arXiv HTML wraps paragraphs in <div class="ltx_para"><p>…</p></div>
+            elif sib.name == "div" and "ltx_para" in sib.get("class", []):
+                for p in sib.find_all("p", recursive=True):
+                    t = p.get_text(strip=True)
+                    if t:
+                        paras.append(t)
+            if len(paras) >= 6:
                 break
         sections.append({"heading": h_text, "text": "\n".join(paras)})
 

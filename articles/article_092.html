@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動運転マップ産業レビュー2025</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>自動運転マップ産業レビュー2025</h1>
+<div class="meta">AutoTech News · ResearchInChina · 2025年 · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://autotech.news/autonomous-driving-map-industry-review-2025/" target="_blank" rel="noopener">https://autotech.news/autonomous-driving-map-industry-review-2025/</a></div>
+</div>
+<div class="body">
+
+<figure>
+  <img src="./images/art092_cover.webp" alt="自動運転マップ産業レビュー2025">
+</figure>
+
+<p>自動運転マップに関する調査によれば、業界は「過去を記録する」段階から「リアルタイム生成マップで未来をプレビューする」段階へと移行しつつある。</p>
+
+<p>業界は「マップレスNOA（Navigate on Autopilot）」を自動運転の主流アプローチとして採用した。これによりオフラインHDマップへの依存度が低下しつつある。HDマップの開発にはさまざまな障壁があったためだ。「マップレス」とは「マップ事前情報」から「リアルタイムマップ構築」、さらには「ワールドモデル」へと進化する過程を表し、ADASアルゴリズムは「ルールドリブン」から「データドリブン」へと転換している。</p>
+
+<h2>自動運転マップの進化タイムライン</h2>
+
+<p><strong>2022年以前：</strong> 業界は幾何学的精度を重視したHDマップに注力しており、従来のADASはルールベースの環境処理に依拠していた。</p>
+
+<p><strong>2023〜2024年：</strong> トポロジー・セマンティクス・鮮度を備えた軽量マップ（LDマップ）が注目を集め、マップレスNOAの開発も進展した。</p>
+
+<p><strong>2025年以降：</strong> 3D Gaussian SplattingやNeRFなどの技術により、マップは単に「過去を記録する」だけでなく「未来をプレビューする」ことが可能になった。ワールドモデルは自己教師あり学習で時空間パターンを抽出し、マルチモーダルセンサーデータとリアルタイムのクラウドソーシング情報を統合した動的環境知識ベースを実現する。</p>
+
+<h2>開発トレンド1：低コストな自動化マッピング</h2>
+
+<p><strong>Baidu MapAuto 6.5</strong>は、中国初の全シナリオ対応3Dレーンレベルマップであり、人間とシステムが協調して運転する状況をサポートする。以下の要素を統合している。</p>
+<ul>
+  <li>統合データ収集車両</li>
+  <li>マルチソースデータ入力（車載データおよびロードサイドデータ）</li>
+  <li>数十億パラメータの基盤モデル</li>
+</ul>
+
+<p><strong>提供されるデータサービス：</strong></p>
+<ul>
+  <li>SD（ナビゲーションマップ）</li>
+  <li>LD（軽量自動運転マップ）</li>
+  <li>HD（高精度マップ）</li>
+</ul>
+
+<p>2025年3月、LeapmotorはLEAP 3.5をリリースし、Baidu MapsのLDデータアーキテクチャを採用した。</p>
+
+<p><strong>コア技術：</strong></p>
+<ul>
+  <li>BEV（Bird's Eye View）による静的道路シナリオの再構築</li>
+  <li>自動特徴抽出</li>
+  <li>道路要素検出のためのInstance QueryおよびPoint Query手法</li>
+  <li>トポロジ関係を出力する自己回帰デコーダ</li>
+</ul>
+
+<p><strong>ベクトル化HDマップ構築技術：</strong></p>
+<p><em>MapTR</em> — リアルタイム都市マッピング、L2+ ADASシステム、計算リソースが限られた組み込みプラットフォームに適している。</p>
+<p><em>VectorMapNet</em> — 複雑な高速道路インターチェンジのモデリング、学術研究用途、工事区間のような可変長の細部シナリオに最適である。</p>
+
+<h2>開発トレンド2：ドライビングワールドモデル（DWM）との統合</h2>
+
+<p>NavInfoは、ワールドモデル駆動の自動運転に「時空間認知」を追加することを提唱している。マップは「静的レイヤー」から「動的データエンジン」へと進化し、インテリジェント運転における「事前センサー」として機能するようになった。</p>
+
+<h3>DWMのコア機能</h3>
+
+<p><strong>環境理解：</strong> 車両の自己位置推定と、レーン線・交通標識・障害物の認識。</p>
+
+<p><strong>動的予測：</strong> 交通参加者の行動軌跡を予測し、突然の車線変更や急ブレーキなどの潜在的危険を特定する。</p>
+
+<p><strong>グローバル計画：</strong> 異なる天候・道路条件にわたる長期的環境シミュレーションを考慮した最適走行経路を生成する。</p>
+
+<h3>技術的特徴</h3>
+<ul>
+  <li>大量の高品質データとAIアルゴリズム（深層学習・強化学習）による継続的なモデル最適化</li>
+  <li>クローズドループイテレーション：データ収集 → 学習 → 検証 → デプロイ</li>
+  <li>シミュレーション環境と実世界テストデータの統合</li>
+</ul>
+
+<h3>コアバリュー</h3>
+
+<p><strong>シナリオ推論：</strong> 過去の観測に基づいて物理的に合理的な未来シナリオを生成し、予期しない事故や工事区域の変化などのリスクを予測する。</p>
+
+<p><strong>マルチモーダル融合：</strong> 2D画像・3D点群・Occupancyグリッドを統合し、nuScenesデータセットのテストでBEV幾何学的一貫性98.7%を達成した。</p>
+
+<p><strong>意思決定最適化：</strong> 強化学習により人間に近い運転を実現し、北京の五環路における交通効率が28%向上することが計測された。</p>
+
+<h2>開発トレンド3：NeRF技術の展開</h2>
+
+<p>OEMは自動運転マップ再構築におけるNeRF（Neural Radiance Fields）技術の探索とデプロイを積極的に進めている。</p>
+
+<h3>NeRFの能力</h3>
+<ul>
+  <li>2D画像から3Dシナリオを再構築し、HDマップを生成する</li>
+  <li>複雑な運転シナリオを合成し、学習データを拡充する</li>
+  <li>安全性向上のために過酷な条件（極端な天候・事故）をシミュレートする</li>
+</ul>
+
+<h3>実世界への適用：Li Auto AD Max 3.0</h3>
+
+<p>このシステムは「静的BEV + 動的BEV + NeRF強化Occupancy」の三重アーキテクチャを採用している。</p>
+
+<p><strong>静的BEVネットワーク：</strong> マルチカメラTransformerがデータをBEV表現に融合する。カメラ障害時には、NeRFが欠落した道路端・レーン線を再構築する。</p>
+
+<p><strong>動的BEVネットワーク：</strong> 時空間アテンションによる追跡とNeRFの連続性モデリングにより、速度・加速度推定誤差を0.3m/s未満に抑える。</p>
+
+<p><strong>Occupancyネットワークのアップグレード：</strong> 解像度が0.2mから0.1mに改善され、NeRFが生成するサブピクセル詳細により30cmの縁石や5cmのマンホールを検出できるようになった。</p>
+
+<h3>業界の採用状況</h3>
+
+<p><em>先行デプロイ：</em> Xpeng、Mercedes-Benz、Li AutoはすでにNeRF技術を量産車に搭載している。</p>
+
+<p><em>探索段階：</em> TeslaとBMWはテクニカルパートナーシップを通じてより深い応用開発を進めている。</p>
+
+<p><strong>将来展望：</strong> ハードウェア計算能力の向上（Blackwellアーキテクチャなど）とオープンソースエコシステムの拡大により、NeRFは自動運転マップの「基盤標準技術」となり、業界は「リアルタイム生成マップ」の実現に向けて前進していくと見られる。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://autotech.news/autonomous-driving-map-industry-review-2025/" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

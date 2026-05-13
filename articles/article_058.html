@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動運転のためのBEV知覚：最新動向と将来展望</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>自動運転のためのBEV知覚：最新動向と将来展望</h1>
+<div class="meta">2024年 · Expert Systems With Applications · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417424019705" target="_blank" rel="noopener">https://www.sciencedirect.com/science/article/abs/pii/S0957417424019705</a></div>
+</div>
+<div class="body">
+
+<figure>
+  <img src="./images/art058_cover.png" alt="BEV Perception for Autonomous Driving: State of the Art and Future Perspectives">
+</figure>
+
+<p>本論文は、自動運転におけるBEV（Bird's-Eye View：鳥瞰図）知覚の最新動向と将来展望をまとめたサーベイである。著者はJunhui Zhao、Jingyue Shi、Li Zhuoで、Elsevier Expert Systems With Applications誌に掲載されている（doi: 10.1016/j.eswa.2024.125103）。論文はペイウォール下にあるため、以下は公開情報に基づく詳細な解説である。</p>
+
+<h2>BEV知覚とは</h2>
+<p>BEV（Bird's-Eye View）知覚とは、カメラやLiDARなどの複数センサーから取得したデータを、車両を上から見下ろした統一的な2D平面表現（鳥瞰図）に変換し、その表現上で物体検出・セマンティックセグメンテーション・走行可能領域推定・運動予測などを行う手法の総称である。BEV表現は複数センサーのデータを統一的な座標系に統合できる点で優れており、エンドツーエンド自動運転システムの知覚モジュールとして2020年代初頭から急速に普及した。</p>
+
+<h2>BEV知覚が注目される背景</h2>
+<p>従来の自動運転知覚は、物体検出をカメラ視点（透視図）もしくはLiDARの点群空間で独立に行う手法が主流であった。しかし、この方式には次の課題がある。</p>
+<ul>
+  <li>複数カメラの情報を統合する際に視点変換コストが高い</li>
+  <li>カメラとLiDARの融合が困難</li>
+  <li>下流タスク（計画・制御）との接続性が低い</li>
+</ul>
+<p>BEV表現はこれらの課題を解消し、センサーフュージョンを自然に行える統一フレームワークを提供する。Tesla、Wayve、Li Auto、Huaweiといった企業が実用車両に採用したことで、産業界でも広く認知されるようになった。</p>
+
+<h2>主要な手法カテゴリ</h2>
+
+<h3>カメラベースBEV手法</h3>
+<p>純カメラ入力からBEV特徴を生成する手法群である。主要な変換戦略として以下がある。</p>
+<ul>
+  <li><strong>IPM（Inverse Perspective Mapping）</strong>：道路面が平坦であるという幾何的仮定を用いた古典的変換</li>
+  <li><strong>LSS（Lift, Splat, Shoot）</strong>：深度分布を予測して2D特徴を3Dに「持ち上げる」アプローチ。BEVDetやBEVDepthなどの後継手法の基礎となった</li>
+  <li><strong>クロスビューアテンション</strong>：Transformerを用いて鳥瞰図クエリを画像特徴に対応付けるアプローチ。BEVFormer、DETR3Dなどがこの系統に属する</li>
+  <li><strong>アテンションベース時間融合</strong>：BEVFormerに代表される、過去フレームの時間情報を現在フレームに組み込む手法</li>
+</ul>
+
+<h3>LiDARベースBEV手法</h3>
+<p>LiDAR点群を直接BEV空間に投影・処理する手法群である。</p>
+<ul>
+  <li><strong>PointPillars</strong>：点群を柱状（pillar）に量子化した高速BEV処理手法</li>
+  <li><strong>CenterPoint</strong>：BEV特徴マップ上でヒートマップ中心点検出を行う手法。ロバスト性と精度で広く採用された</li>
+  <li><strong>VoxelNet / SECOND</strong>：ボクセル化とスパース畳み込みを組み合わせた手法群</li>
+</ul>
+
+<h3>マルチモーダルフュージョン手法</h3>
+<p>カメラとLiDARのそれぞれの強みを活かした融合手法も重要なカテゴリである。</p>
+<ul>
+  <li><strong>BEVFusion（MIT/MIT-HAN）</strong>：カメラBEVとLiDAR BEVを特徴空間で統一的に融合する代表的手法</li>
+  <li><strong>TransFusion</strong>：LiDAR中心のTransformerにカメラ情報を組み込む手法</li>
+</ul>
+
+<h2>評価ベンチマーク</h2>
+<p>BEV知覚研究の進展を支えた主要ベンチマーク群を以下に示す。</p>
+<ul>
+  <li><strong>nuScenes</strong>：6カメラ＋LiDAR構成の3D検出・追跡ベンチマーク。BEV手法の標準評価舞台となった</li>
+  <li><strong>Waymo Open Dataset</strong>：高品質なLiDAR・カメラデータを提供する大規模ベンチマーク</li>
+  <li><strong>KITTI</strong>：自動運転研究の歴史的な基盤ベンチマーク</li>
+  <li><strong>Argoverse</strong>：モーション予測とHDマップ情報を含むデータセット</li>
+</ul>
+
+<h2>将来展望</h2>
+<p>サーベイは複数の将来方向を提示している。</p>
+<ul>
+  <li><strong>スケーラビリティの向上</strong>：より大規模なデータと計算資源を活用した基盤モデルの構築</li>
+  <li><strong>長距離・高解像度BEV</strong>：現行手法の近距離バイアスを克服するための技術開発</li>
+  <li><strong>動的物体予測との統合</strong>：静的なBEV知覚から、将来状態予測を含む動的シーン理解へ</li>
+  <li><strong>計算効率の改善</strong>：リアルタイムデプロイに向けたモデル軽量化・高速化</li>
+  <li><strong>占有予測との融合</strong>：BEV上でのオブジェクトレベル検出と密な3Dオキュパンシー予測の統合</li>
+  <li><strong>エンドツーエンド統合</strong>：知覚から計画・制御までをBEV空間で一貫して扱うシステム設計</li>
+</ul>
+
+<h2>研究上の意義</h2>
+<p>BEV知覚は、現代の自動運転スタックにおいてほぼ標準的な知覚フォーマットとなっており、その研究動向の体系的な把握は研究者・エンジニア双方にとって重要である。本サーベイは最新手法の位置付けと課題を整理し、BEV知覚研究のロードマップとして機能する。特に、カメラベース・LiDARベース・フュージョンベースの3系統を横断的に比較している点で、実装の方向性を判断するための基礎資料として活用できる。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://www.sciencedirect.com/science/article/abs/pii/S0957417424019705" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

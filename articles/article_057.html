@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動運転知覚のための基盤モデル：コア能力を通じたサーベイ</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>自動運転知覚のための基盤モデル：コア能力を通じたサーベイ</h1>
+<div class="meta">2025年 · arXiv · ⭐⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://arxiv.org/abs/2509.08302" target="_blank" rel="noopener">https://arxiv.org/abs/2509.08302</a></div>
+</div>
+<div class="body">
+
+<figure>
+  <img src="./images/art057_fig1.jpeg" alt="Foundation Models for Autonomous Driving Perception: A Survey">
+</figure>
+
+<p>本論文は、自動運転知覚（perception）における基盤モデル（Foundation Models）の活用を包括的にサーベイしたものである。著者はRajendramayavan SathyamとYueqi Liで、arXiv 2509.08302として公開されている。従来の手法中心型サーベイとは一線を画し、4つの本質的能力を中心に据えた能力駆動型の新しい分類体系を提案している点が特徴的である。</p>
+
+<h2>概要と問題意識</h2>
+<p>基盤モデルは自動運転知覚に革命をもたらしつつある。大量かつ多様なデータで学習された汎用アーキテクチャは、特定タスクに特化した狭いディープラーニングモデルから、より広範な活用が可能な構造への移行を促している。このサーベイは、基盤モデルが自動運転知覚における重大な課題——汎化の限界、スケーラビリティの欠如、分布シフトへの脆弱性——にどう対処するかを体系的に分析する。</p>
+
+<p>本サーベイが提案する新しい分類体系は、動的な走行環境における頑健な性能に必要な<strong>4つの本質的能力</strong>を軸に構成されている。これにより、マルチセンサーロバスト性や空間認識といった既存のサーベイでしばしば見落とされてきた側面を深く掘り下げる「より焦点を絞った深い分析」が可能となる。</p>
+
+<h2>能力1：汎化された知識（Generalized Knowledge）</h2>
+<p>モデルが「稀または未知のシナリオを含む広範な走行シナリオに適応できる」ことを意味する。基盤モデルの3つの主要な統合メカニズムが特定されている。</p>
+<ul>
+  <li><strong>特徴レベル蒸留（Feature-level Distillation）</strong>：小さなタスク固有ネットワークが基盤モデルから知識を継承しつつ推論効率を維持する</li>
+  <li><strong>擬似ラベル監視（Pseudo Label Supervision）</strong>：基盤モデルが自動的にアノテーションを生成し、手動ラベリングを削減したスケーラブルな学習を実現する</li>
+  <li><strong>直接統合（Direct Integration）</strong>：基盤モデルが知覚パイプライン内で特徴抽出器として機能する</li>
+</ul>
+<p>対象となるモデルタイプは、DINOやSAMなどのVision Foundation Models（VFMs）、CLIPやGrounding DINOなどのVision-Language Models（VLMs）、そしてモダリティを横断した統一推論のためのLarge Language Models（LLMs）を含む。</p>
+<p>この能力における主要な課題として、ウェブスケールの事前学習データと専門的な走行センサー間のドメインギャップ、安全上の脅威をもたらす幻覚リスク、リアルタイム要件と競合するレイテンシ制約、大規模知覚モデルの解釈可能性の限界が挙げられている。</p>
+
+<h2>能力2：空間理解（Spatial Understanding）</h2>
+<p>「物体のアイデンティティ、ジオメトリ、コンテキストを捉えた一貫した3D表現」を構築する能力である。3つの主要アプローチが分析されている。</p>
+
+<h3>ボリューメトリックモデル（Volumetric Models）</h3>
+<ul>
+  <li><strong>明示的オキュパンシーネットワーク</strong>：空間をボクセルグリッドに離散化する</li>
+  <li><strong>NeRFインスパイア手法</strong>：連続ボリューム関数を学習する</li>
+  <li><strong>3D Gaussian Splatting</strong>：明示的プリミティブによる高速レンダリングを実現する</li>
+</ul>
+
+<h3>3D Masked Autoencoders</h3>
+<p>MAEを点群・ボクセルに拡張したもので、MAELiなどのモデルが「LiDARの球面座標に基づいてガイドされた欠損部分の再構成」によって3D構造を学習する。</p>
+
+<h3>監視戦略</h3>
+<ul>
+  <li>明示的3Dオキュパンシーラベル</li>
+  <li>ニューラルレンダリングを介した2D監視</li>
+  <li>LiDAR由来の自己教師あり信号</li>
+</ul>
+<p>この能力の課題は、計算レイテンシ、計画モジュールとの統合の複雑さ、新しい学習手法にもかかわらず高品質な3Dグラウンドトゥルースへの継続的な依存である。</p>
+
+<h2>能力3：マルチセンサーロバスト性（Multi-Sensor Robustness）</h2>
+<p>カメラ、LiDAR、レーダーにまたがって「環境変化、センサーノイズ、ハードウェア劣化にもかかわらず知覚精度を維持する」能力である。</p>
+
+<h3>主要手法</h3>
+<ul>
+  <li><strong>クロスモダリティコントラスト学習</strong>：ピクセル・領域・インスタンスレベルで補完的センサー特徴を整合させる</li>
+  <li><strong>クロスモダリティ知識蒸留</strong>：高性能モダリティが低性能モダリティを教示する</li>
+  <li><strong>マルチビュー画像一貫性</strong>：重複するカメラビューを自然な監視信号として活用する</li>
+  <li><strong>マルチモーダルMasked Autoencoders</strong>：自己教師あり学習をセンサータイプを超えて拡張する</li>
+  <li><strong>マルチモーダル拡散モデル</strong>：生成モデルで複雑なマルチモーダル分布を捉える</li>
+</ul>
+
+<h2>能力4：時間的理解（Temporal Understanding）</h2>
+<p>「時間的依存関係を捉え、将来の環境状態を予測する」能力である。以下の手法群が含まれる。</p>
+<ul>
+  <li>時間的一貫性のある4D予測モデル</li>
+  <li>確率的な未来予測のための拡散モデル</li>
+  <li>時間的コントラスト学習アプローチ</li>
+</ul>
+
+<h2>主要な課題と将来方向</h2>
+<p>サーベイは6つの主要課題を特定している。</p>
+<ol>
+  <li><strong>中核能力の統合</strong>：4つすべての能力をリアルタイムな統合システムに組み合わせること</li>
+  <li><strong>ベンチマークの限界</strong>：現行データセットは実世界性能の検証に不十分</li>
+  <li><strong>リアルタイムレイテンシ</strong>：基盤モデルの計算要求がミリ秒単位の要件と相反する</li>
+  <li><strong>データバイアスと公平性</strong>：多様な集団・シナリオでの均一な性能確保</li>
+  <li><strong>規制上の非決定性</strong>：安全クリティカルなアプリケーションにおけるAIの非決定性への対処</li>
+  <li><strong>モデル幻覚</strong>：事故につながりうる誤った予測の緩和</li>
+</ol>
+
+<h2>既存サーベイとの差別化</h2>
+<p>本サーベイの最大の特徴は、より広範な自動運転タスク（計画・予測など）ではなく<strong>知覚に特化</strong>していることである。これにより、空間認識とマルチセンサーロバスト性を手法中心型の分類では到達できないレベルまで詳細に分析できる。能力を軸にした分析は、研究者が「特定の欠陥を特定して対処するための体系的なガイド」を提供し、より安全で高性能な自動運転システム開発に向けた「目標を絞ったイノベーション」を促進する。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://arxiv.org/abs/2509.08302" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

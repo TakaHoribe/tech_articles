@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動運転車の意思決定・プランニング手法サーベイ</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>自動運転車の意思決定・プランニング手法サーベイ</h1>
+<div class="meta">Frontiers in Neurorobotics · 2025年 · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2025.1451923/full" target="_blank" rel="noopener">https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2025.1451923/full</a></div>
+</div>
+<div class="body">
+
+<figure>
+        <img src="./images/art089_cover.webp" alt="自動運転車の意思決定・プランニング手法サーベイ">
+      </figure>
+
+      <p>このサーベイ論文は、自動運転車の意思決定とモーションプランニングのアルゴリズムを包括的にレビューし、<strong>知識ドリブン・データドリブン・ハイブリッド</strong>の三つに分類して整理するものである。各手法の有効性を実験プラットフォームで評価し、現在の課題と今後の研究方向についても論じている。</p>
+
+      <h2>概要</h2>
+      <p>本論文は自動運転車の意思決定とプランニングアルゴリズムを二つの主要フェーズで整理している。</p>
+      <ul>
+        <li><strong>行動意思決定（Behavior Decision-Making）:</strong> 歩行者横断や緊急車両回避といった一時的な事象への応答</li>
+        <li><strong>モーションプランニング（Motion Planning）:</strong> 車両状態と行動決定に基づく詳細な軌跡生成</li>
+      </ul>
+
+      <h2>知識ドリブン手法</h2>
+
+      <h3>意思決定プロセス</h3>
+      <p><strong>ルールベースシステム</strong>は事前定義された交通ルールと条件ロジックを使用する。専門知識を符号化できるが、過度に保守的で時間計算量が増大しやすい。</p>
+      <p><strong>状態遷移モデル</strong>はマルコフ決定過程（MDP）および部分観測MDP（POMDP）を用い、不確実性下での意思決定を最適化する。</p>
+      <p><strong>ゲーム理論的アプローチ</strong>は自動運転をマルチエージェントシステムとして扱い、他の交通参加者の行動を分析・予測して戦略を形成する。</p>
+
+      <h3>プランニングアルゴリズム</h3>
+      <p>経路プランニングに関する三つの主要カテゴリが整理されている。</p>
+      <ul>
+        <li><strong>探索ベース手法（A*、ダイクストラ）:</strong> パス空間を系統的に探索する</li>
+        <li><strong>サンプリングベース手法（RRT、PRM）:</strong> ランダムサンプリングで候補パスを生成する</li>
+        <li><strong>最適化手法:</strong> 滑らかで安全かつ効率的なパスを達成する目的関数を設計する</li>
+      </ul>
+
+      <h2>データドリブン手法</h2>
+
+      <h3>模倣学習</h3>
+      <p><strong>行動クローニング（BC）:</strong> デモンストレーションから人間の運転を直接模倣するが、未知シナリオへの対応が弱く、長期的な意思決定の考慮が不足する。</p>
+      <p><strong>逆強化学習（IRL）:</strong> 専門家デモンストレーションから報酬関数を推定し、複雑な運転戦略を新環境に適応させる能力を持つ。</p>
+      <p><strong>GAIL（Generative Adversarial Imitation Learning）:</strong> GANと模倣学習を組み合わせ、明示的な報酬関数なしに堅牢な行動モデリングを実現する。</p>
+
+      <h3>エンドツーエンド手法</h3>
+      <p>生センサーデータを入力として操舵や加速度を直接出力する深層学習アプローチ。NVIDIAのDAVE-2（3カメラ）や時系列推論のためのLSTMを組み込んだアーキテクチャなどが代表例として挙げられている。</p>
+
+      <h3>モジュラープランニング</h3>
+      <p>意思決定とプランニングのコンポーネント内でデータドリブンな側面に焦点を当て、オフラインの専門家データセットから学習しながら解釈可能性を維持するアプローチ。</p>
+
+      <h3>強化学習</h3>
+      <p>三つの主要な分類が整理されている。</p>
+      <ul>
+        <li><strong>価値ベース手法（DQN、DDQNなどQ学習の派生）:</strong> 離散行動空間に有効だが高次元連続空間では苦手</li>
+        <li><strong>方策ベース手法（PPO、TRPO）:</strong> 連続行動空間を効果的に処理するが、学習中の分散が高くなる可能性がある</li>
+        <li><strong>アクター・クリティック手法:</strong> 安定性と効率のために方策と価値関数を分離して組み合わせる</li>
+      </ul>
+
+      <h2>ハイブリッド手法</h2>
+      <p>ハイブリッドアプローチは知識ドリブンとデータドリブンの両手法を統合し、ルール遵守と学習適応性の両方を活用する。代表的な例として以下が挙げられている。</p>
+      <ul>
+        <li><strong>EPSILON:</strong> 行動プランニングにPOMDPを、車両意図予測にニューラルネットワークを組み合わせる2層構造</li>
+        <li><strong>MARC:</strong> 軌跡予測のためのニューラル予測器とリスク認識コンティンジェンシープランニングを組み合わせる</li>
+        <li><strong>GameFormer:</strong> Transformerモデルと階層的ゲーム理論を統合してインタラクション予測を行う</li>
+      </ul>
+      <p>これらは適応性を高めつつ安全制約を維持するが、統合の複雑さや学習行動と事前定義ルールの間の潜在的な矛盾という課題も抱えている。</p>
+
+      <h2>実験プラットフォームと評価</h2>
+      <p>論文は三つの主要データセット・プラットフォームを対象としている。</p>
+      <ul>
+        <li><strong>nuPlan:</strong> 包括的な閉ループベンチマークフレームワーク</li>
+        <li><strong>Waymo Open Dataset:</strong> 実世界の走行シナリオ</li>
+        <li><strong>CARLA:</strong> アルゴリズムテスト用シミュレーション環境</li>
+      </ul>
+
+      <h2>現在の課題と今後の方向性</h2>
+      <p>現在の限界として以下が挙げられている。</p>
+      <ul>
+        <li>環境知覚の不確実性</li>
+        <li>交通参加者の行動の予測困難性</li>
+        <li>データドリブン手法が必要とする大量のラベル付きデータ</li>
+        <li>ニューラルネットワーク決定の解釈可能性の低さ</li>
+        <li>ハイブリッドシステムの統合複雑性</li>
+      </ul>
+      <p>今後の研究方向として、マルチセンサーフュージョン技術、行動予測モデル、合成データ生成、継続学習システム、透明性のための説明可能AI（XAI）が挙げられている。</p>
+
+      <h2>結論</h2>
+      <p>本論文は、ハイブリッド手法が今後の研究における最適な方向性であると結論付けている。データドリブンの柔軟性と知識ドリブンの安全保証を組み合わせることで、複雑な環境への適応性と交通規制・安全基準の遵守のバランスを取った、より柔軟でロバストかつ解釈可能な意思決定プランニングが実現できるとしている。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://www.frontiersin.org/journals/neurorobotics/articles/10.3389/fnbot.2025.1451923/full" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DiffusionDrive: Truncated Diffusion Model for End-to-End Autonomous Driving</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="wrap">
+    <nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+
+    <div class="ah">
+      <h1>DiffusionDrive: Truncated Diffusion Model for End-to-End Autonomous Driving</h1>
+      <div class="meta">CVPR 2025 · ⭐4</div>
+      <div class="orig">原文: <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Liao_DiffusionDrive_Truncated_Diffusion_Model_for_End-to-End_Autonomous_Driving_CVPR_2025_paper.pdf" target="_blank" rel="noopener">DiffusionDrive: Truncated Diffusion Model for End-to-End Autonomous Driving</a></div>
+    </div>
+
+    <div class="body">
+      <figure>
+        <img src="./images/art053_cover.png" alt="DiffusionDrive paradigm comparison">
+      </figure>
+
+      <p>この論文は、拡散モデルをエンドツーエンド自動運転へ持ち込む際の最大の問題である、<strong>多すぎるdenoising stepとリアルタイム性の欠如</strong>に正面から取り組んでいる。提案手法 DiffusionDrive は、拡散過程を途中で打ち切る <strong>truncated diffusion policy</strong> を導入し、多様性と実時間性能を両立させる。</p>
+
+      <h2>要旨</h2>
+      <p>拡散モデルはロボティクスの方策学習で強力な生成技術として注目されてきたが、その能力をエンドツーエンド自動運転へ活かすのは有望である一方、多数のdenoising stepと交通シーンの動的・オープンワールド性が大きな障害になっていた。DiffusionDriveは、事前のマルチモード・アンカーを導入し、拡散スケジュールを打ち切ることで、アンカー付きガウス分布からマルチモード運転行動分布へのdenoisingを学習する。さらに、条件付きシーン文脈との相互作用を強めるカスケード型拡散デコーダを設計している。</p>
+
+      <h2>何が新しいか</h2>
+      <ul>
+        <li>ランダムノイズから長い拡散を回すのではなく、事前アンカー周辺のノイズ分布から始める</li>
+        <li>20 step規模の通常拡散を、2 step程度まで大幅短縮する</li>
+        <li>BEVやPV特徴と相互作用する効率的な拡散デコーダを導入する</li>
+        <li>多モード性を保ったまま、リアルタイム計画へ寄せる</li>
+      </ul>
+
+      <h2>論文内の比較</h2>
+      <p>冒頭の図では、単一モード回帰、語彙ベースサンプリング、通常の拡散ポリシー、そして提案する truncated diffusion policy が比較されている。論文の主張は、従来の単一軌跡回帰では不確実性や多モード性を十分扱えず、巨大アンカー集合を使う語彙ベース手法も語彙外シナリオと計算負荷に制約される、というものだ。DiffusionDriveはその中間ではなく、拡散モデルの多様性を保ちつつ計算を現実的な水準へ落とす方向を選んでいる。</p>
+
+      <h2>性能</h2>
+      <p>論文では、NAVSIMデータセット上で、整列済みResNet-34バックボーンを用いた条件で PDMS 88.1 を達成し、リアルタイム速度 45 FPS を NVIDIA 4090 上で実現したとしている。また、denoising step は vanilla diffusion policy と比べて10倍削減され、わずか2 stepで高い多様性と品質を維持したと報告している。</p>
+
+      <p>さらに、nuScenes上のオープンループ評価では、同じResNet-50バックボーン条件でVADより高速で、L2誤差や衝突率でも優位な結果を示している。</p>
+
+      <h2>重要な着眼点</h2>
+      <p>この論文の価値は、拡散モデルを自動運転へ使えるかどうかではなく、<strong>どうすれば使える形に変形できるか</strong>を示している点にある。通常の拡散ポリシーをそのまま交通シーンへ持ち込むと、重く、多様性も十分出にくい。そこで、運転にはすでに存在する「妥当な事前軌跡パターン」を初期分布に埋め込むという発想で、拡散過程そのものを短く設計している。</p>
+
+      <h2>位置付け</h2>
+      <p>DiffusionDriveは、拡散モデルを自動運転の計画に使う研究の中でも、実時間性まで含めて前進させた代表例である。拡散ベース計画が研究デモに留まるのか、実用評価に耐えるのかを考えるうえで、押さえておくべき論文である。</p>
+    </div>
+
+    <footer>
+      <p>日本語翻訳版 | 原文: <a href="https://openaccess.thecvf.com/content/CVPR2025/papers/Liao_DiffusionDrive_Truncated_Diffusion_Model_for_End-to-End_Autonomous_Driving_CVPR_2025_paper.pdf" target="_blank" rel="noopener">こちら</a></p>
+    </footer>
+  </div>
+</body>
+</html>

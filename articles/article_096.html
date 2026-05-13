@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>スケールするHDマッピングの探求（Nuro）</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>スケールするHDマッピングの探求（Nuro）</h1>
+<div class="meta">Nuro Blog · 2024年 · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://medium.com/nuro/exploring-hd-mapping-that-scales-939c3b69e232" target="_blank" rel="noopener">https://medium.com/nuro/exploring-hd-mapping-that-scales-939c3b69e232</a></div>
+</div>
+<div class="body">
+
+<figure>
+  <img src="./images/art096_cover.gif" alt="スケールするHDマッピングの探求">
+</figure>
+
+<p>Nuroチームによる本記事は2024年6月15日に公開されたもので、CVPR 2024の自動運転ワークショップで発表されたHDマッピングのスケーラビリティに関する研究を紹介している。</p>
+
+<h2>HDマッピングとは何か、なぜ難しいのか</h2>
+
+<p>HDマップとは、縁石・レーン線・一時停止標識・信号機などを含む物理的・意味的特徴を詳細に表現したものである。これらのマップは、Occupancyグリッド・ポリライン・バウンディングボックスアノテーションを用いて情報をエンコードしている。</p>
+
+<p>従来のアプローチでは、企業がセンチメートル単位の精度を持つ意味論的マップを手動で作成・維持していた。このマップは工事区域付近を除いて比較的安定していた。しかし、地理的なスケーラビリティと維持管理の複雑さが大きな課題となっており、特に交通量が少なく投資対効果が不透明な地域では問題が顕著だった。</p>
+
+<h2>3つのアプローチ</h2>
+
+<h3>従来型HDマッピング</h3>
+<p>人手によるラベラーが詳細なオフラインマップを作成・維持し、自律走行車にオンボードで配備する。マップの変化を監視する変化検知システムが別途用意されている。</p>
+
+<h3>オンラインのみのアプローチ</h3>
+<p>機械学習モデルがセンサーデータをBEV（Bird's Eye View）表現に融合することでマップ要素を予測する。初期ラベリングの手間を減らせる一方で、人手によるマップと比べて精度が低下する可能性がある。</p>
+
+<h3>ハイブリッドアプローチ</h3>
+<p>オフラインマップの事前情報とリアルタイムセンサー計測を組み合わせたもので、正しい場合には「精度の高いオフラインHDマップ事前情報をそのままパススルーする」よう設計されており、マップの変化やラベリングエラーへの頑健性も備えている。</p>
+
+<h2>研究結果</h2>
+
+<p>Nuroは合成および実世界のマップ変化を用いたテストを実施した。その結果、マップ事前情報は軽微な変化に対してはモデルの性能を向上させるものの、「合成的な摂動の現在の手法では、交差点の再建や新しい中央分離帯の設置といった大規模な変化に対して十分なシグナルが得られない」ことが明らかになった。</p>
+
+<h2>著者</h2>
+<p>Samuel Bateman, Ning Xu, Charles Zhao, Yael Ben Shalom, Vince Gong, Greg Long, Will Maddern</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://medium.com/nuro/exploring-hd-mapping-that-scales-939c3b69e232" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

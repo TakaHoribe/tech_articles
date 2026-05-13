@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動運転の3D Occupancy予測精度を高める（NVIDIA GTC 2024）</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>自動運転の3D Occupancy予測精度を高める（NVIDIA GTC 2024）</h1>
+<div class="meta">NVIDIA GTC 2024 · 2024年 · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://www.nvidia.com/en-us/on-demand/session/gtc24-s62446/" target="_blank" rel="noopener">https://www.nvidia.com/en-us/on-demand/session/gtc24-s62446/</a></div>
+</div>
+<div class="body">
+
+<figure>
+        <img src="./images/art091_cover.jpg" alt="NVIDIA GTC 2024 - 3D Occupancy Prediction for Autonomous Driving">
+      </figure>
+
+      <p>本セッションは、NVIDIA GTC 2024（サンノゼ）で発表された自動運転向け <strong>3D Occupancy予測の精度向上</strong> をテーマとした講演である（セッションID: S62446）。Occupancy予測は、3D空間の各ボクセルが占有されているかどうかを予測するタスクであり、近年の自動運転知覚の重要なトレンドとなっている。</p>
+
+      <h2>3D Occupancy予測とは</h2>
+      <p>3D Occupancy予測は、車両周囲の3次元空間をボクセルグリッドに分割し、各セルが物体で占有されているか、また何のカテゴリかを推定するタスクである。従来の3Dオブジェクト検出がバウンディングボックスで物体を近似するのに対し、Occupancy予測は空間をより細かく表現できるため、任意形状の障害物（工事資材、倒木など）や道路構造を正確に捉えるのに有利である。</p>
+
+      <h2>自動運転における重要性</h2>
+      <p>Occupancy予測は次のような理由から自動運転システムにとって重要である。</p>
+      <ul>
+        <li>任意形状の障害物を検出できる（バウンディングボックスでは表現できない物体にも対応）</li>
+        <li>フリースペース（走行可能領域）を直接推定できる</li>
+        <li>カメラやLiDARなど複数センサーからの情報をボクセル空間で統合できる</li>
+        <li>プランニングモジュールへの入力として活用できる</li>
+      </ul>
+
+      <h2>精度向上のアプローチ</h2>
+      <p>本セッションではNVIDIAが取り組む3D Occupancy予測の精度改善手法が紹介された。自動運転向けのOccupancy予測では、センサーデータから高品質な3D表現を生成するための以下のような技術的課題が議論されている。</p>
+      <ul>
+        <li>カメラ画像から深度情報を推定してボクセル空間に投影するDepth Estimation</li>
+        <li>LiDARとカメラのマルチモーダルフュージョンによる精度向上</li>
+        <li>時系列情報を活用した動的物体のOccupancy推定</li>
+        <li>大規模データおよびシミュレーションデータを用いた学習の改善</li>
+      </ul>
+
+      <h2>NVIDIAのGPUプラットフォームとの連携</h2>
+      <p>NVIDIAはOccupancy予測を含む自動運転知覚パイプラインの開発・訓練・推論に向けて、DriveシリーズのSoCおよびGPUプラットフォームとの最適化を進めている。高精度なOccupancy予測をオンボードのリアルタイム推論として実現するためのモデル最適化技術もGTCセッションの議論に含まれていた。</p>
+
+      <h2>業界トレンドとしての3D Occupancy</h2>
+      <p>3D Occupancy予測はここ数年で急速に注目を集めた研究テーマである。Tesla、NVIDIAをはじめ多くの自動運転企業がOccupancyを知覚スタックの中核に位置付けている。nuScenesなどの公開ベンチマークにもOccupancyタスクが追加されており、学術・産業の両面で評価・比較が活性化している。</p>
+
+      <h2>関連技術との位置付け</h2>
+      <p>Occupancy予測はしばしばNeRF（Neural Radiance Fields）やGaussian Splattingなどの3D表現技術と関連づけて議論される。また、ワールドモデルやエンドツーエンドの自動運転アーキテクチャにおいても、Occupancy表現が中間表現として採用されるケースが増えている。NVIDIAのGTCセッションはこうしたトレンドの最前線を把握する機会として価値がある。</p>
+
+      <h2>位置付け</h2>
+      <p>自動運転の知覚スタックにおけるOccupancy予測の技術動向をNVIDIAの視点から把握したい研究者・エンジニアに向けたセッションである。GTC 2024は2024年3月にサンノゼで開催され、自動運転・ロボティクス関連のセッションが多数行われた。本セッションはNVIDIA On-Demandで視聴可能（要登録）である。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://www.nvidia.com/en-us/on-demand/session/gtc24-s62446/" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>

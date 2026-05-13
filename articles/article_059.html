@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自動運転における軌跡予測のための大規模基盤モデル：包括的サーベイ</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="../index.html">← 記事一覧に戻る</a></nav>
+<div class="ah">
+<h1>自動運転における軌跡予測のための大規模基盤モデル：包括的サーベイ</h1>
+<div class="meta">2025年 · arXiv · ⭐⭐⭐⭐</div>
+<div class="orig">原文: <a href="https://arxiv.org/abs/2509.10570" target="_blank" rel="noopener">https://arxiv.org/abs/2509.10570</a></div>
+</div>
+<div class="body">
+
+<figure>
+  <img src="./images/art059_fig1.png" alt="Large Foundation Models for Trajectory Prediction in Autonomous Driving">
+</figure>
+
+<p>本論文は、自動運転における軌跡予測（Trajectory Prediction）への大規模基盤モデル（Large Foundation Models: LFMs）——特にLLMとマルチモーダルLLM（MLLM）——の適用を体系的にレビューしたサーベイである。著者はWei Dai、Shengen Wu、Wei Wu、Zhenhao Wang、Sisuo Lyu、Haicheng Liao、Limin Yu、Weiping Ding、Runwei Guan、Yutao Yueで、arXiv 2509.10570として公開されている。</p>
+
+<h2>問題意識と動機</h2>
+<p>軌跡予測は自動運転における重要な機能であり、車両や歩行者といった交通参加者の将来の動作パスを予測することで走行安全性を確保する。従来のディープラーニング手法は精度を向上させてきたが、以下の根本的な限界に直面している。</p>
+<ol>
+  <li><strong>解釈可能性の欠如</strong>：ディープラーニングモデルはブラックボックスとして機能し、形式的な検証や安全認証を妨げる</li>
+  <li><strong>データ依存性</strong>：大規模なアノテーション済みデータセットへの性能依存</li>
+  <li><strong>ロングテール汎化</strong>：稀なシナリオにおける脆弱な性能</li>
+</ol>
+<p>著者らはLFMが軌跡予測に「パラダイムシフト」をもたらしていると指摘する。LFMは軌跡予測を「低レベルのパターン認識タスク」から「意味的理解と認知的推論に基づくもの」へと転換させる。</p>
+
+<h2>軌跡予測の定式化</h2>
+<p>タスクは車両の軌跡予測と歩行者の軌跡予測の2つに分けられる。</p>
+<ul>
+  <li><strong>車両軌跡予測</strong>：道路構造、交通規則、他車両との相互作用を考慮した複雑な予測</li>
+  <li><strong>歩行者軌跡予測</strong>：非構造化環境での複雑な社会的ダイナミクス、注釈データの希少性、解釈可能な推論の必要性という独自の課題がある</li>
+</ul>
+
+<h2>3つの中核手法論</h2>
+
+<h3>1. 軌跡-言語マッピング（Trajectory-Language Mapping）</h3>
+<p>連続的な動作座標を離散的な言語表現に変換する手法である。STG-LLMのようなシステムは時空間グラフデータをトークン化し、位置・速度・行動意図を自然言語としてエンコードした構造化プロンプトを使用する。</p>
+
+<h3>2. マルチモーダルフュージョンアーキテクチャ（Multimodal Fusion Architectures）</h3>
+<p>視覚（カメラ・LiDAR）、言語（指示・説明文）、軌跡のモダリティを統一エンコーダで統合する。DiMAのようなフレームワークは共有シーンエンコーダで視覚入力をBEVトークン埋め込みに変換し、融合点として活用する。</p>
+
+<h3>3. 制約ベース推論（Constraint-Based Reasoning）</h3>
+<p>Chain-of-Thought（CoT）プロンプティングを活用して予測を検証可能な推論ステップに分解する。「赤信号のため減速する」のような交通規則を言語的制約として強制し、明示的な正当化を必要とする。CoT-Driveは複雑な相互作用を「統計的シーン分析、マルチエージェント相互作用評価、衝突リスク定量化、軌跡予測」という順次フェーズに分解する。</p>
+
+<h2>LLMベース手法の主要アプローチ</h2>
+
+<h3>車両軌跡予測</h3>
+<p>プロンプトエンジニアリングでは、履歴状態を浮動小数点値または離散トークンとしてエンコードし、「左折」のような行動コマンドを自然言語指示として提供する。道路トポロジーや信号状態はベジェ曲線を用いてテキスト表現される。</p>
+<p>DSDriveのようなエンドツーエンド統合フレームワークは「言語駆動の明示的なCoT推論による認知的意思決定」を実現し、解釈可能な軌跡予測を直接出力する。</p>
+
+<h3>歩行者軌跡予測</h3>
+<p>LLMは歩行者予測において独自の優位性を発揮する。</p>
+<ul>
+  <li>行動規則の進化的最適化（汎化の課題への対応）</li>
+  <li>人口統計学的事前情報を用いた合成軌跡生成（アノテーション依存性の削減）</li>
+  <li>自然言語による説明の提供（解釈可能性の向上）</li>
+</ul>
+<p>入力表現では、連続座標をランク-k SVDで文字列に離散化し、元の軌跡から「95%以上の動作意味論を保存」する。</p>
+
+<h2>実験ベンチマークと評価指標</h2>
+
+<h3>主要なデータセット</h3>
+<ul>
+  <li>車両予測：Waymo、nuScenes、Argoverse、nuPlan、INTERACTION、KITTI</li>
+  <li>歩行者予測：ETH/UCY、JAAD</li>
+  <li>対話・VLAデータ：DRIVELM、CoVLA、Talk2BEV、Impromptu VLA</li>
+</ul>
+
+<h3>性能実績</h3>
+<ul>
+  <li><strong>TCPフレームワーク</strong>：CARLAのシャープカーブシナリオで衝突率37%削減</li>
+  <li><strong>DriveSuprim</strong>：NAVSIM v1で93.5%のPDMSを達成</li>
+  <li><strong>AutoDRRT 2.0</strong>：BEVFormer量子化により100ms未満のエンドツーエンドレイテンシ</li>
+</ul>
+
+<h2>LFMベース手法の優位性</h2>
+<ol>
+  <li><strong>意味的推論</strong>：LLMは「常識的原則、交通規則、社会的慣習」を内在化する</li>
+  <li><strong>汎化</strong>：マルチモーダルMLLMはカメラ・LiDARからのテキスト指示までの「異種データストリームを処理」する</li>
+  <li><strong>説明可能性</strong>：CoT推論は「予測の背後にある段階的な根拠」を自然言語で説明する</li>
+  <li><strong>ロングテール対応</strong>：シーン意味解析が「従来の幾何学的プリミティブを超えた」行動指向シーングラフを実現する</li>
+</ol>
+
+<h2>課題と将来方向</h2>
+
+<h3>現在の課題</h3>
+<ul>
+  <li><strong>計算レイテンシ</strong>：LLM推論が解釈可能性とリアルタイム要件の間に緊張を生む</li>
+  <li><strong>分布シフト</strong>：豪雨は「LiDAR点群の完全性を著しく低下させ、予測誤差を大幅に増大」させる</li>
+  <li><strong>安全認証</strong>：非保護左折のようなロングテールシナリオが専用検証を必要とする</li>
+  <li><strong>データ希少性</strong>：非構造化環境での歩行者軌跡データセットの不足</li>
+</ul>
+
+<h3>将来方向</h3>
+<ul>
+  <li><strong>超低レイテンシ推論</strong>：モデル蒸留とハードウェア・アルゴリズム協調設計（OpenDriveVLAの0.5B-7Bパラメータスケーリングなど）</li>
+  <li><strong>物理インフォームド学習</strong>：運動学的制約と学習表現の統合</li>
+  <li><strong>生成的検証</strong>：実世界テストの負担軽減のための合成シナリオ生成</li>
+  <li><strong>モーション基盤モデル</strong>：動作ダイナミクスのみで事前学習した専用モデル</li>
+  <li><strong>因果的根拠づけシステム</strong>：安全検証のための反事実推論</li>
+  <li><strong>検証可能な安全性</strong>：エッジケースを超えた予測可能な挙動を保証する形式的手法の統合</li>
+</ul>
+
+<h2>まとめ</h2>
+<p>本サーベイは、LFMが軌跡予測において統計的パターンマッチングを超えて「より解釈可能でコンテキスト認識型の環境理解が可能なシステム」へと向かう本物のパラダイムシフトを体現していることを示している。推論ベース予測（CoT）、生成的検証、ハードウェア最適化の収束は、自動運転スタックにおける軌跡予測が意味的理解を活用しつつリアルタイム車載制約を維持する方向へ発展することを示唆している。</p>
+
+</div>
+<footer><p>日本語翻訳版 | 原文: <a href="https://arxiv.org/abs/2509.10570" target="_blank" rel="noopener">こちら</a></p></footer>
+</div>
+</body>
+</html>
